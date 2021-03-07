@@ -8,12 +8,13 @@ $('.select__head input').on('focus', onInputFocus)
 $('.select').on('click', '.select__item', droplistChooseItem);
 
 function onSelectFocus() {
-  // Отключить предыдущие 
-  $('.select__head').removeClass('open');
-  $('.select__list').fadeOut(5);
-  // включить текущую 
-  $(this).addClass('open');
-  $(this).next().fadeIn(5);
+  if (!this.parentElement.classList.contains('disable')) { // Отключить предыдущие 
+    $('.select__head').removeClass('open');
+    $('.select__list').fadeOut(5);
+    // включить текущую 
+    $(this).addClass('open');
+    $(this).next().fadeIn(5);
+  }
 }
 
 function onInputFocus() {
@@ -26,17 +27,29 @@ function onInputFocus() {
 }
 
 function droplistChooseItem() {
-  // $(this).parent().prev().text($(this).text());
-  // let myInput = document.createElement('div')
-  // myInput.classList.add('selected')
+  const doctorTheme = document.querySelector('.js-themeDoctor')
+  const candidateTheme = document.querySelector('.js-themeCandidate')
 
+  if (this.classList.contains('js-degreeDoctor') && candidateTheme && doctorTheme) {
+    doctorTheme.style.display = 'flex'
+    candidateTheme.style.display = 'flex'
+  }
+  if (this.classList.contains('js-degreeCandidate') && candidateTheme && doctorTheme) {
+    doctorTheme.style.display = 'none'
+    candidateTheme.style.display = 'flex'
+  }
+  if (this.classList.contains('js-degreeEmpty') && candidateTheme && doctorTheme) {
+    doctorTheme.style.display = 'none'
+    candidateTheme.style.display = 'none'
+  }
   $('.select__head').removeClass('open');
   $('.select__list').fadeOut(5);
 
-  $('.select__head input').attr('placeholder', this.textContent)
-  $('.select__head input').attr('value', this.textContent)
+  this.parentElement.parentElement.querySelector('.select__head input').value = this.textContent
+  this.parentElement.parentElement.querySelector('.select__input').value = this.textContent
 
 }
+
 $(document).click(function (e) {
   if (!$(e.target).closest('.select').length) {
     $('.select__head').removeClass('open');
