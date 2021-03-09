@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.min.css">
+  <title>Визитка врача</title>
+</head>
+
+<body>
+
+
+
+
+
+  <!-- Сообщение отправлено -->
+  <div class="modal modal-notify ">
+    <div class="modal-wrap modal-notify-wrap">
+      <div class="modal-close">
+        <img src="img/icons/close-icon.svg" alt="">
+      </div>
+      <h2 class="modal-title"> Сообщение отправлено</h2>
+      <span class="modal-reset-text">Ваше сообщение отправлено. Наши специалисты ответят Вам в&nbsp;течение нескольких
+        часов.</span>
+      <div class="btn modal-notify-btn ">Закрыть</div>
+    </div>
+  </div>
+
+  <!-- Ркомендовать -->
+  <div class="modal modal-recommend ">
+    <div class="modal-wrap modal-notify-wrap">
+      <div class="modal-close">
+        <img src="img/icons/close-icon.svg" alt="">
+      </div>
+      <h2 class="modal-title"> Ркомендовать</h2>
+      <span class="modal-reset-text">
+        Спасибо, что рекомендуете врача. Таким образом вы&nbsp;подтверждаете профессионализм коллеги и&nbsp;его
+        гарантии.
+      </span>
+      <span class="modal-reset-text">
+        Отменить рекомендацию можно в&nbsp;разделе &laquo;Мои коллеги&raquo; в&nbsp;личном кабинете.
+      </span>
+      <div class="btn modal-notify-btn ">Ркомендовать</div>
+    </div>
+  </div>
+
+
+  <!-- Отправка жилобы   -->
+  <div class="modal modal-complain ">
+    <div class="modal-wrap modal-complain-wrap">
+      <h2 class="modal-title">
+        Неверная информация
+      </h2>
+      <div class="modal-close">
+        <img src="img/icons/close-icon.svg" alt="">
+      </div>
+      <span class="modal-complain__text">Если вы считаете что в профиле</span>
+      <span class="modal-complain__account">Муратов Александр Виктрович</span>
+      <span class="modal-complain__text">
+        указана неверная информация, напишите нам об этом. Мы проведем проверку на соответствие с указанной информацией.
+      </span>
+
+      <form method="get" class="modal-support-form" action="#" id="complainForm">
+
+        <div class="input-block select-wrap">
+
+          <div class="select">
+            <div class="select__head">
+              <input type="text" name="mistake" autocomplete="off" readonly placeholder="Где допущена ошибка?" class="field">
+            </div>
+
+
+            <ul class="select__list" style="display: none;">
+              <li class="select__item">Что-то </li>
+              <li class="select__item">Что-то </li>
+              <li class="select__item">Что-то </li>
+              <li class="select__item">Что-то </li>
+              <li class="select__item">Что-то </li>
+              <li class="select__item">Что-то </li>
+            </ul>
+          </div>
+        </div>
+        <div class="input-block">
+          <textarea class="input-block__field textarea field" name="message" id="" cols="30" rows="30"
+            placeholder="Напишите нам сообщение"></textarea>
+        </div>
+        <input type="submit" value="Отправить" class="login-submit form-submit  modal-support-submit btn disabled">
+      </form>
+    </div>
+  </div>
+
+
+
+  <header class="header ">
+    <div class="wrap content-flex">
+      <a href="index.html" class="logo">
+        <img src="img/icons/logo.svg" alt="Визитка Врача">
+      </a>
+      <div class="city toModal js-toChooseCity">
+        <img src="img/icons/city-icon.svg" alt="">
+        <span class="name">Москва</span>
+      </div>
+      <form role="search" method="get" class="header-search search-form " action="#">
+        <label>
+          <span class="screen-reader-text">
+          </span>
+          <input type="text" class="search-field field header-search__field " placeholder="Поиск" />
+
+
+        </label>
+        <button type="submit" class="header-search__submit">
+          <img src="img/icons/search-icon_white.svg" alt="" class="header-search__icon">
+        </button>
+      </form>
+      <div class="buttons content-flex">
+        <div class="signup js-toRegister">
+          Регистрация
+        </div>
+        <div class="login btn js-toLogin">
+          Вход
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main ">
+    <section class="section profile">
+
+      <div class="wrap">
+        <div class="section-nav">
+          <a href="#"> Главная </a>
+          <img src="img/icons/arrow-icon.svg" alt="">
+          <a href="#"> Поиск </a>
+          <img src="img/icons/arrow-icon.svg" alt="">
+          <a href="#"> Стоматология </a>
+          <img src="img/icons/arrow-icon.svg" alt="">
+          <a href="#"> Муратов Александр Викторович </a>
+        </div>
+      </div>
+      <div class="wrap content-flex">
+        <div class="sidebar ">
+          <div class="profile-nav">
+            <nav>
+              <li class="profile-nav__item current"><a href="#personalNav" class="anchor">Персональная информация</a>
+              </li>
+              <li class="profile-nav__item "><a href="#specialityNav" class="anchor">Специальности</a></li>
+              <li class="profile-nav__item "><a href="#jobNav" class="anchor">Опыт работы</a></li>
+              <li class="profile-nav__item "><a href="#moreNav" class="anchor">Дополнительная информация </a></li>
+              <li class="profile-nav__item "><a href="#appointmentNav" class="anchor">Прием</a></li>
+              <li class="profile-nav__item "><a href="#prepareNav" class="anchor">Как подготовиться к&nbsp;приему</a>
+              </li>
+            </nav>
+          </div>
+        </div>
+        <div class="content">
+          <div class="profile-box profile-info" id="personalNav">
+            <div class="profile-img">
+              <img src="img/profile/profile-line-icon.svg" alt="" class="line">
+              <img src="img/profile/profile-img.png" alt="">
+            </div>
+            <div class="profile-descr">
+              <span class="profile-info__name">Муратов Александр Виктрович<span class="age">35 лет</span></span>
+              <p class="profile-info__descr">
+                Мануальный терапевт, невролог, остеопат, рефлексотерапевт...
+              </p>
+              <div class="profile-info__facts">
+                <span>Стаж 13&nbsp;лет</span>
+                <span>Доктор наук</span>
+                <span>1-я категория</span>
+              </div>
+              <div class="profile-info__contacts">
+                <div class="profile-info__contacts-info">
+                  <span class="name">&laquo;Открытая клиника&raquo;&nbsp;&mdash; Пресненский центр</span>
+                  <span class="profile-info__contacts-city">Новосибирск</span>
+                </div>
+                <div class="profile-info__contacts-links">
+                  <a href="tel:+79161234567">+7 (916) 123&mdash;45&mdash;67</a>
+                  <a href="tel:+79161234567">+7 (916) 123&mdash;45&mdash;67</a>
+                </div>
+              </div>
+              <div class="profile-info__contacts">
+                <div class="profile-info__contacts-info">
+                  <span class="name">&laquo;Открытая клиника&raquo; </span>
+                  <span class="profile-info__contacts-city">Новосибирск</span>
+                </div>
+                <div class="profile-info__contacts-links">
+                  <a href="tel:+79161234567">+7 (916) 123&mdash;45&mdash;67</a>
+                </div>
+              </div>
+              <div class="profile-info__line">
+              </div>
+              <div class="profile-info__contacts">
+                <div class="profile-info__contacts-info">
+                  <span class="name ">Личные консультации</span>
+                  <span class="name">Контактный e-mail</span>
+                </div>
+                <div class="profile-info__contacts-links">
+                  <a href="tel:+79161234567">+7 (916) 123&mdash;45&mdash;67</a>
+                  <a href="mailto:Mymail@mail.com">Mymail@mail.com</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-box profile-education" id="specialityNav">
+            <h2 class="profile-box__title">
+              Образование<span class="profile-education__type">Высшее</span>
+            </h2>
+            <div class="profile-education__wrap">
+              <div class="profile-education__item base">
+                <div class="profile-education__date">
+                  <span>1997</span>
+                </div>
+                <div class="profile-education__descr">
+                  <span class="type">Базовое образование</span>
+                  <span class="text">Московский государственный медико-стоматологический университет Евдокимова</span>
+                  <span class="program">лечебное дело</span>
+                </div>
+              </div>
+              <div class="profile-education__item">
+                <div class="profile-education__date">
+                  <span>1997</span>
+                </div>
+                <div class="profile-education__descr">
+                  <span class="type">Базовое образование</span>
+                  <span class="text">Московский государственный медико-стоматологический университет Евдокимова</span>
+                  <span class="program">лечебное дело</span>
+                </div>
+              </div>
+              <div class="profile-education__item">
+                <div class="profile-education__date">
+                  <span>1997</span>
+                </div>
+                <div class="profile-education__descr">
+                  <span class="type">Базовое образование</span>
+                  <span class="text">Московский государственный медико-стоматологический университет Евдокимова</span>
+                  <span class="program">лечебное дело</span>
+                </div>
+              </div>
+              <div class="profile-education__item">
+                <div class="profile-education__date">
+                  <span>1997</span>
+                </div>
+                <div class="profile-education__descr">
+                  <span class="type">Базовое образование</span>
+                  <span class="text">Московский государственный медико-стоматологический университет Евдокимова</span>
+                  <span class="program">лечебное дело</span>
+                </div>
+              </div>
+              <div class="profile-education__item">
+                <div class="profile-education__date">
+                  <span>1997</span>
+                </div>
+                <div class="profile-education__descr">
+                  <span class="type">Базовое образование</span>
+                  <span class="text">Московский государственный медико-стоматологический университет Евдокимова</span>
+                  <span class="program">лечебное дело</span>
+                </div>
+              </div>
+
+              <div class="profile-education__more">
+                Смотреть еще
+              </div>
+            </div>
+
+            <h2 class="profile-box__title">
+              Докторская диссертация
+            </h2>
+            <p class="profile-box__text">
+              Предгравидарная подготовка и&nbsp;особенности течения беременности и&nbsp;родов у&nbsp;пациенток
+              с&nbsp;хроническим
+              эндометритом.
+            </p>
+            <h2 class="profile-box__title">
+              Кандидатская диссертация
+            </h2>
+            <p class="profile-box__text">
+              Предгравидарная подготовка и&nbsp;особенности течения беременности и&nbsp;родов у&nbsp;пациенток
+              с&nbsp;хроническим
+              эндометритом.
+            </p>
+          </div>
+          <div class="profile-box profile-experiance" id="jobNav">
+            <h2 class="profile-box__title">
+              Опыт работы
+            </h2>
+            <div class="profile-education__wrap experiance ">
+              <div class="profile-education__item">
+                <div class="profile-education__date">
+                  <span>май 2019 &mdash; настоящее&nbsp;время</span>
+                </div>
+                <div class="profile-education__descr">
+                  <span class="text">ОАО РЖД</span>
+                  <span class="program">Врач-невролог</span>
+                </div>
+              </div>
+              <div class="profile-education__item">
+                <div class="profile-education__date">
+                  <span>май 2019 &mdash; настоящее&nbsp;время</span>
+                </div>
+                <div class="profile-education__descr">
+                  <span class="text">Врачебно-физкультурный диспансер 13</span>
+                  <span class="program">Врач-невролог, мануальный терапевт</span>
+                </div>
+              </div>
+              <div class="profile-education__item">
+                <div class="profile-education__date">
+                  <span>май 2019 &mdash; настоящее&nbsp;время</span>
+                </div>
+                <div class="profile-education__descr">
+                  <span class="text">Городская поликлиника 150</span>
+                  <span class="program">Врач-рефлексотерапевт</span>
+                </div>
+              </div>
+
+              <div class="profile-education__more">
+                Смотреть еще
+              </div>
+            </div>
+
+
+          </div>
+          <!-- Дополнительная информация -->
+          <div class="profile-box " id="moreNav">
+            <h2 class="profile-box__title">Дополнительная информация</h2>
+            <p class="profile-box__text">
+              Если болевой синдром за&nbsp;эти 3&nbsp;месяца не&nbsp;беспокоил, спина достаточно сильная, может
+              переносить нагрузку и
+              при этом не&nbsp;болит, то&nbsp;можно. Но&nbsp;контакт с&nbsp;водой так или иначе может приводить
+              к&nbsp;переохлаждению, а&nbsp;это
+              фактор при котором даже здоровая спина может болеть. Поэтому в&nbsp;походе нужно будет быть крайне
+              осторожной -
+              избегать переохлаждения, резких движений, подъёма тяжестей. На&nbsp;случай болевого синдрома можно взять
+              Ибупрофен (Нурофен) в&nbsp;таблетках, 1&nbsp;таб. (200&nbsp;мг) до&nbsp;3х&nbsp;раз в&nbsp;день,
+              во&nbsp;время еды, до&nbsp;3х&nbsp;дней. При условии,
+              что нет аллергии на&nbsp;Ибупрофен, бронхиальной астмы, проблемы с&nbsp;желудком (гастрит).
+            </p>
+          </div>
+
+          <div class="profile-box profile-appointment" id="appointmentNav">
+            <h2 class="profile-box__title">
+              Прием<div class="profile-appointment__price">от 1900 руб.</div>
+            </h2>
+            <div class="profile-appointment__wrap">
+              <div class="profile-appointment__item">
+                <div class="place">
+                  <span class="place-name">«Открытая клиника» - Пресненский центр</span>
+                  <span class="place-city">Москва</span>
+                </div>
+
+                <div class="descr">
+                  <div class="descr-item">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
+                  <div class="descr-item">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
+                  <div class="descr-item">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
+
+                  <span class="descr-more">
+                    Смотреть еще
+                  </span>
+                </div>
+              </div>
+              <div class="profile-appointment__item">
+                <div class="place">
+                  <span class="place-name">«Открытая клиника» - Пресненский центр</span>
+                  <span class="place-city">Москва</span>
+                </div>
+
+                <div class="descr">
+                  <div class="descr-item">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
+                  <div class="descr-item">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
+                  <div class="descr-item">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
+
+                  <span class="descr-more">
+                    Смотреть еще
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Как подготовиться к приему -->
+          <div class="profile-box" id="prepareNav">
+            <h2 class="profile-box__title">Как подготовиться к&nbsp;приему</h2>
+            <p class="profile-box__text">
+              Если болевой синдром за&nbsp;эти 3&nbsp;месяца не&nbsp;беспокоил, спина достаточно сильная, может
+              переносить нагрузку и
+              при этом не&nbsp;болит, то&nbsp;можно. Но&nbsp;контакт с&nbsp;водой так или иначе может приводить
+              к&nbsp;переохлаждению, а&nbsp;это
+              фактор при котором даже здоровая спина может болеть. Поэтому в&nbsp;походе нужно будет быть крайне
+              осторожной -
+              избегать переохлаждения, резких движений, подъёма тяжестей. На&nbsp;случай болевого синдрома можно взять
+              Ибупрофен (Нурофен) в&nbsp;таблетках, 1&nbsp;таб. (200&nbsp;мг) до&nbsp;3х&nbsp;раз в&nbsp;день,
+              во&nbsp;время еды, до&nbsp;3х&nbsp;дней. При условии,
+              что нет аллергии на&nbsp;Ибупрофен, бронхиальной астмы, проблемы с&nbsp;желудком (гастрит).
+            </p>
+          </div>
+
+          <div class="profile-box profile-box__recommend">
+            <div class="profile-recommend">
+              <div class="profile-recommend__text">
+                <span class="count">35</span>
+                <span>врачей рекомендуют</span>
+              </div>
+              <div class="profile-recommend__btn js-toRecommend">Рекомендовать врача</div>
+            </div>
+            <div class="profile-complain">
+              <span class="profile-complain__text">
+                Если вы&nbsp;считаете что в&nbsp;профиле предоставлена ложная информация&nbsp;&mdash; сообщите нам
+              </span>
+              <div class="profile-complain__btn js-toComplain">
+                Пожаловаться
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap content-flex between">
+      <div class="footer-item">
+        © AО “Визитка врача”, 2021.
+      </div>
+
+      <div class="footer-item">
+        <span class="js-toSupport js-supportEmpty link"> Написать в тех. поддержку</span>
+        <a href="mailto:Info@mail.com" class="link">Info@mail.com</a>
+      </div>
+
+      <a href="privacy.html" class="footer-item link">
+        Политика обработки информации
+      </a>
+
+    </div>
+  </footer>
+  <script src="js/jquery.js"></script>
+  <script src="js/droplist.js"></script>
+  <script src="js/jquery.mask.min.js"></script>
+  <script src="js/jquery.validate.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

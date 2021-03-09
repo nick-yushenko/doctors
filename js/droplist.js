@@ -45,8 +45,18 @@ function droplistChooseItem() {
   $('.select__head').removeClass('open');
   $('.select__list').fadeOut(5);
 
-  this.parentElement.parentElement.querySelector('.select__head input').value = this.textContent
-  this.parentElement.parentElement.querySelector('.select__input').value = this.textContent
+  const selectInput = this.parentElement.parentElement.querySelector('.select__head').querySelector('input')
+  if (selectInput) {
+    selectInput.setAttribute('value', this.textContent)
+    selectInput.classList.remove('invalid')
+    if (selectInput.parentElement.querySelector('div.invalid'))
+      selectInput.parentElement.querySelector('div.invalid').remove()
+  } else {
+    console.log('ERROR: в теле выпадающего списка отсутвует поле выбора элемента')
+  }
+
+
+  // удаление ошибок валидации 
 
 }
 

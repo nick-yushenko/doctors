@@ -160,7 +160,12 @@ if (toSupportBtns) {
       })
       modalSupport.classList.add('active')
       document.querySelector('body').style.overflow = 'hidden'
+      if (item.classList.contains('js-supportEmpty')) {
+        modalSupport.querySelector('.modal-back').style.display = 'none'
+      } else {
+        modalSupport.querySelector('.modal-back').style.display = 'block'
 
+      }
     })
   })
 }
@@ -727,13 +732,15 @@ if (codeForm && sendCode && codeFields.length > 0 && codeTrueField) {
 // Валидация форм
 
 // валидация номеров телефона
-// $('input[name="phone"').mask('(000) 000 00-00')
+$('input.phone').mask('(000) 000-00-00')
 
 
 $('#supportForm').validate({
+
   rules: {
     email: {
-      required: true
+      required: true,
+      email: true
     },
     userName: {
       required: true
@@ -748,7 +755,8 @@ $('#supportForm').validate({
   },
   messages: {
     email: {
-      required: jQuery.validator.format('Поле не заполнено')
+      required: jQuery.validator.format('Поле не заполнено'),
+      email: jQuery.validator.format('Введен некорректный e-mail')
     },
     userName: {
       required: jQuery.validator.format("Поле не заполнено")
@@ -764,3 +772,293 @@ $('#supportForm').validate({
   errorClass: "invalid",
 
 });
+
+$('#loginForm').validate({
+
+  rules: {
+    email: {
+      required: true,
+      email: true
+    },
+    password: {
+      required: true
+    },
+
+
+  },
+  messages: {
+    email: {
+      required: jQuery.validator.format('Поле не заполнено'),
+      email: jQuery.validator.format('Введен некорректный e-mail')
+    },
+    password: {
+      required: jQuery.validator.format("Поле не заполнено")
+    },
+
+  },
+  errorElement: "div",
+  errorClass: "invalid",
+
+});
+$('#registerForm').validate({
+
+  rules: {
+    email: {
+      required: true,
+      email: true
+    },
+    password: {
+      required: true
+    },
+    confirmPassword: {
+      required: true
+    },
+
+  },
+  messages: {
+    email: {
+      required: jQuery.validator.format('Поле не заполнено'),
+      email: jQuery.validator.format('Введен некорректный e-mail')
+    },
+    password: {
+      required: jQuery.validator.format("Поле не заполнено")
+    },
+    confirmPassword: {
+      required: jQuery.validator.format("Поле не заполнено")
+    },
+
+  },
+  errorElement: "div",
+  errorClass: "invalid",
+
+});
+
+$('#resetPasswordForm').validate({
+
+  rules: {
+    email: {
+      required: true,
+      email: true
+    },
+
+
+
+  },
+  messages: {
+    email: {
+      required: jQuery.validator.format('Поле не заполнено'),
+      email: jQuery.validator.format('Введен некорректный e-mail')
+    }
+  },
+  errorElement: "div",
+  errorClass: "invalid",
+
+});
+
+$('#complainForm').validate({
+
+  rules: {
+    message: {
+      required: true,
+    },
+
+    mistake: {
+      required: true,
+    },
+
+
+  },
+  messages: {
+    message: {
+      required: jQuery.validator.format('Поле не заполнено'),
+    },
+    mistake: {
+      required: jQuery.validator.format('Поле не заполнено'),
+    }
+  },
+  errorElement: "div",
+  errorClass: "invalid",
+
+});
+$('#inviteModalForm').validate({
+
+  rules: {
+    phone: {
+      required: true,
+
+    },
+
+  },
+  messages: {
+    phone: {
+      required: jQuery.validator.format('Поле не заполнено'),
+      minlength: jQuery.validator.format("Номер указан не полностью")
+    },
+  },
+  errorElement: "div",
+  errorClass: "invalid",
+
+});
+$('#inviteForm').validate({
+
+  rules: {
+    phone: {
+      required: true,
+
+    },
+
+  },
+  messages: {
+    phone: {
+      required: jQuery.validator.format('Поле не заполнено'),
+      minlength: jQuery.validator.format("Номер указан не полностью")
+    },
+  },
+  errorElement: "div",
+  errorClass: "invalid",
+
+});
+$('#settingsChangeEmail').validate({
+
+  rules: {
+    email: {
+      required: true,
+
+    },
+
+  },
+  messages: {
+    email: {
+      required: jQuery.validator.format('Поле не заполнено'),
+      email: jQuery.validator.format('Введен некорректный e-mail')
+    },
+  },
+  errorElement: "div",
+  errorClass: "invalid",
+
+});
+
+$('#settingsChangePassword').validate({
+
+  rules: {
+    confirmNewPassword: {
+      required: true,
+    },
+    newPassword: {
+      required: true
+    },
+    currentPassword: {
+      required: true
+    },
+
+
+  },
+  messages: {
+    confirmNewPassword: {
+      required: jQuery.validator.format('Поле не заполнено'),
+    },
+    newPassword: {
+      required: jQuery.validator.format('Поле не заполнено'),
+    },
+    currentPassword: {
+      required: jQuery.validator.format('Поле не заполнено'),
+    },
+
+
+  },
+  errorElement: "div",
+  errorClass: "invalid",
+
+});
+// активация / диактивация кнопки отправки формы 
+function activateSubmit(form) {
+
+
+
+  function onChangeField() {
+    if (form != null) {
+
+      if (this.classList.contains('field')) {
+        if (this.getAttribute('type') == 'email') {
+          if (this.value.length > 0 && this.value.indexOf('@') > -1)
+            this.classList.add('success')
+          else
+            this.classList.remove('success')
+        } else if (this.getAttribute('type') == 'phone') {
+          if (this.value.length == 15)
+            this.classList.add('success')
+          else
+            this.classList.remove('success')
+        } else {
+          if (this.value.length > 0)
+            this.classList.add('success')
+          else
+            this.classList.remove('success')
+
+        }
+
+      } else {
+        this.parentElement.parentElement.querySelector('.select__head input').classList.add('success')
+      }
+
+      checkForm()
+    }
+
+  }
+
+  function checkForm() {
+    if (form != null) {
+
+      let successFieldsCount = form.querySelectorAll('.success').length
+      if (successFieldsCount == fieldsCount) {
+        console.log(successFieldsCount)
+        console.log('ready')
+        form.querySelector('input.form-submit').classList.remove('disabled')
+
+      } else {
+        form.querySelector('input.form-submit').classList.add('disabled')
+      }
+    }
+
+  }
+  // console.log('ERROR: не удалось установить слушатель валидации формы. Элемент не найден')
+
+
+  const fields = (form == null) ? null : form.querySelectorAll('.field')
+
+  let fieldsCount = (form == null) ? -1 : fields.length
+
+  if (fields != null && fields.length > 0)
+    fields.forEach(function (field) {
+
+      if (field.parentElement.parentElement.classList.contains('select')) { // проверка дроплиста
+        const selectItems = field.parentElement.parentElement.querySelectorAll('.select__item')
+        selectItems.forEach(function (item) {
+          item.addEventListener('click', onChangeField)
+        })
+      } else {
+        console.log('input') // проверка обычного поля
+        field.addEventListener('input', onChangeField)
+      }
+
+    })
+
+}
+if (document.querySelector('#supportForm'))
+  activateSubmit(document.querySelector('#supportForm'))
+if (document.querySelector('#loginForm'))
+  activateSubmit(document.querySelector('#loginForm'))
+if (document.querySelector('#resetPasswordForm'))
+  activateSubmit(document.querySelector('#resetPasswordForm'))
+if (document.querySelector('#complainForm'))
+  activateSubmit(document.querySelector('#complainForm'))
+if (document.querySelector('#registerForm'))
+  activateSubmit(document.querySelector('#registerForm'))
+if (document.querySelector('#inviteForm'))
+  activateSubmit(document.querySelector('#inviteForm'))
+if (document.querySelector('#inviteModalForm'))
+  activateSubmit(document.querySelector('#inviteModalForm'))
+if (document.querySelector('#settingsChangeEmail'))
+  activateSubmit(document.querySelector('#settingsChangeEmail'))
+if (document.querySelector('#settingsChangePassword'))
+  activateSubmit(document.querySelector('#settingsChangePassword'))
