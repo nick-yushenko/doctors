@@ -56,9 +56,23 @@ const modalRecommend = document.querySelector('.modal-recommend')
 const toRecommendBtns = document.querySelectorAll('.js-toRecommend')
 const modalComplain = document.querySelector('.modal-complain')
 const toComplainBtns = document.querySelectorAll('.js-toComplain')
+const modalDelete = document.querySelector('.modal-delete')
+const toDeleteBtns = document.querySelectorAll('.js-toDeleteAccount')
 
 const closeModal = document.querySelectorAll('.modal-close')
+if (toDeleteBtns) {
+  toDeleteBtns.forEach(function (item) {
 
+    item.addEventListener('click', function () {
+      modals.forEach(function (item) {
+        item.classList.remove('active')
+      })
+      
+      modalDelete.classList.add('active')
+      document.querySelector('body').style.overflow = 'hidden'
+    })
+  })
+}
 if (toChooseCityBtns) {
   toChooseCityBtns.forEach(function (item) {
 
@@ -697,12 +711,6 @@ if (codeForm && sendCode && codeFields.length > 0 && codeTrueField) {
         sendCode.classList.remove('disabled')
       } else
         sendCode.classList.add('disabled')
-
-
-
-
-
-
 
       // переход к следующему полю, если это заполнено
       if (codeFields[i].value.length == 4 && i < codeFields.length - 1) {
