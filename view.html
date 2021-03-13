@@ -18,20 +18,22 @@
     <div class="modal-wrap modal-city-wrap">
       <h2 class="modal-title">Выберите город</h2>
 
-      <form role="search" method="get" class="modal-city-search search-form" action="#">
+      <div role="search" method="get" class="modal-city-search search-form" action="#">
         <label>
           <span class="screen-reader-text">
           </span>
-          <input type="text" class="search-field field modal-city-search__field" placeholder="Ваш город"
-            id="modalCitySearchField" />
+          <input type="text" class="search-field field modal-city-search__field js-searchInput" placeholder="Ваш город"
+            id="modalCitySearchField" data-listWrapClass="modal-city-list" />
 
         </label>
         <button type="submit" class="search-submit btn modal-city-search__submit">
           <img src="img/icons/search-icon_white.svg" alt="" class="modal-city-search__icon">
         </button>
-      </form>
+      </div>
 
       <ul class="modal-city-list">
+        <li class="modal-city-item empty">Ничего не найдено</li>
+
         <li class="modal-city-item" onclick="chooseCity(event)">Екатеринбург</li>
         <li class="modal-city-item" onclick="chooseCity(event)">Казань</li>
         <li class="modal-city-item" onclick="chooseCity(event)">Краснодар</li>
@@ -70,7 +72,7 @@
       </div>
       <form role="login" method="get" class="modal-login-form" action="#" id="loginForm">
         <div class="input-block">
-          <span class="input-block__hint">Ваш контактный E-mail</span>
+          <span class="input-block__hint">Ваш E-mail</span>
           <input class="input-block__field field" type="email" name="email" placeholder="mymail@mail.com">
         </div>
         <div class="input-block password">
@@ -344,7 +346,7 @@
       <div class="modal-close">
         <img src="img/icons/close-icon.svg" alt="">
       </div>
-      <h2 class="modal-title"> Ркомендовать</h2>
+      <h2 class="modal-title"> Рeкомендовать</h2>
       <span class="modal-reset-text">
         Спасибо, что рекомендуете врача. Таким образом вы&nbsp;подтверждаете профессионализм коллеги и&nbsp;его
         гарантии.
@@ -352,7 +354,7 @@
       <span class="modal-reset-text">
         Отменить рекомендацию можно в&nbsp;разделе &laquo;Мои коллеги&raquo; в&nbsp;личном кабинете.
       </span>
-      <div class="btn modal-notify-btn ">Ркомендовать</div>
+      <div class="btn modal-notify-btn ">Рeкомендовать</div>
     </div>
   </div>
 
@@ -541,13 +543,11 @@
 
       <div class="wrap">
         <div class="section-nav">
-          <a href="#"> Главная </a>
+          <a href="index.html"> Главная </a>
           <img src="img/icons/arrow-icon.svg" alt="">
-          <a href="#"> Поиск </a>
+          <a href="profile.html"> Личный кабинет </a>
           <img src="img/icons/arrow-icon.svg" alt="">
-          <a href="#"> Стоматология </a>
-          <img src="img/icons/arrow-icon.svg" alt="">
-          <a href="#"> Муратов Александр Викторович </a>
+          <a href="#"> Заполнение профиля </a>
         </div>
       </div>
       <div class="wrap content-flex">
@@ -557,28 +557,55 @@
             <a href="#" class="btn-light">Сохранить черновик</a>
             <a href="settingsProfile.html" class="btn-light">Редактировать данные</a>
             <div class="view-bg">
+
               <span class="view-bg__title">Фон</span>
-              <label class="radio  view-bg__item js-setBg0">
-                <input type="radio" name="background" checked>
-                <span class="radio__text">Без фона</span>
-              </label>
-              <label class="radio  view-bg__item js-setBg1">
-                <input type="radio" name="background">
-                <span class="radio__text">Фон 1</span>
-              </label>
-              <label class="radio  view-bg__item js-setBg2">
-                <input type="radio" name="background">
-                <span class="radio__text">Фон 2</span>
-              </label>
-              <label class="radio  view-bg__item js-setBg3">
-                <input type="radio" name="background">
-                <span class="radio__text">Фон 3</span>
-              </label>
+
+              <div class="view-bg__wrap">
+                <label class="radio  view-bg__item js-setBg0">
+                  <input type="radio" name="background" checked>
+                  <span class="radio__text">Без фона</span>
+                </label>
+                <label class="radio  view-bg__item js-setBg1">
+                  <input type="radio" name="background">
+                  <span class="radio__text">Фон 1</span>
+                </label>
+                <label class="radio  view-bg__item js-setBg2">
+                  <input type="radio" name="background">
+                  <span class="radio__text">Фон 2</span>
+                </label>
+                <label class="radio  view-bg__item js-setBg3">
+                  <input type="radio" name="background">
+                  <span class="radio__text">Фон 3</span>
+                </label>
+                <label class="radio  view-bg__item js-setBg4">
+                  <input type="radio" name="background">
+                  <span class="radio__text">Фон 4</span>
+                </label>
+                <label class="radio  view-bg__item js-setBg5">
+                  <input type="radio" name="background">
+                  <span class="radio__text">Фон 5</span>
+                </label>
+                <label class="radio  view-bg__item js-setBg6">
+                  <input type="radio" name="background">
+                  <span class="radio__text">Фон 6</span>
+                </label>
+                <label class="radio  view-bg__item js-setBg7">
+                  <input type="radio" name="background">
+                  <span class="radio__text">Фон 7</span>
+                </label>
+                <label class="radio  view-bg__item js-setBg8">
+                  <input type="radio" name="background">
+                  <span class="radio__text">Фон 8</span>
+                </label>
+              </div>
+ 
+          
+
             </div>
           </div>
         </div>
         <div class="content">
-          <h1 class="section-title settings-title"> <a href="#"> <img src="img/icons/back-icon_black.svg" alt=""></a>
+          <h1 class="section-title settings-title"> <a href="settingsProfile.html"> <img src="img/icons/back-icon_black.svg" alt=""></a>
             Настройка внешнего вида </h1>
 
           <div class="profile-box profile-info">
@@ -593,6 +620,7 @@
               </p>
               <div class="profile-info__facts">
                 <span>Стаж 13&nbsp;лет</span>
+                <span>Профессор</span>
                 <span>Доктор наук</span>
                 <span>1-я категория</span>
               </div>
@@ -635,62 +663,90 @@
               Образование<span class="profile-education__type">Высшее</span>
             </h2>
             <div class="profile-education__wrap">
-              <div class="profile-education__item base">
-                <div class="profile-education__date">
-                  <span>1997</span>
-                </div>
-                <div class="profile-education__descr">
-                  <span class="type">Базовое образование</span>
-                  <span class="text">Московский государственный медико-стоматологический университет Евдокимова</span>
-                  <span class="program">лечебное дело</span>
-                </div>
-              </div>
-              <div class="profile-education__item">
-                <div class="profile-education__date">
-                  <span>1997</span>
-                </div>
-                <div class="profile-education__descr">
-                  <span class="type">Базовое образование</span>
-                  <span class="text">Московский государственный медико-стоматологический университет Евдокимова</span>
-                  <span class="program">лечебное дело</span>
-                </div>
-              </div>
-              <div class="profile-education__item">
-                <div class="profile-education__date">
-                  <span>1997</span>
-                </div>
-                <div class="profile-education__descr">
-                  <span class="type">Базовое образование</span>
-                  <span class="text">Московский государственный медико-стоматологический университет Евдокимова</span>
-                  <span class="program">лечебное дело</span>
-                </div>
-              </div>
-              <div class="profile-education__item">
-                <div class="profile-education__date">
-                  <span>1997</span>
-                </div>
-                <div class="profile-education__descr">
-                  <span class="type">Базовое образование</span>
-                  <span class="text">Московский государственный медико-стоматологический университет Евдокимова</span>
-                  <span class="program">лечебное дело</span>
-                </div>
-              </div>
-              <div class="profile-education__item">
-                <div class="profile-education__date">
-                  <span>1997</span>
-                </div>
-                <div class="profile-education__descr">
-                  <span class="type">Базовое образование</span>
-                  <span class="text">Московский государственный медико-стоматологический университет Евдокимова</span>
-                  <span class="program">лечебное дело</span>
-                </div>
-              </div>
 
-              <div class="profile-education__more">
+              <div class="profile-education__list">
+
+                <div class="profile-education__item js-education opened base">
+                  <div class="profile-education__date">
+                    <span>1997</span>
+                  </div>
+                  <div class="profile-education__descr">
+                    <span class="type">Базовое образование</span>
+                    <span class="text">Московский государственный медико-стоматологический университет Евдокимова</span>
+                    <span class="program">лечебное дело</span>
+                  </div>
+                </div>
+                <div class="profile-education__item js-education opened">
+                  <div class="profile-education__date">
+                    <span>1997</span>
+                  </div>
+                  <div class="profile-education__descr">
+                    <span class="type">Ординатура</span>
+                    <span class="text">Московский государственный медико-стоматологический университет Евдокимова</span>
+                    <span class="program">Хирургия</span>
+                  </div>
+                </div>
+                <div class="profile-education__item js-education opened">
+                  <div class="profile-education__date">
+                    <span>1997</span>
+                  </div>
+                  <div class="profile-education__descr">
+                    <span class="type">Цикл первичной переподготовки</span>
+                    <span class="text">Российский национальный исследовательский медицинский университет имени Н.И. Пирогова</span>
+                    <span class="program">Сердечно – сосудистая хирургия</span>
+                  </div>
+                </div>
+                <div class="profile-education__item js-education opened">
+                  <div class="profile-education__date">
+                    <span>1997</span>
+                  </div>
+                  <div class="profile-education__descr">
+                    <span class="type">Цикл первичной переподготовки</span>
+                    <span class="text">Московский государственный медико-стоматологический университет Евдокимова</span>
+                    <span class="program">Хирургия</span>
+                  </div>
+                </div>
+         
+                <div class="profile-education__item js-education ">
+                  <div class="profile-education__date">
+                    <span>1997</span>
+                  </div>
+                  <div class="profile-education__descr">
+                    <span class="type">Ординатура</span>
+                    <span class="text">Московский государственный медико-стоматологический университет Евдокимова</span>
+                    <span class="program">Хирургия</span>
+                  </div>
+                </div>
+                <div class="profile-education__item js-education ">
+                  <div class="profile-education__date">
+                    <span>1997</span>
+                  </div>
+                  <div class="profile-education__descr">
+                    <span class="type">Цикл первичной переподготовки</span>
+                    <span class="text">Российский национальный исследовательский медицинский университет имени Н.И. Пирогова</span>
+                    <span class="program">Сердечно – сосудистая хирургия</span>
+                  </div>
+                </div>
+                <div class="profile-education__item js-education ">
+                  <div class="profile-education__date">
+                    <span>1997</span>
+                  </div>
+                  <div class="profile-education__descr">
+                    <span class="type">Цикл первичной переподготовки</span>
+                    <span class="text">Московский государственный медико-стоматологический университет Евдокимова</span>
+                    <span class="program">Хирургия</span>
+                  </div>
+                </div>
+                
+              </div>
+    
+              <div class="profile-education__more js-moreEducation">
                 Смотреть еще
               </div>
-            </div>
 
+             
+            </div>
+           
             <h2 class="profile-box__title">
               Докторская диссертация
             </h2>
@@ -708,12 +764,14 @@
               эндометритом.
             </p>
           </div>
+
           <div class="profile-box profile-experiance">
             <h2 class="profile-box__title">
               Опыт работы
             </h2>
             <div class="profile-education__wrap experiance ">
-              <div class="profile-education__item">
+
+              <div class="profile-education__item experiance-item opened">
                 <div class="profile-education__date">
                   <span>май 2019 &mdash; настоящее&nbsp;время</span>
                 </div>
@@ -722,7 +780,7 @@
                   <span class="program">Врач-невролог</span>
                 </div>
               </div>
-              <div class="profile-education__item">
+              <div class="profile-education__item experiance-item opened">
                 <div class="profile-education__date">
                   <span>май 2019 &mdash; настоящее&nbsp;время</span>
                 </div>
@@ -731,7 +789,43 @@
                   <span class="program">Врач-невролог, мануальный терапевт</span>
                 </div>
               </div>
-              <div class="profile-education__item">
+              <div class="profile-education__item experiance-item">
+                <div class="profile-education__date">
+                  <span>май 2019 &mdash; настоящее&nbsp;время</span>
+                </div>
+                <div class="profile-education__descr">
+                  <span class="text">Городская поликлиника 150</span>
+                  <span class="program">Врач-рефлексотерапевт</span>
+                </div>
+              </div>
+              <div class="profile-education__item experiance-item">
+                <div class="profile-education__date">
+                  <span>май 2019 &mdash; настоящее&nbsp;время</span>
+                </div>
+                <div class="profile-education__descr">
+                  <span class="text">Врачебно-физкультурный диспансер 13</span>
+                  <span class="program">Врач-невролог, мануальный терапевт</span>
+                </div>
+              </div>
+              <div class="profile-education__item experiance-item">
+                <div class="profile-education__date">
+                  <span>май 2019 &mdash; настоящее&nbsp;время</span>
+                </div>
+                <div class="profile-education__descr">
+                  <span class="text">Городская поликлиника 150</span>
+                  <span class="program">Врач-рефлексотерапевт</span>
+                </div>
+              </div>
+              <div class="profile-education__item experiance-item">
+                <div class="profile-education__date">
+                  <span>май 2019 &mdash; настоящее&nbsp;время</span>
+                </div>
+                <div class="profile-education__descr">
+                  <span class="text">Врачебно-физкультурный диспансер 13</span>
+                  <span class="program">Врач-невролог, мануальный терапевт</span>
+                </div>
+              </div>
+              <div class="profile-education__item experiance-item">
                 <div class="profile-education__date">
                   <span>май 2019 &mdash; настоящее&nbsp;время</span>
                 </div>
@@ -741,13 +835,14 @@
                 </div>
               </div>
 
-              <div class="profile-education__more">
+              <div class="profile-education__more js-experiance-more">
                 Смотреть еще
               </div>
             </div>
 
 
           </div>
+          
           <!-- Дополнительная информация -->
           <div class="profile-box ">
             <h2 class="profile-box__title">Дополнительная информация</h2>
@@ -776,7 +871,19 @@
                   <span class="place-city">Москва</span>
                 </div>
 
-                <div class="descr">
+                <div class="descr js-appointmentMoreWrap">
+                  <div class="descr-item opened">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
+                  <div class="descr-item opened">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
+                  <div class="descr-item opened">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
                   <div class="descr-item">
                     <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
                     <span class="descr-item__price">1900 <span> руб. </span></span>
@@ -790,7 +897,7 @@
                     <span class="descr-item__price">1900 <span> руб. </span></span>
                   </div>
 
-                  <span class="descr-more">
+                  <span class="descr-more js-appointmentMore">
                     Смотреть еще
                   </span>
                 </div>
@@ -801,7 +908,31 @@
                   <span class="place-city">Москва</span>
                 </div>
 
-                <div class="descr">
+                <div class="descr js-appointmentMoreWrap">
+                  <div class="descr-item opened">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
+                  <div class="descr-item opened">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
+                  <div class="descr-item opened">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
+                  <div class="descr-item">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
+                  <div class="descr-item">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
+                  <div class="descr-item">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
                   <div class="descr-item">
                     <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
                     <span class="descr-item__price">1900 <span> руб. </span></span>
@@ -815,7 +946,7 @@
                     <span class="descr-item__price">1900 <span> руб. </span></span>
                   </div>
 
-                  <span class="descr-more">
+                  <span class="descr-more js-appointmentMore">
                     Смотреть еще
                   </span>
                 </div>
@@ -838,7 +969,8 @@
               что нет аллергии на&nbsp;Ибупрофен, бронхиальной астмы, проблемы с&nbsp;желудком (гастрит).
             </p>
           </div>
-          <div class="profile-box profile-box__recommend">
+
+          <div class="profile-box profile-box__recommend" style="padding: 0;">
             <div class="profile-recommend">
               <div class="profile-recommend__text">
                 <span class="count">35</span>
@@ -846,14 +978,7 @@
               </div>
               <div class="profile-recommend__btn js-toRecommend">Рекомендовать врача</div>
             </div>
-            <div class="profile-complain">
-              <span class="profile-complain__text">
-                Если вы&nbsp;считаете что в&nbsp;профиле предоставлена ложная информация&nbsp;&mdash; сообщите нам
-              </span>
-              <div class="profile-complain__btn js-toComplain">
-                Пожаловаться
-              </div>
-            </div>
+          
           </div>
         </div>
       </div>
@@ -871,7 +996,7 @@
         <a href="mailto:Info@mail.com" class="link">Info@mail.com</a>
       </div>
 
-      <a href="privacy.html" class="footer-item link">
+      <a href="privacy.html"  target="_blank" class="footer-item link">
         Политика обработки информации
       </a>
 

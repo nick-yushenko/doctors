@@ -13,7 +13,55 @@
 
 <body>
 
+    <!-- Выбор города -->
+    <div class="modal modal-city">
 
+      <div class="modal-wrap modal-city-wrap">
+        <h2 class="modal-title">Выберите город</h2>
+  
+        <div role="search" method="get" class="modal-city-search search-form" action="#">
+          <label>
+            <span class="screen-reader-text">
+            </span>
+            <input type="text" class="search-field field modal-city-search__field js-searchInput" placeholder="Ваш город"
+              id="modalCitySearchField" data-listWrapClass="modal-city-list" />
+  
+          </label>
+          <button type="submit" class="search-submit btn modal-city-search__submit">
+            <img src="img/icons/search-icon_white.svg" alt="" class="modal-city-search__icon">
+          </button>
+        </div>
+  
+        <ul class="modal-city-list">
+          <li class="modal-city-item empty">Ничего не найдено</li>
+  
+          <li class="modal-city-item" onclick="chooseCity(event)">Екатеринбург</li>
+          <li class="modal-city-item" onclick="chooseCity(event)">Казань</li>
+          <li class="modal-city-item" onclick="chooseCity(event)">Краснодар</li>
+          <li class="modal-city-item current" onclick="chooseCity(event)">Москва</li>
+          <li class="modal-city-item" onclick="chooseCity(event)">Нижний Новгород</li>
+          <li class="modal-city-item" onclick="chooseCity(event)">Новосибирск</liv>
+          <li class="modal-city-item" onclick="chooseCity(event)">Ростов-на-Дону</liv>
+          <li class="modal-city-item" onclick="chooseCity(event)">Самара</liv>
+          <li class="modal-city-item" onclick="chooseCity(event)">Санкт-Петербург</liv>
+          <li class="modal-city-item" onclick="chooseCity(event)">Уфа</liv>
+          <li class="modal-city-item" onclick="chooseCity(event)">Челябинск</liv>
+          <li class="modal-city-item" onclick="chooseCity(event)">Екатеринбург</li>
+          <li class="modal-city-item" onclick="chooseCity(event)">Казань</li>
+          <li class="modal-city-item" onclick="chooseCity(event)">Краснодар</li>
+          <li class="modal-city-item" onclick="chooseCity(event)">Нижний Новгород</li>
+          <li class="modal-city-item" onclick="chooseCity(event)">Новосибирск</liv>
+          <li class="modal-city-item" onclick="chooseCity(event)">Ростов-на-Дону</liv>
+          <li class="modal-city-item" onclick="chooseCity(event)">Самара</liv>
+          <li class="modal-city-item" onclick="chooseCity(event)">Санкт-Петербург</liv>
+          <li class="modal-city-item" onclick="chooseCity(event)">Уфа</liv>
+          <li class="modal-city-item" onclick="chooseCity(event)">Челябинск</liv>
+  
+        </ul>
+  
+  
+      </div>
+    </div>
 
 
   <header class="header header_main ">
@@ -64,7 +112,7 @@
         <a href="mailto:Info@mail.com" class="link">Info@mail.com</a>
       </div>
 
-      <a href="privacy.html" class="footer-item link">
+      <a href="privacy.html" target="_blank" class="footer-item link">
         Политика обработки информации
       </a>
 

@@ -12,53 +12,55 @@
 <body>
 
 
-<!-- Выбор города -->
-<div class="modal modal-city">
+  <!-- Выбор города -->
+  <div class="modal modal-city">
 
-  <div class="modal-wrap modal-city-wrap">
-    <h2 class="modal-title">Выберите город</h2>
+    <div class="modal-wrap modal-city-wrap">
+      <h2 class="modal-title">Выберите город</h2>
 
-    <form role="search" method="get" class="modal-city-search search-form" action="#">
-      <label>
-        <span class="screen-reader-text">
-        </span>
-        <input type="text" class="search-field field modal-city-search__field" placeholder="Ваш город"
-          id="modalCitySearchField" />
+      <div role="search" method="get" class="modal-city-search search-form" action="#">
+        <label>
+          <span class="screen-reader-text">
+          </span>
+          <input type="text" class="search-field field modal-city-search__field js-searchInput" placeholder="Ваш город"
+            id="modalCitySearchField" data-listWrapClass="modal-city-list" />
 
-      </label>
-      <button type="submit" class="search-submit btn modal-city-search__submit">
-        <img src="img/icons/search-icon_white.svg" alt="" class="modal-city-search__icon">
-      </button>
-    </form>
+        </label>
+        <button type="submit" class="search-submit btn modal-city-search__submit">
+          <img src="img/icons/search-icon_white.svg" alt="" class="modal-city-search__icon">
+        </button>
+      </div>
 
-    <ul class="modal-city-list">
-      <li class="modal-city-item" onclick="chooseCity(event)">Екатеринбург</li>
-      <li class="modal-city-item" onclick="chooseCity(event)">Казань</li>
-      <li class="modal-city-item" onclick="chooseCity(event)">Краснодар</li>
-      <li class="modal-city-item current" onclick="chooseCity(event)">Москва</li>
-      <li class="modal-city-item" onclick="chooseCity(event)">Нижний Новгород</li>
-      <li class="modal-city-item" onclick="chooseCity(event)">Новосибирск</liv>
-      <li class="modal-city-item" onclick="chooseCity(event)">Ростов-на-Дону</liv>
-      <li class="modal-city-item" onclick="chooseCity(event)">Самара</liv>
-      <li class="modal-city-item" onclick="chooseCity(event)">Санкт-Петербург</liv>
-      <li class="modal-city-item" onclick="chooseCity(event)">Уфа</liv>
-      <li class="modal-city-item" onclick="chooseCity(event)">Челябинск</liv>
-      <li class="modal-city-item" onclick="chooseCity(event)">Екатеринбург</li>
-      <li class="modal-city-item" onclick="chooseCity(event)">Казань</li>
-      <li class="modal-city-item" onclick="chooseCity(event)">Краснодар</li>
-      <li class="modal-city-item" onclick="chooseCity(event)">Нижний Новгород</li>
-      <li class="modal-city-item" onclick="chooseCity(event)">Новосибирск</liv>
-      <li class="modal-city-item" onclick="chooseCity(event)">Ростов-на-Дону</liv>
-      <li class="modal-city-item" onclick="chooseCity(event)">Самара</liv>
-      <li class="modal-city-item" onclick="chooseCity(event)">Санкт-Петербург</liv>
-      <li class="modal-city-item" onclick="chooseCity(event)">Уфа</liv>
-      <li class="modal-city-item" onclick="chooseCity(event)">Челябинск</liv>
+      <ul class="modal-city-list">
+        <li class="modal-city-item empty">Ничего не найдено</li>
 
-    </ul>
+        <li class="modal-city-item" onclick="chooseCity(event)">Екатеринбург</li>
+        <li class="modal-city-item" onclick="chooseCity(event)">Казань</li>
+        <li class="modal-city-item" onclick="chooseCity(event)">Краснодар</li>
+        <li class="modal-city-item current" onclick="chooseCity(event)">Москва</li>
+        <li class="modal-city-item" onclick="chooseCity(event)">Нижний Новгород</li>
+        <li class="modal-city-item" onclick="chooseCity(event)">Новосибирск</liv>
+        <li class="modal-city-item" onclick="chooseCity(event)">Ростов-на-Дону</liv>
+        <li class="modal-city-item" onclick="chooseCity(event)">Самара</liv>
+        <li class="modal-city-item" onclick="chooseCity(event)">Санкт-Петербург</liv>
+        <li class="modal-city-item" onclick="chooseCity(event)">Уфа</liv>
+        <li class="modal-city-item" onclick="chooseCity(event)">Челябинск</liv>
+        <li class="modal-city-item" onclick="chooseCity(event)">Екатеринбург</li>
+        <li class="modal-city-item" onclick="chooseCity(event)">Казань</li>
+        <li class="modal-city-item" onclick="chooseCity(event)">Краснодар</li>
+        <li class="modal-city-item" onclick="chooseCity(event)">Нижний Новгород</li>
+        <li class="modal-city-item" onclick="chooseCity(event)">Новосибирск</liv>
+        <li class="modal-city-item" onclick="chooseCity(event)">Ростов-на-Дону</liv>
+        <li class="modal-city-item" onclick="chooseCity(event)">Самара</liv>
+        <li class="modal-city-item" onclick="chooseCity(event)">Санкт-Петербург</liv>
+        <li class="modal-city-item" onclick="chooseCity(event)">Уфа</liv>
+        <li class="modal-city-item" onclick="chooseCity(event)">Челябинск</liv>
+
+      </ul>
 
 
+    </div>
   </div>
-</div>
 
 <!-- Вход (+) -->
 <div class="modal modal-login ">
@@ -70,7 +72,7 @@
     </div>
     <form role="login" method="get" class="modal-login-form" action="#" id="loginForm">
       <div class="input-block">
-        <span class="input-block__hint">Ваш контактный E-mail</span>
+        <span class="input-block__hint">Ваш E-mail</span>
         <input class="input-block__field field" type="email" name="email" placeholder="mymail@mail.com">
       </div>
       <div class="input-block password">
@@ -344,7 +346,7 @@
     <div class="modal-close">
       <img src="img/icons/close-icon.svg" alt="">
     </div>
-    <h2 class="modal-title"> Ркомендовать</h2>
+    <h2 class="modal-title"> Рeкомендовать</h2>
     <span class="modal-reset-text">
       Спасибо, что рекомендуете врача. Таким образом вы&nbsp;подтверждаете профессионализм коллеги и&nbsp;его
       гарантии.
@@ -352,7 +354,7 @@
     <span class="modal-reset-text">
       Отменить рекомендацию можно в&nbsp;разделе &laquo;Мои коллеги&raquo; в&nbsp;личном кабинете.
     </span>
-    <div class="btn modal-notify-btn ">Ркомендовать</div>
+    <div class="btn modal-notify-btn ">Рeкомендовать</div>
   </div>
 </div>
 
@@ -505,7 +507,7 @@
         <label>
           <span class="screen-reader-text">
           </span>
-          <input type="text" class="search-field field header-search__field " placeholder="Поиск" />
+          <input type="text" class="search-field field header-search__field " placeholder="Поиск"  maxlength="70"/>
 
 
         </label>
@@ -573,7 +575,7 @@
             <nav>
               <li class="profile-nav__item current"><a href="#personalNav" class="anchor">Врач</a>
               </li>
-              <li class="profile-nav__item "><a href="#specialityNav" class="anchor">Специальности</a></li>
+              <li class="profile-nav__item "><a href="#specialityNav" class="anchor">Образование</a></li>
               <li class="profile-nav__item "><a href="#jobNav" class="anchor">Опыт работы</a></li>
               <li class="profile-nav__item "><a href="#moreNav" class="anchor">Дополнительная информация </a></li>
               <li class="profile-nav__item "><a href="#appointmentNav" class="anchor">Прием</a></li>
@@ -610,6 +612,8 @@
               <div class="profile-info__facts">
                 <span>Стаж 13&nbsp;лет</span>
                 <span>Доктор наук</span>
+                <span>Профессор</span>
+
                 <span>1-я категория</span>
                 <span>Стаж 13&nbsp;лет</span>
                 <span>Доктор наук</span>
@@ -654,60 +658,87 @@
               Образование<span class="profile-education__type">Высшее</span>
             </h2>
             <div class="profile-education__wrap">
-              <div class="profile-education__item base">
-                <div class="profile-education__date">
-                  <span>1997</span>
-                </div>
-                <div class="profile-education__descr">
-                  <span class="type">Базовое образование</span>
-                  <span class="text">Московский государственный медико-стоматологический университет Евдокимова</span>
-                  <span class="program">лечебное дело</span>
-                </div>
-              </div>
-              <div class="profile-education__item">
-                <div class="profile-education__date">
-                  <span>1997</span>
-                </div>
-                <div class="profile-education__descr">
-                  <span class="type">Базовое образование</span>
-                  <span class="text">Московский государственный медико-стоматологический университет Евдокимова</span>
-                  <span class="program">лечебное дело</span>
-                </div>
-              </div>
-              <div class="profile-education__item">
-                <div class="profile-education__date">
-                  <span>1997</span>
-                </div>
-                <div class="profile-education__descr">
-                  <span class="type">Базовое образование</span>
-                  <span class="text">Московский государственный медико-стоматологический университет Евдокимова</span>
-                  <span class="program">лечебное дело</span>
-                </div>
-              </div>
-              <div class="profile-education__item">
-                <div class="profile-education__date">
-                  <span>1997</span>
-                </div>
-                <div class="profile-education__descr">
-                  <span class="type">Базовое образование</span>
-                  <span class="text">Московский государственный медико-стоматологический университет Евдокимова</span>
-                  <span class="program">лечебное дело</span>
-                </div>
-              </div>
-              <div class="profile-education__item">
-                <div class="profile-education__date">
-                  <span>1997</span>
-                </div>
-                <div class="profile-education__descr">
-                  <span class="type">Базовое образование</span>
-                  <span class="text">Московский государственный медико-стоматологический университет Евдокимова</span>
-                  <span class="program">лечебное дело</span>
-                </div>
-              </div>
 
-              <div class="profile-education__more">
+              <div class="profile-education__list">
+
+                <div class="profile-education__item js-education opened base">
+                  <div class="profile-education__date">
+                    <span>1997</span>
+                  </div>
+                  <div class="profile-education__descr">
+                    <span class="type">Базовое образование</span>
+                    <span class="text">Московский государственный медико-стоматологический университет Евдокимова</span>
+                    <span class="program">лечебное дело</span>
+                  </div>
+                </div>
+                <div class="profile-education__item js-education opened">
+                  <div class="profile-education__date">
+                    <span>1997</span>
+                  </div>
+                  <div class="profile-education__descr">
+                    <span class="type">Ординатура</span>
+                    <span class="text">Московский государственный медико-стоматологический университет Евдокимова</span>
+                    <span class="program">Хирургия</span>
+                  </div>
+                </div>
+                <div class="profile-education__item js-education opened">
+                  <div class="profile-education__date">
+                    <span>1997</span>
+                  </div>
+                  <div class="profile-education__descr">
+                    <span class="type">Цикл первичной переподготовки</span>
+                    <span class="text">Российский национальный исследовательский медицинский университет имени Н.И. Пирогова</span>
+                    <span class="program">Сердечно – сосудистая хирургия</span>
+                  </div>
+                </div>
+                <div class="profile-education__item js-education opened">
+                  <div class="profile-education__date">
+                    <span>1997</span>
+                  </div>
+                  <div class="profile-education__descr">
+                    <span class="type">Цикл первичной переподготовки</span>
+                    <span class="text">Московский государственный медико-стоматологический университет Евдокимова</span>
+                    <span class="program">Хирургия</span>
+                  </div>
+                </div>
+         
+                <div class="profile-education__item js-education ">
+                  <div class="profile-education__date">
+                    <span>1997</span>
+                  </div>
+                  <div class="profile-education__descr">
+                    <span class="type">Ординатура</span>
+                    <span class="text">Московский государственный медико-стоматологический университет Евдокимова</span>
+                    <span class="program">Хирургия</span>
+                  </div>
+                </div>
+                <div class="profile-education__item js-education ">
+                  <div class="profile-education__date">
+                    <span>1997</span>
+                  </div>
+                  <div class="profile-education__descr">
+                    <span class="type">Цикл первичной переподготовки</span>
+                    <span class="text">Российский национальный исследовательский медицинский университет имени Н.И. Пирогова</span>
+                    <span class="program">Сердечно – сосудистая хирургия</span>
+                  </div>
+                </div>
+                <div class="profile-education__item js-education ">
+                  <div class="profile-education__date">
+                    <span>1997</span>
+                  </div>
+                  <div class="profile-education__descr">
+                    <span class="type">Цикл первичной переподготовки</span>
+                    <span class="text">Московский государственный медико-стоматологический университет Евдокимова</span>
+                    <span class="program">Хирургия</span>
+                  </div>
+                </div>
+                
+              </div>
+    
+              <div class="profile-education__more js-moreEducation">
                 Смотреть еще
               </div>
+             
             </div>
 
             <h2 class="profile-box__title">
@@ -732,7 +763,8 @@
               Опыт работы
             </h2>
             <div class="profile-education__wrap experiance ">
-              <div class="profile-education__item">
+
+              <div class="profile-education__item experiance-item opened">
                 <div class="profile-education__date">
                   <span>май 2019 &mdash; настоящее&nbsp;время</span>
                 </div>
@@ -741,7 +773,7 @@
                   <span class="program">Врач-невролог</span>
                 </div>
               </div>
-              <div class="profile-education__item">
+              <div class="profile-education__item experiance-item opened">
                 <div class="profile-education__date">
                   <span>май 2019 &mdash; настоящее&nbsp;время</span>
                 </div>
@@ -750,7 +782,43 @@
                   <span class="program">Врач-невролог, мануальный терапевт</span>
                 </div>
               </div>
-              <div class="profile-education__item">
+              <div class="profile-education__item experiance-item">
+                <div class="profile-education__date">
+                  <span>май 2019 &mdash; настоящее&nbsp;время</span>
+                </div>
+                <div class="profile-education__descr">
+                  <span class="text">Городская поликлиника 150</span>
+                  <span class="program">Врач-рефлексотерапевт</span>
+                </div>
+              </div>
+              <div class="profile-education__item experiance-item">
+                <div class="profile-education__date">
+                  <span>май 2019 &mdash; настоящее&nbsp;время</span>
+                </div>
+                <div class="profile-education__descr">
+                  <span class="text">Врачебно-физкультурный диспансер 13</span>
+                  <span class="program">Врач-невролог, мануальный терапевт</span>
+                </div>
+              </div>
+              <div class="profile-education__item experiance-item">
+                <div class="profile-education__date">
+                  <span>май 2019 &mdash; настоящее&nbsp;время</span>
+                </div>
+                <div class="profile-education__descr">
+                  <span class="text">Городская поликлиника 150</span>
+                  <span class="program">Врач-рефлексотерапевт</span>
+                </div>
+              </div>
+              <div class="profile-education__item experiance-item">
+                <div class="profile-education__date">
+                  <span>май 2019 &mdash; настоящее&nbsp;время</span>
+                </div>
+                <div class="profile-education__descr">
+                  <span class="text">Врачебно-физкультурный диспансер 13</span>
+                  <span class="program">Врач-невролог, мануальный терапевт</span>
+                </div>
+              </div>
+              <div class="profile-education__item experiance-item">
                 <div class="profile-education__date">
                   <span>май 2019 &mdash; настоящее&nbsp;время</span>
                 </div>
@@ -760,7 +828,7 @@
                 </div>
               </div>
 
-              <div class="profile-education__more">
+              <div class="profile-education__more js-experiance-more">
                 Смотреть еще
               </div>
             </div>
@@ -795,7 +863,31 @@
                   <span class="place-city">Москва</span>
                 </div>
 
-                <div class="descr">
+                <div class="descr js-appointmentMoreWrap">
+                  <div class="descr-item opened">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
+                  <div class="descr-item opened">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
+                  <div class="descr-item opened">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
+                  <div class="descr-item">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
+                  <div class="descr-item">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
+                  <div class="descr-item">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
                   <div class="descr-item">
                     <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
                     <span class="descr-item__price">1900 <span> руб. </span></span>
@@ -809,7 +901,7 @@
                     <span class="descr-item__price">1900 <span> руб. </span></span>
                   </div>
 
-                  <span class="descr-more">
+                  <span class="descr-more js-appointmentMore">
                     Смотреть еще
                   </span>
                 </div>
@@ -820,7 +912,31 @@
                   <span class="place-city">Москва</span>
                 </div>
 
-                <div class="descr">
+                <div class="descr js-appointmentMoreWrap">
+                  <div class="descr-item opened">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
+                  <div class="descr-item opened">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
+                  <div class="descr-item opened">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
+                  <div class="descr-item">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
+                  <div class="descr-item">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
+                  <div class="descr-item">
+                    <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
+                    <span class="descr-item__price">1900 <span> руб. </span></span>
+                  </div>
                   <div class="descr-item">
                     <span class="descr-item__name">Мануальный терапевт (от 18 лет)</span>
                     <span class="descr-item__price">1900 <span> руб. </span></span>
@@ -834,7 +950,7 @@
                     <span class="descr-item__price">1900 <span> руб. </span></span>
                   </div>
 
-                  <span class="descr-more">
+                  <span class="descr-more js-appointmentMore">
                     Смотреть еще
                   </span>
                 </div>
@@ -885,7 +1001,7 @@
         <a href="mailto:Info@mail.com" class="link">Info@mail.com</a>
       </div>
 
-      <a href="privacy.html" class="footer-item link">
+      <a href="privacy.html" target="_blank" class="footer-item link">
         Политика обработки информации
       </a>
 

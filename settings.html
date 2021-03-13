@@ -20,20 +20,22 @@
     <div class="modal-wrap modal-city-wrap">
       <h2 class="modal-title">Выберите город</h2>
 
-      <form role="search" method="get" class="modal-city-search search-form" action="#">
+      <div role="search" method="get" class="modal-city-search search-form" action="#">
         <label>
           <span class="screen-reader-text">
           </span>
-          <input type="text" class="search-field field modal-city-search__field" placeholder="Ваш город"
-            id="modalCitySearchField" />
+          <input type="text" class="search-field field modal-city-search__field js-searchInput" placeholder="Ваш город"
+            id="modalCitySearchField" data-listWrapClass="modal-city-list" />
 
         </label>
         <button type="submit" class="search-submit btn modal-city-search__submit">
           <img src="img/icons/search-icon_white.svg" alt="" class="modal-city-search__icon">
         </button>
-      </form>
+      </div>
 
       <ul class="modal-city-list">
+        <li class="modal-city-item empty">Ничего не найдено</li>
+
         <li class="modal-city-item" onclick="chooseCity(event)">Екатеринбург</li>
         <li class="modal-city-item" onclick="chooseCity(event)">Казань</li>
         <li class="modal-city-item" onclick="chooseCity(event)">Краснодар</li>
@@ -72,7 +74,7 @@
       </div>
       <form role="login" method="get" class="modal-login-form" action="#" id="loginForm">
         <div class="input-block">
-          <span class="input-block__hint">Ваш контактный E-mail</span>
+          <span class="input-block__hint">Ваш E-mail</span>
           <input class="input-block__field field" type="email" name="email" placeholder="mymail@mail.com">
         </div>
         <div class="input-block password">
@@ -551,7 +553,7 @@
         <label>
           <span class="screen-reader-text">
           </span>
-          <input type="text" class="search-field field header-search__field " placeholder="Поиск" />
+          <input type="text" class="search-field field header-search__field " placeholder="Поиск" maxlength="70" />
 
 
         </label>
@@ -691,7 +693,7 @@
         <a href="mailto:Info@mail.com" class="link">Info@mail.com</a>
       </div>
 
-      <a href="privacy.html" class="footer-item link">
+      <a href="privacy.html" target="_blank" class="footer-item link">
         Политика обработки информации
       </a>
 

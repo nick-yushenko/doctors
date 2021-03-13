@@ -20,20 +20,22 @@
     <div class="modal-wrap modal-city-wrap">
       <h2 class="modal-title">Выберите город</h2>
 
-      <form role="search" method="get" class="modal-city-search search-form" action="#">
+      <div role="search" method="get" class="modal-city-search search-form" action="#">
         <label>
           <span class="screen-reader-text">
           </span>
-          <input type="text" class="search-field field modal-city-search__field" placeholder="Ваш город"
-            id="modalCitySearchField" />
+          <input type="text" class="search-field field modal-city-search__field js-searchInput" placeholder="Ваш город"
+            id="modalCitySearchField" data-listWrapClass="modal-city-list" />
 
         </label>
         <button type="submit" class="search-submit btn modal-city-search__submit">
           <img src="img/icons/search-icon_white.svg" alt="" class="modal-city-search__icon">
         </button>
-      </form>
+      </div>
 
       <ul class="modal-city-list">
+        <li class="modal-city-item empty">Ничего не найдено</li>
+
         <li class="modal-city-item" onclick="chooseCity(event)">Екатеринбург</li>
         <li class="modal-city-item" onclick="chooseCity(event)">Казань</li>
         <li class="modal-city-item" onclick="chooseCity(event)">Краснодар</li>
@@ -72,7 +74,7 @@
       </div>
       <form role="login" method="get" class="modal-login-form" action="#" id="loginForm">
         <div class="input-block">
-          <span class="input-block__hint">Ваш контактный E-mail</span>
+          <span class="input-block__hint">Ваш  E-mail</span>
           <input class="input-block__field field" type="email" name="email" placeholder="mymail@mail.com">
         </div>
         <div class="input-block password">
@@ -231,7 +233,8 @@
           class="login-submit form-submit disabled modal-register-submit btn">
         <span class="modal-register-text">
           Регистрируясь, вы подтверждаете, что вам 18 или более лет и вы соглашаетесь c
-          <a href="#" class="primary">правилами использования </a> и <a href="privacy.html" class="primary">политикой
+          <a href="#" target="_blank" class="primary">правилами использования </a> и <a href="privacy.html"
+            target="_blank" class="primary">политикой
             конфиденциальности</a>.
         </span>
       </form>
@@ -404,7 +407,7 @@
   </div>
 
   <!-- Пригласить коллег (+) -->
-  <div class="modal modal-invite " >
+  <div class="modal modal-invite ">
 
     <div class="modal-wrap modal-invite-wrap">
       <h2 class="modal-title">
@@ -504,7 +507,7 @@
         <label>
           <span class="screen-reader-text">
           </span>
-          <input type="text" class="search-field field header-search__field " placeholder="Поиск" />
+          <input type="text" class="search-field field header-search__field " placeholder="Поиск" maxlength="70" />
 
 
         </label>
@@ -558,18 +561,18 @@
     <section class="section colleagues">
       <div class="wrap">
         <div class="section-nav">
-          <a href="#"> Главная </a>
+          <a href="index.html"> Главная </a>
           <img src="img/icons/arrow-icon.svg" alt="">
-          <a href="#"> Поиск </a>
+          <a href="profile.html"> Личный кабинет</a>
           <img src="img/icons/arrow-icon.svg" alt="">
-          <a href="#"> Стоматология </a>
+          <a href="settings.html"> Настройки </a>
         </div>
       </div>
       <div class="wrap content-flex">
         <div class="sidebar ">
           <div class="profile-nav">
             <nav>
-              <li class="profile-nav__item current"><a href="#recommended" class="anchor">Меня рекомендуют</a>
+              <li class="profile-nav__item current"><a href="#recommendMe" class="anchor">Меня рекомендуют</a>
               </li>
               <li class="profile-nav__item "><a href="#iRecommend" class="anchor">Я рекомендую</a></li>
               <li class="profile-nav__item "><a href="#wouldRecommend" class="anchor">Кого бы Вы порекомендовали?</a>
@@ -580,12 +583,12 @@
         <div class="content">
           <h1 class="section-title ">Мои коллеги</h1>
 
-          <div class="colleagues-block" id="recommended">
+          <div class="colleagues-block" id="recommendMe">
             <h2 class="section-subtitle ">Меня рекомендуют</h2>
 
-            <div class="catalog-wrap ">
+            <div class="catalog-wrap  js-recommendMe">
 
-              <a href="profile.html" class="catalog-item">
+              <div class="catalog-item colleagues-item recommendMe opened">
                 <div class="catalog-item__img">
                   <img src="img/catalog/catalog-item-1.png" alt="">
                   <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
@@ -597,24 +600,12 @@
                   <span class="experience"><span>Стаж</span>14 лет</span>
 
                 </div>
-              </a>
-
-              <a href="profile.html" class="catalog-item">
-                <div class="catalog-item__img">
-                  <img src="img/catalog/catalog-item-1.png" alt="">
-                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
-
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
                 </div>
-                <div class="catalog-item__descr">
-                  <span class="location">Москва, Химки</span>
-                  <span class="name">Муратов Александр Викторович</span>
-                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
-                  <span class="experience"><span>Стаж</span>14 лет</span>
-
-                </div>
-              </a>
-
-              <a href="profile.html" class="catalog-item">
+              </div>
+              <div class="catalog-item colleagues-item recommendMe opened">
                 <div class="catalog-item__img">
                   <img src="img/catalog/catalog-item_empty.svg" alt="">
                   <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
@@ -627,9 +618,29 @@
                   <span class="experience"><span>Стаж</span>14 лет</span>
 
                 </div>
-              </a>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item recommendMe opened">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
 
-              <a href="profile.html" class="catalog-item">
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item recommendMe opened">
                 <div class="catalog-item__img">
                   <img src="img/catalog/catalog-item_empty.svg" alt="">
                   <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
@@ -642,8 +653,12 @@
                   <span class="experience"><span>Стаж</span>14 лет</span>
 
                 </div>
-              </a>
-              <a href="profile.html" class="catalog-item">
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item recommendMe opened">
                 <div class="catalog-item__img">
                   <img src="img/catalog/catalog-item-1.png" alt="">
                   <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
@@ -655,11 +670,14 @@
                   <span class="experience"><span>Стаж</span>14 лет</span>
 
                 </div>
-              </a>
-
-              <a href="profile.html" class="catalog-item">
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item recommendMe opened">
                 <div class="catalog-item__img">
-                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-item_empty.svg" alt="">
                   <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
 
                 </div>
@@ -670,12 +688,228 @@
                   <span class="experience"><span>Стаж</span>14 лет</span>
 
                 </div>
-              </a>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item recommendMe ">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
 
-              <div class="catalog-more btn-light">
-                Загрузить еще
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item recommendMe">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item_empty.svg" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item recommendMe">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item recommendMe">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item_empty.svg" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item recommendMe">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item recommendMe">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item_empty.svg" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item recommendMe">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item recommendMe">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item_empty.svg" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item recommendMe">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item recommendMe">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item_empty.svg" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item recommendMe">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item recommendMe">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item_empty.svg" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
               </div>
 
+
+
+
+            </div>
+            <div class="catalog-more btn-light  js-catalogMore-recommendMe">
+              Загрузить еще
             </div>
           </div>
 
@@ -683,9 +917,9 @@
           <div class="colleagues-block" id="iRecommend">
             <h2 class="section-subtitle ">Я рекомендую</h2>
 
-            <div class="catalog-wrap ">
+            <div class="catalog-wrap  js-IRecommend">
 
-              <a href="profile.html" class="catalog-item">
+              <div class="catalog-item colleagues-item IRecommend opened">
                 <div class="catalog-item__img">
                   <img src="img/catalog/catalog-item-1.png" alt="">
                   <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
@@ -697,24 +931,12 @@
                   <span class="experience"><span>Стаж</span>14 лет</span>
 
                 </div>
-              </a>
-
-              <a href="profile.html" class="catalog-item">
-                <div class="catalog-item__img">
-                  <img src="img/catalog/catalog-item-1.png" alt="">
-                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
-
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
                 </div>
-                <div class="catalog-item__descr">
-                  <span class="location">Москва, Химки</span>
-                  <span class="name">Муратов Александр Викторович</span>
-                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
-                  <span class="experience"><span>Стаж</span>14 лет</span>
-
-                </div>
-              </a>
-
-              <a href="profile.html" class="catalog-item">
+              </div>
+              <div class="catalog-item colleagues-item IRecommend opened">
                 <div class="catalog-item__img">
                   <img src="img/catalog/catalog-item_empty.svg" alt="">
                   <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
@@ -727,9 +949,29 @@
                   <span class="experience"><span>Стаж</span>14 лет</span>
 
                 </div>
-              </a>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item IRecommend opened">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
 
-              <a href="profile.html" class="catalog-item">
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item IRecommend opened">
                 <div class="catalog-item__img">
                   <img src="img/catalog/catalog-item_empty.svg" alt="">
                   <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
@@ -742,8 +984,12 @@
                   <span class="experience"><span>Стаж</span>14 лет</span>
 
                 </div>
-              </a>
-              <a href="profile.html" class="catalog-item">
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item IRecommend opened">
                 <div class="catalog-item__img">
                   <img src="img/catalog/catalog-item-1.png" alt="">
                   <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
@@ -755,11 +1001,14 @@
                   <span class="experience"><span>Стаж</span>14 лет</span>
 
                 </div>
-              </a>
-
-              <a href="profile.html" class="catalog-item">
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item IRecommend opened">
                 <div class="catalog-item__img">
-                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-item_empty.svg" alt="">
                   <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
 
                 </div>
@@ -770,21 +1019,132 @@
                   <span class="experience"><span>Стаж</span>14 лет</span>
 
                 </div>
-              </a>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item IRecommend ">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item_empty.svg" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
 
-              <div class="catalog-more btn-light">
-                Загрузить еще
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item IRecommend ">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item_empty.svg" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item IRecommend ">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item_empty.svg" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item IRecommend ">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item_empty.svg" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item IRecommend ">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item_empty.svg" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item IRecommend ">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item_empty.svg" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
               </div>
 
+            </div>
+            <div class="catalog-more btn-light  js-catalogMore-IRrecommend">
+              Загрузить еще
             </div>
           </div>
 
           <div class="colleagues-block" id="wouldRecommend">
-            <h2 class="section-subtitle " id="iRecommend">Кого бы Вы порекомендовали ?</h2>
+            <h2 class="section-subtitle ">Кого бы Вы порекомендовали ?</h2>
 
-            <div class="catalog-wrap ">
+            <div class="catalog-wrap js-wouldRecommend">
 
-              <a href="profile.html" class="catalog-item">
+              <div class="catalog-item colleagues-item wouldRecommend opened">
                 <div class="catalog-item__img">
                   <img src="img/catalog/catalog-item-1.png" alt="">
                   <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
@@ -796,85 +1156,421 @@
                   <span class="experience"><span>Стаж</span>14 лет</span>
 
                 </div>
-              </a>
-
-              <a href="profile.html" class="catalog-item">
-                <div class="catalog-item__img">
-                  <img src="img/catalog/catalog-item-1.png" alt="">
-                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
-
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
                 </div>
-                <div class="catalog-item__descr">
-                  <span class="location">Москва, Химки</span>
-                  <span class="name">Муратов Александр Викторович</span>
-                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
-                  <span class="experience"><span>Стаж</span>14 лет</span>
-
-                </div>
-              </a>
-
-              <a href="profile.html" class="catalog-item">
-                <div class="catalog-item__img">
-                  <img src="img/catalog/catalog-item_empty.svg" alt="">
-                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
-
-                </div>
-                <div class="catalog-item__descr">
-                  <span class="location">Москва, Химки</span>
-                  <span class="name">Муратов Александр Викторович</span>
-                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
-                  <span class="experience"><span>Стаж</span>14 лет</span>
-
-                </div>
-              </a>
-
-              <a href="profile.html" class="catalog-item">
-                <div class="catalog-item__img">
-                  <img src="img/catalog/catalog-item_empty.svg" alt="">
-                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
-
-                </div>
-                <div class="catalog-item__descr">
-                  <span class="location">Москва, Химки</span>
-                  <span class="name">Муратов Александр Викторович</span>
-                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
-                  <span class="experience"><span>Стаж</span>14 лет</span>
-
-                </div>
-              </a>
-              <a href="profile.html" class="catalog-item">
-                <div class="catalog-item__img">
-                  <img src="img/catalog/catalog-item-1.png" alt="">
-                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
-                </div>
-                <div class="catalog-item__descr">
-                  <span class="location">Москва, Химки</span>
-                  <span class="name">Муратов Александр Викторович</span>
-                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
-                  <span class="experience"><span>Стаж</span>14 лет</span>
-
-                </div>
-              </a>
-
-              <a href="profile.html" class="catalog-item">
-                <div class="catalog-item__img">
-                  <img src="img/catalog/catalog-item-1.png" alt="">
-                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
-
-                </div>
-                <div class="catalog-item__descr">
-                  <span class="location">Москва, Химки</span>
-                  <span class="name">Муратов Александр Викторович</span>
-                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
-                  <span class="experience"><span>Стаж</span>14 лет</span>
-
-                </div>
-              </a>
-
-              <div class="catalog-more btn-light">
-                Загрузить еще
               </div>
+              <div class="catalog-item colleagues-item wouldRecommend opened">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item_empty.svg" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
 
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item wouldRecommend opened">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item wouldRecommend opened">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item wouldRecommend opened">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item_empty.svg" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item wouldRecommend opened">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+   
+              
+              <div class="catalog-item colleagues-item wouldRecommend ">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item wouldRecommend ">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item_empty.svg" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item wouldRecommend ">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item wouldRecommend ">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item wouldRecommend ">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item_empty.svg" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item wouldRecommend ">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+                            
+              <div class="catalog-item colleagues-item wouldRecommend ">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item wouldRecommend ">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item_empty.svg" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item wouldRecommend ">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item wouldRecommend ">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item wouldRecommend ">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item_empty.svg" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item wouldRecommend ">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+                            
+              <div class="catalog-item colleagues-item wouldRecommend ">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item wouldRecommend ">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item_empty.svg" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item wouldRecommend ">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item wouldRecommend ">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item wouldRecommend ">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item_empty.svg" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item wouldRecommend ">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="profile.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toRecommend">Рекомендовать</div>
+                </div>
+              </div>
+   
+  
+
+            </div>
+  
+            <div class="catalog-more btn-light  js-catalogMore-wouldRecommend">
+              Загрузить еще
             </div>
           </div>
 
@@ -896,7 +1592,7 @@
         <a href="mailto:Info@mail.com" class="link">Info@mail.com</a>
       </div>
 
-      <a href="privacy.html" class="footer-item link">
+      <a href="privacy.html" target="_blank" class="footer-item link">
         Политика обработки информации
       </a>
 

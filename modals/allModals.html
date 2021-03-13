@@ -1,71 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- На этой странице находятся все модальные окона. Пример вставки модального окна можно посмотреть на странице index.html -->
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Выбор города -->
+<div class="modal modal-city">
 
-  <link rel="stylesheet" href="css/style.min.css">
+  <div class="modal-wrap modal-city-wrap">
+    <h2 class="modal-title">Выберите город</h2>
 
-  <title>Визитка врача</title>
-</head>
+    <div role="search" method="get" class="modal-city-search search-form" action="#">
+      <label>
+        <span class="screen-reader-text">
+        </span>
+        <input type="text" class="search-field field modal-city-search__field js-searchInput" placeholder="Ваш город"
+          id="modalCitySearchField" data-listWrapClass="modal-city-list" />
 
-<body>
-
-
-
-
-
-  <!-- Выбор города -->
-  <div class="modal modal-city">
-
-    <div class="modal-wrap modal-city-wrap">
-      <h2 class="modal-title">Выберите город</h2>
-
-      <div role="search" method="get" class="modal-city-search search-form" action="#">
-        <label>
-          <span class="screen-reader-text">
-          </span>
-          <input type="text" class="search-field field modal-city-search__field js-searchInput" placeholder="Ваш город"
-            id="modalCitySearchField" data-listWrapClass="modal-city-list" />
-
-        </label>
-        <button type="submit" class="search-submit btn modal-city-search__submit">
-          <img src="img/icons/search-icon_white.svg" alt="" class="modal-city-search__icon">
-        </button>
-      </div>
-
-      <ul class="modal-city-list">
-        <li class="modal-city-item empty">Ничего не найдено</li>
-
-        <li class="modal-city-item" onclick="chooseCity(event)">Екатеринбург</li>
-        <li class="modal-city-item" onclick="chooseCity(event)">Казань</li>
-        <li class="modal-city-item" onclick="chooseCity(event)">Краснодар</li>
-        <li class="modal-city-item current" onclick="chooseCity(event)">Москва</li>
-        <li class="modal-city-item" onclick="chooseCity(event)">Нижний Новгород</li>
-        <li class="modal-city-item" onclick="chooseCity(event)">Новосибирск</liv>
-        <li class="modal-city-item" onclick="chooseCity(event)">Ростов-на-Дону</liv>
-        <li class="modal-city-item" onclick="chooseCity(event)">Самара</liv>
-        <li class="modal-city-item" onclick="chooseCity(event)">Санкт-Петербург</liv>
-        <li class="modal-city-item" onclick="chooseCity(event)">Уфа</liv>
-        <li class="modal-city-item" onclick="chooseCity(event)">Челябинск</liv>
-        <li class="modal-city-item" onclick="chooseCity(event)">Екатеринбург</li>
-        <li class="modal-city-item" onclick="chooseCity(event)">Казань</li>
-        <li class="modal-city-item" onclick="chooseCity(event)">Краснодар</li>
-        <li class="modal-city-item" onclick="chooseCity(event)">Нижний Новгород</li>
-        <li class="modal-city-item" onclick="chooseCity(event)">Новосибирск</liv>
-        <li class="modal-city-item" onclick="chooseCity(event)">Ростов-на-Дону</liv>
-        <li class="modal-city-item" onclick="chooseCity(event)">Самара</liv>
-        <li class="modal-city-item" onclick="chooseCity(event)">Санкт-Петербург</liv>
-        <li class="modal-city-item" onclick="chooseCity(event)">Уфа</liv>
-        <li class="modal-city-item" onclick="chooseCity(event)">Челябинск</liv>
-
-      </ul>
-
-
+      </label>
+      <button type="submit" class="search-submit btn modal-city-search__submit">
+        <img src="img/icons/search-icon_white.svg" alt="" class="modal-city-search__icon">
+      </button>
     </div>
+
+    <ul class="modal-city-list">
+      <li class="modal-city-item empty">Ничего не найдено</li>
+
+      <li class="modal-city-item" onclick="chooseCity(event)">Екатеринбург</li>
+      <li class="modal-city-item" onclick="chooseCity(event)">Казань</li>
+      <li class="modal-city-item" onclick="chooseCity(event)">Краснодар</li>
+      <li class="modal-city-item current" onclick="chooseCity(event)">Москва</li>
+      <li class="modal-city-item" onclick="chooseCity(event)">Нижний Новгород</li>
+      <li class="modal-city-item" onclick="chooseCity(event)">Новосибирск</liv>
+      <li class="modal-city-item" onclick="chooseCity(event)">Ростов-на-Дону</liv>
+      <li class="modal-city-item" onclick="chooseCity(event)">Самара</liv>
+      <li class="modal-city-item" onclick="chooseCity(event)">Санкт-Петербург</liv>
+      <li class="modal-city-item" onclick="chooseCity(event)">Уфа</liv>
+      <li class="modal-city-item" onclick="chooseCity(event)">Челябинск</liv>
+      <li class="modal-city-item" onclick="chooseCity(event)">Екатеринбург</li>
+      <li class="modal-city-item" onclick="chooseCity(event)">Казань</li>
+      <li class="modal-city-item" onclick="chooseCity(event)">Краснодар</li>
+      <li class="modal-city-item" onclick="chooseCity(event)">Нижний Новгород</li>
+      <li class="modal-city-item" onclick="chooseCity(event)">Новосибирск</liv>
+      <li class="modal-city-item" onclick="chooseCity(event)">Ростов-на-Дону</liv>
+      <li class="modal-city-item" onclick="chooseCity(event)">Самара</liv>
+      <li class="modal-city-item" onclick="chooseCity(event)">Санкт-Петербург</liv>
+      <li class="modal-city-item" onclick="chooseCity(event)">Уфа</liv>
+      <li class="modal-city-item" onclick="chooseCity(event)">Челябинск</liv>
+
+    </ul>
+
+
   </div>
+</div>
 
 <!-- Вход (+) -->
 <div class="modal modal-login ">
@@ -202,7 +185,7 @@
 <!-- Регистрация. этап 2 (+) -->
 <div class="modal modal-register  ">
 
-  <div class="modal-wrap modal-register-wrap ">
+  <div class="modal-wrap modal-register-wrap active">
     <h2 class="modal-title">Регистрация</h2>
     <div class="modal-close">
       <img src="img/icons/close-icon.svg" alt="">
@@ -236,7 +219,8 @@
         class="login-submit form-submit disabled modal-register-submit btn">
       <span class="modal-register-text">
         Регистрируясь, вы подтверждаете, что вам 18 или более лет и вы соглашаетесь c
-        <a href="#" class="primary">правилами использования </a> и <a href="privacy.html" class="primary">политикой
+        <a href="#" class="primary" target="_blank">правилами использования </a> и <a href="privacy.html"
+          target="_blank" class="primary">политикой
           конфиденциальности</a>.
       </span>
     </form>
@@ -345,13 +329,77 @@
 
 </div>
 
+<!-- Изменить почту -->
+<div class="modal modal-notify   ">
+
+  <div class="modal-wrap modal-notify-wrap">
+
+    <h2 class="modal-title"> Изменить электронную почту</h2>
+
+    <span class="modal-reset-text">На указанную вами почту было отправлено письмо для подтверждения. Пожалуйста,
+      подтвердите смену почты в этом письме.</span>
+    <div class="btn modal-notify-btn ">Понятно</div>
+
+  </div>
+
+</div>
+
+<!-- Почта  заменена  -->
+<div class="modal modal-notify   ">
+
+  <div class="modal-wrap modal-notify-wrap">
+
+    <h2 class="modal-title"> Электронная почта заменена</h2>
+
+    <span class="modal-reset-text">Ваша электронная почта успешно заменена на newmail@gmail.com</span>
+    <div class="btn modal-notify-btn ">Понятно</div>
+
+  </div>
+
+</div>
+
+<!-- Удалить аккаунт?  -->
+<div class="modal modal-delete   ">
+
+  <div class="modal-wrap modal-notify-wrap">
+
+    <h2 class="modal-title"> Удалить аккаунт</h2>
+
+    <span class="modal-reset-text">Вы уверены, что хотите удалить акааунт? После удаления все данные будут
+      потеряны.</span>
+    <form action="#" class="modal-delete-wrap">
+
+      <div class="btn modal-notify-btn modal-delete__btn ">Не удалять</div>
+      <input type="submit" value="Удалить" class="btn-light modal-delete__btn">
+
+    </form>
+
+  </div>
+
+</div>
+
+<!-- Профиль опубликован  -->
+<div class="modal modal-notify  ">
+
+  <div class="modal-wrap modal-notify-wrap">
+
+    <h2 class="modal-title"> Профиль опубликован</h2>
+
+    <span class="modal-reset-text">Поздравляем! Вы успешно опубликовали свой профиль. Теперь он доступен для просмотра
+      посетителями сайта.</span>
+    <div class="btn modal-notify-btn ">Продолжить</div>
+
+  </div>
+
+</div>
+
 <!-- Ркомендовать -->
 <div class="modal modal-recommend ">
   <div class="modal-wrap modal-notify-wrap">
     <div class="modal-close">
       <img src="img/icons/close-icon.svg" alt="">
     </div>
-    <h2 class="modal-title"> Ркомендовать</h2>
+    <h2 class="modal-title"> Рeкомендовать</h2>
     <span class="modal-reset-text">
       Спасибо, что рекомендуете врача. Таким образом вы&nbsp;подтверждаете профессионализм коллеги и&nbsp;его
       гарантии.
@@ -359,7 +407,7 @@
     <span class="modal-reset-text">
       Отменить рекомендацию можно в&nbsp;разделе &laquo;Мои коллеги&raquo; в&nbsp;личном кабинете.
     </span>
-    <div class="btn modal-notify-btn ">Ркомендовать</div>
+    <div class="btn modal-notify-btn ">Рeкомендовать</div>
   </div>
 </div>
 
@@ -495,166 +543,3 @@
 
   </div>
 </div>
-
-  <header class="header header_fixed ">
-    <div class="wrap content-flex">
-      <a href="index.html" class="logo">
-        <img src="img/icons/logo.svg" alt="Визитка Врача">
-      </a>
-      <div class="city toModal js-toChooseCity">
-        <img src="img/icons/city-icon.svg" alt="">
-        <span class="name">Москва</span>
-      </div>
-      <div class="buttons content-flex">
-        <div class="signup js-toRegister">
-          Регистрация
-        </div>
-        <div class="login btn js-toLogin">
-          Вход
-        </div>
-
-      </div>
-
-    </div>
-  </header>
-
-  <main class="main">
-    <section class="section privacy">
-      <div class="wrap">
-        <h1 class="privacy-title">
-          Правила пользования торговой площадкой «Wildberries»
-        </h1>
-
-        
-        <div class="privacy-block">
-          <h2 class="privacy-subtitle">
-            <span> 1.</span>
-            Термины и определения
-          </h2>
-
-          
-
-          <div class="privacy-block">
-            <div class="privacy-ul">
-              <span class="num">1.1</span>
-              <div class="privacy-block__text ">
-                <p>
-                  В настоящих Правилах, если контекст не требует иного, нижеприведенные термины имеют следующие значения
-                  и
-                  являются их составной неотъемлемой частью:
-                </p>
-                <p>
-
-                  Торговая площадка — веб-сайт <a href="https://www.wildberries.ru">https://www.wildberries.ru</a> и
-                  мобильное приложение Wildberries, являющиеся сервисом, предоставляющим доступ к информации о товарах,
-                  предназначенной для потенциальных Покупателей (потребителей).
-
-                </p>
-
-
-              </div>
-            </div>
-            <div class="privacy-ul">
-              <span class="num">1.2</span>
-              <div class="privacy-block__text ">
-                <p>
-                  В настоящих Правилах, если контекст не требует иного, нижеприведенные термины имеют следующие значения
-                  и
-                  являются их составной неотъемлемой частью:
-                </p>
-        
-
-              </div>
-            </div>
-          </div>
-
-
-        </div>
-
-        <div class="privacy-block">
-          <h2 class="privacy-subtitle">
-            Термины и определения
-          </h2>
-          <div class="privacy-block__text">
-            <p>
-              В настоящих Правилах, если контекст не требует иного, нижеприведенные термины имеют следующие значения и
-              являются их составной неотъемлемой частью:
-            </p>
-            <p>
-
-              Торговая площадка — веб-сайт <a href="https://www.wildberries.ru">https://www.wildberries.ru</a> и
-              мобильное приложение Wildberries, являющиеся сервисом, предоставляющим доступ к информации о товарах,
-              предназначенной для потенциальных Покупателей (потребителей).
-
-            </p>
-            <p>
-              Владелец Торговой площадки — ООО «Вайлдберриз» (по тексту настоящих Правил — Вайлдберриз (Юридический
-              адрес: 142181 Московская область, г. Подольск, деревня Коледино, Территория Индустриальный парк Коледино,
-              д.
-              6, стр. 1, ОГРН 1067746062449, email: sales@wildberries.ru).
-            </p>
-            <p>
-              Покупатель — любое физическое лицо, использующее Торговую площадку на условиях настоящих Правил.
-              Продавец — индивидуальный предприниматель, юридическое лицо или самозанятый гражданин, осуществляющие
-              деятельность по продаже товаров и предлагающие Покупателю заключить договор купли-продажи Товара, размещая
-              Товары на Торговой площадке.
-            </p>
-
-            <p>
-
-              Товар — предмет договора купли-продажи, заключаемого между Покупателем и Продавцом. Продавец является
-              собственником реализуемого Товара. Все взаимоотношения, связанные с куплей-продажей Товара возникают между
-              Продавцом, размещающим Товар на Торговой площадке и Покупателем.
-
-            </p>
-            <p>
-              Личный кабинет — персональный и не доступный третьим лицам раздел Торговой площадки, служащий в целях
-              оформления Заказов и оформления Услуг, а также получения специальных предложений в соответствии с
-              настоящими
-              Правилами, доступ к которому осуществляется после регистрации путем ввода аутентификационных данных
-              Покупателя.
-            </p>
-            <p>
-              Пункт выдачи заказов — обособленное подразделение Вайлдберриз, осуществляющее выдачу Заказов Покупателям,
-              указавших адрес соответствующего Пункта выдачи заказов в качестве места доставки.
-              Постамат — автоматизированный терминал по выдаче товаров.
-            </p>
-            <p>
-              Заказ — осуществление Покупателем действий, направленных на заключение им договора оказания услуг доставки
-              Товара, а также договора/договоров купли-продажи соответствующего/соответствующих Товара/Товаров с
-              Вайлдберриз и/или иным Продавцом/Продавцами, посредством оформления заказа указанных услуг и Товаров на
-              Торговой площадке.дкой.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="wrap content-flex between">
-      <div class="footer-item">
-        © AО “Визитка врача”, 2021.
-      </div>
-
-      <div class="footer-item">
-        <span class="js-toSupport js-supportEmpty link"> Написать в тех. поддержку</span>
-        <a href="mailto:Info@mail.com" class="link">Info@mail.com</a>
-      </div>
-
-      <a href="privacy.html" class="footer-item link">
-        Политика обработки информации
-      </a>
-
-    </div>
-  </footer>
-
-  <script src="js/jquery.js"></script>
-  <script src="js/droplist.js"></script>
-  <script src="js/jquery.mask.min.js"></script>
-  <script src="js/jquery.validate.min.js"></script>
-  <script src="js/main.js"></script>
-
-</body>
-
-</html>

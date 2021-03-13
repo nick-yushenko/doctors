@@ -1,3 +1,42 @@
+// поиск города 
+
+const searchInputs = document.querySelectorAll('.js-searchInput')
+
+if (searchInputs) {
+  searchInputs.forEach(function (input) {
+    input.addEventListener('input', function (e) {
+      var request = input.value.toUpperCase()
+
+      var listWrap = document.querySelector('.' + input.getAttribute('data-listwrapclass'))
+      var results = listWrap.querySelectorAll('.modal-city-item')
+
+      var elemToShow = 0;
+      results.forEach(item => {
+        var city = item.textContent.toUpperCase();
+
+        if (city.includes(request) || request.includes(city)) {
+
+          item.style.display = 'flex'
+
+          elemToShow++
+        } else {
+          item.style.display = 'none'
+
+        }
+
+        if (elemToShow == 0) {
+          listWrap.querySelector('.empty').style.display = 'flex'
+        } else {
+          listWrap.querySelector('.empty').style.display = 'none'
+
+        }
+      })
+    })
+  })
+
+
+}
+
 // header 
 
 const header = document.querySelector('.header')
@@ -67,7 +106,7 @@ if (toDeleteBtns) {
       modals.forEach(function (item) {
         item.classList.remove('active')
       })
-      
+
       modalDelete.classList.add('active')
       document.querySelector('body').style.overflow = 'hidden'
     })
@@ -81,6 +120,7 @@ if (toChooseCityBtns) {
         item.classList.remove('active')
       })
       modalCity.classList.add('active')
+      modalCity.querySelector('.js-searchInput').focus()
       document.querySelector('body').style.overflow = 'hidden'
     })
   })
@@ -323,7 +363,6 @@ if (toggleFilterBtns.length > 0) {
 
 // Меню на странице профиля
 let headerHeight = document.querySelector('.header').clientHeight
-// console.log(headerHeight)
 const menuItems = document.querySelectorAll('.profile-nav__item a')
 if (menuItems)
   menuItems.forEach(function (item) {
@@ -353,6 +392,20 @@ if (anchors)
     })
   })
 
+const toggleeducation = document.querySelectorAll('.js-toggle-education')
+if (toggleeducation) {
+  toggleeducation.forEach(function (toggle) {
+    toggle.addEventListener('click', function (e) {
+      let parentItem
+      if (e.target.tagName == "IMG")
+        parentItem = e.target.parentElement.parentElement
+      else
+        parentItem = e.target.parentElement
+
+      parentItem.classList.toggle('opened')
+    })
+  })
+}
 // Функции для droplist
 function onSelectFocus() {
   if (!this.parentElement.classList.contains('disable')) { // Отключить предыдущие 
@@ -383,21 +436,6 @@ function droplistChooseItem() {
 }
 // --- Добавление информации --- 
 
-// Смена типо образования
-const middleEducationRadio = document.querySelector('.js-MiddleEducationRadio')
-const highEducationRadio = document.querySelector('.js-HighEducationRadio')
-const highEducationBlock = document.querySelector('.js-highEducation')
-
-if (middleEducationRadio && highEducationRadio) {
-  middleEducationRadio.addEventListener('click', function (e) {
-    highEducationBlock.style.display = 'none'
-  })
-  highEducationRadio.addEventListener('click', function (e) {
-    highEducationBlock.style.display = 'block'
-
-  })
-}
-
 //  диактивация выбора даты окончания работы 
 const finishJobCheckbox = document.querySelector('.js-finishJob-checkbox')
 const finishJobs = document.querySelectorAll('.js-finishJob')
@@ -414,8 +452,9 @@ if (finishJobCheckbox && finishJobs.length > 0)
     })
   })
 
-// добавление новой специяльности 
+// добавление новой специальности 
 const addSpecialityBtns = document.querySelectorAll('.js-addSpeciality')
+
 if (addSpecialityBtns.length > 0) {
   addSpecialityBtns.forEach(function (btn) {
     btn.addEventListener('click', function (e) {
@@ -424,6 +463,26 @@ if (addSpecialityBtns.length > 0) {
       clone.classList.remove('example')
       clone.removeAttribute('id')
       example.parentElement.append(clone)
+      // проверка количества блоков для добавления специальности
+      let specialityCount = 0
+      document.querySelectorAll('.speciality-item').forEach(function (item) {
+        if (!item.classList.contains('example'))
+          specialityCount++
+      })
+      if (specialityCount == 1) {
+        // диактивировать кнопку удаления 
+        document.querySelectorAll('.speciality-item').forEach(function (item) {
+          if (!item.classList.contains('example'))
+            item.querySelector('.js-removeSpeciality').style.display = 'none'
+        })
+
+      } else {
+
+        document.querySelectorAll('.speciality-item').forEach(function (item) {
+          if (!item.classList.contains('example'))
+            item.querySelector('.js-removeSpeciality').style.display = 'block'
+        })
+      }
 
       // установка слушателей на дропдауны
       $(clone.querySelectorAll('.select')).on('focus', '.select__head', onSelectFocus)
@@ -433,6 +492,27 @@ if (addSpecialityBtns.length > 0) {
       const deleteBtn = clone.querySelector('.js-removeSpeciality')
       deleteBtn.addEventListener('click', function (e) {
         clone.remove()
+        // проверка количества блоков для добавления специальности
+        let specialityCount = 0
+        document.querySelectorAll('.speciality-item').forEach(function (item) {
+          if (!item.classList.contains('example'))
+            specialityCount++
+        })
+        if (specialityCount == 1) {
+          // диактивировать кнопку удаления 
+          document.querySelectorAll('.speciality-item').forEach(function (item) {
+            if (!item.classList.contains('example'))
+              item.querySelector('.js-removeSpeciality').style.display = 'none'
+          })
+
+        } else {
+
+          document.querySelectorAll('.speciality-item').forEach(function (item) {
+            if (!item.classList.contains('example'))
+              item.querySelector('.js-removeSpeciality').style.display = 'block'
+          })
+        }
+
       })
 
     })
@@ -450,11 +530,64 @@ if (addJobBtns.length > 0) {
       clone.removeAttribute('id')
       example.parentElement.append(clone)
 
+      // установка слушателей на дропдауны
+      $(clone.querySelectorAll('.select')).on('focus', '.select__head', onSelectFocus)
+      $(clone.querySelectorAll('.select')).on('click', '.select__item', droplistChooseItem)
+      $(clone.querySelectorAll('.select select__head input')).on('focus', onInputFocus)
+
+      // проверка количества блоков для добавления специальности
+      let jobCount = 0
+      document.querySelectorAll('.settings-jobs__block').forEach(function (item) {
+        if (!item.classList.contains('example'))
+          jobCount++
+      })
+      if (jobCount == 1) {
+        // диактивировать кнопку удаления 
+        document.querySelectorAll('.settings-jobs__block').forEach(function (item) {
+          if (!item.classList.contains('example'))
+            item.querySelector('.js-removeJob').style.display = 'none'
+        })
+
+      } else {
+
+        document.querySelectorAll('.settings-jobs__block').forEach(function (item) {
+          if (!item.classList.contains('example'))
+            item.querySelector('.js-removeJob').style.display = 'block'
+        })
+      }
+
       const deleteBtn = clone.querySelector('.js-removeJob')
       deleteBtn.addEventListener('click', function (e) {
         clone.remove()
+        // проверка количества блоков для добавления специальности
+        let jobCount = 0
+        document.querySelectorAll('.settings-jobs__block').forEach(function (item) {
+          if (!item.classList.contains('example'))
+            jobCount++
+        })
+        if (jobCount == 1) {
+          // диактивировать кнопку удаления 
+          document.querySelectorAll('.settings-jobs__block').forEach(function (item) {
+            if (!item.classList.contains('example'))
+              item.querySelector('.js-removeJob').style.display = 'none'
+          })
+
+        } else {
+
+          document.querySelectorAll('.settings-jobs__block').forEach(function (item) {
+            if (!item.classList.contains('example'))
+              item.querySelector('.js-removeJob').style.display = 'block'
+          })
+        }
       })
 
+
+      // удаление специальности, которая задана по умолчанию 
+      const removeJobSpecialityTemp = clone.querySelector('.js-removeJobspecialityTemp')
+      removeJobSpecialityTemp.addEventListener('click', function () {
+        removeJobSpecialityTemp.parentElement.remove()
+
+      })
 
       const addJobSpeciality = clone.querySelector('.js-addJobSpeciality')
 
@@ -463,6 +596,57 @@ if (addJobBtns.length > 0) {
         const jobSpecialityClone = jobSpecialityExample.cloneNode(true)
         jobSpecialityClone.classList.remove('example')
         jobSpecialityExample.parentElement.append(jobSpecialityClone)
+
+        // проверка количества блоков для добавления специальности в место работы 
+        let jobSpecialityCount = 0
+
+        jobSpecialityClone.parentElement.querySelectorAll('.settings-jobs__speciality .input-block').forEach(function (item) {
+          if (!item.classList.contains('example'))
+            jobSpecialityCount++
+        })
+
+        if (jobSpecialityCount == 1) {
+          // диактивировать кнопку удаления 
+          jobSpecialityClone.parentElement.querySelectorAll('.settings-jobs__speciality .input-block').forEach(function (item) {
+            if (!item.classList.contains('example'))
+              item.querySelector('.js-removeJobspeciality').style.display = 'none'
+          })
+
+        } else {
+
+          jobSpecialityClone.parentElement.querySelectorAll('.settings-jobs__speciality .input-block').forEach(function (item) {
+            if (!item.classList.contains('example'))
+              item.querySelector('.js-removeJobspeciality').style.display = 'block'
+          })
+        }
+
+        const removejobSpeciality = jobSpecialityClone.querySelector('.js-removeJobspeciality')
+        removejobSpeciality.addEventListener('click', function (e) {
+          jobSpecialityClone.remove()
+          // проверка количества блоков для добавления специальности в место работы 
+          let jobSpecialityCount = 0
+
+          jobSpecialityExample.parentElement.querySelectorAll('.settings-jobs__speciality .input-block').forEach(function (item) {
+            if (!item.classList.contains('example'))
+              jobSpecialityCount++
+          })
+
+          if (jobSpecialityCount == 1) {
+            // диактивировать кнопку удаления 
+            jobSpecialityExample.parentElement.querySelectorAll('.settings-jobs__speciality .input-block').forEach(function (item) {
+              if (!item.classList.contains('example'))
+                item.querySelector('.js-removeJobspeciality').style.display = 'none'
+            })
+
+          } else {
+
+            jobSpecialityExample.parentElement.querySelectorAll('.settings-jobs__speciality .input-block').forEach(function (item) {
+              if (!item.classList.contains('example'))
+                item.querySelector('.js-removeJobspeciality').style.display = 'block'
+            })
+          }
+        })
+
       })
 
       const clone_finishJobCheckbox = clone.querySelector('.js-finishJob-checkbox')
@@ -484,6 +668,32 @@ if (addJobBtns.length > 0) {
   })
 }
 
+const jobdeleteBtn = document.querySelector('.js-removeJob')
+jobdeleteBtn.addEventListener('click', function (e) {
+  jobdeleteBtn.parentElement.remove()
+  // проверка количества блоков для добавления специальности
+  let jobCount = 0
+  document.querySelectorAll('.settings-jobs__block').forEach(function (item) {
+    if (!item.classList.contains('example'))
+      jobCount++
+  })
+  if (jobCount == 1) {
+    // диактивировать кнопку удаления 
+    document.querySelectorAll('.settings-jobs__block').forEach(function (item) {
+      if (!item.classList.contains('example'))
+        item.querySelector('.js-removeJob').style.display = 'none'
+    })
+
+  } else {
+
+    document.querySelectorAll('.settings-jobs__block').forEach(function (item) {
+      if (!item.classList.contains('example'))
+        item.querySelector('.js-removeJob').style.display = 'block'
+    })
+  }
+})
+
+
 // добавление специальности в место работы (1ое, которое всегда показывается)
 const addJobSpecialityTemp = document.querySelector('#addJobSpecialityTemp')
 if (addJobSpecialityTemp)
@@ -492,7 +702,95 @@ if (addJobSpecialityTemp)
     const jobSpecialityClone = jobSpecialityExample.cloneNode(true)
     jobSpecialityClone.classList.remove('example')
     jobSpecialityExample.parentElement.append(jobSpecialityClone)
+
+
+
+
+    // проверка количества блоков для добавления специальности в место работы 
+    let jobSpecialityCount = 0
+
+    jobSpecialityClone.parentElement.querySelectorAll('.settings-jobs__speciality .input-block').forEach(function (item) {
+      if (!item.classList.contains('example'))
+        jobSpecialityCount++
+    })
+
+    if (jobSpecialityCount == 1) {
+      // диактивировать кнопку удаления 
+      jobSpecialityClone.parentElement.querySelectorAll('.settings-jobs__speciality .input-block').forEach(function (item) {
+        if (!item.classList.contains('example'))
+          item.querySelector('.js-removeJobspeciality').style.display = 'none'
+      })
+
+    } else {
+
+      jobSpecialityClone.parentElement.querySelectorAll('.settings-jobs__speciality .input-block').forEach(function (item) {
+        if (!item.classList.contains('example'))
+          item.querySelector('.js-removeJobspeciality').style.display = 'block'
+      })
+    }
+
+
+    const remove = jobSpecialityClone.querySelector('.js-removeJobspeciality')
+    remove.addEventListener('click', function (param) {
+      jobSpecialityClone.remove()
+
+      let jobSpecialityCount = 0
+
+      jobSpecialityExample.parentElement.querySelectorAll('.settings-jobs__speciality .input-block').forEach(function (item) {
+        if (!item.classList.contains('example'))
+          jobSpecialityCount++
+      })
+
+      if (jobSpecialityCount == 1) {
+        // диактивировать кнопку удаления 
+        jobSpecialityExample.parentElement.querySelectorAll('.settings-jobs__speciality .input-block').forEach(function (item) {
+          if (!item.classList.contains('example'))
+            item.querySelector('.js-removeJobspeciality').style.display = 'none'
+        })
+
+      } else {
+
+        jobSpecialityExample.parentElement.querySelectorAll('.settings-jobs__speciality .input-block').forEach(function (item) {
+          if (!item.classList.contains('example'))
+            item.querySelector('.js-removeJobspeciality').style.display = 'block'
+        })
+      }
+    })
+
+
   })
+
+const removeJobSpecialityTemp = document.querySelector('#removeJobspecialityTemp')
+
+if (removeJobSpecialityTemp) {
+  removeJobSpecialityTemp.addEventListener('click', function (e) {
+    const parent = removeJobSpecialityTemp.parentElement.parentElement
+    removeJobSpecialityTemp.parentElement.remove()
+    let jobSpecialityCount = 0
+
+    parent.querySelectorAll('.settings-jobs__speciality .input-block').forEach(function (item) {
+      if (!item.classList.contains('example'))
+        jobSpecialityCount++
+    })
+
+    if (jobSpecialityCount == 1) {
+      // диактивировать кнопку удаления 
+      parent.querySelectorAll('.settings-jobs__speciality .input-block').forEach(function (item) {
+        if (!item.classList.contains('example'))
+          item.querySelector('.js-removeJobspeciality').style.display = 'none'
+      })
+
+    } else {
+
+      parent.querySelectorAll('.settings-jobs__speciality .input-block').forEach(function (item) {
+        if (!item.classList.contains('example'))
+          item.querySelector('.js-removeJobspeciality').style.display = 'block'
+      })
+    }
+  })
+}
+
+
 
 // добавление еще 1 места приема 
 const addAppoinmentBtns = document.querySelectorAll('.js-addAppointment ')
@@ -505,9 +803,53 @@ if (addAppoinmentBtns.length > 0) {
       clone.removeAttribute('id')
       example.parentElement.append(clone)
 
+      $('input.currency-field').mask('000000')
+
+      // проверка количества блоков для добавления специальности
+      let appointmentCount = 0
+      document.querySelectorAll('.settings-appointment__block').forEach(function (item) {
+        if (!item.classList.contains('example'))
+          appointmentCount++
+      })
+      if (appointmentCount == 1) {
+        // диактивировать кнопку удаления 
+        document.querySelectorAll('.settings-appointment__block').forEach(function (item) {
+          if (!item.classList.contains('example'))
+            item.querySelector('.js-removeApointment').style.display = 'none'
+        })
+
+      } else {
+
+        document.querySelectorAll('.settings-appointment__block').forEach(function (item) {
+          if (!item.classList.contains('example'))
+            item.querySelector('.js-removeApointment').style.display = 'block'
+        })
+      }
+
+
       const deleteBtn = clone.querySelector('.js-removeApointment')
       deleteBtn.addEventListener('click', function (e) {
         clone.remove()
+        // проверка количества блоков для добавления специальности
+        let appointmentCount = 0
+        document.querySelectorAll('.settings-appointment__block').forEach(function (item) {
+          if (!item.classList.contains('example'))
+            appointmentCount++
+        })
+        if (appointmentCount == 1) {
+          // диактивировать кнопку удаления 
+          document.querySelectorAll('.settings-appointment__block').forEach(function (item) {
+            if (!item.classList.contains('example'))
+              item.querySelector('.js-removeApointment').style.display = 'none'
+          })
+
+        } else {
+
+          document.querySelectorAll('.settings-appointment__block').forEach(function (item) {
+            if (!item.classList.contains('example'))
+              item.querySelector('.js-removeApointment').style.display = 'block'
+          })
+        }
       })
 
       // установка слушателей на дропдауны
@@ -534,6 +876,8 @@ if (addAppoinmentBtns.length > 0) {
         deletePrice.addEventListener('click', function (e) {
           priceItemClone.remove()
         })
+        $('input.currency-field').mask('000000')
+
       })
       const addPhone = clone.querySelector('.js-addPhone')
       addPhone.addEventListener('click', function (e) {
@@ -548,11 +892,37 @@ if (addAppoinmentBtns.length > 0) {
         removePhone.addEventListener('click', function (e) {
           addPhoneClone.remove()
         })
+        $('input.-field').mask('000000')
+
       })
     })
   })
 }
+const removeAppointmentTemp = document.querySelector('.js-removeApointmentTemp')
+if (removeAppointmentTemp)
+  removeAppointmentTemp.addEventListener('click', function (e) {
+    removeAppointmentTemp.parentElement.remove()
+    // проверка количества блоков для добавления специальности
+    let appointmentCount = 0
+    document.querySelectorAll('.settings-appointment__block').forEach(function (item) {
+      if (!item.classList.contains('example'))
+        appointmentCount++
+    })
+    if (appointmentCount == 1) {
+      // диактивировать кнопку удаления 
+      document.querySelectorAll('.settings-appointment__block').forEach(function (item) {
+        if (!item.classList.contains('example'))
+          item.querySelector('.js-removeApointment').style.display = 'none'
+      })
 
+    } else {
+
+      document.querySelectorAll('.settings-appointment__block').forEach(function (item) {
+        if (!item.classList.contains('example'))
+          item.querySelector('.js-removeApointment').style.display = 'block'
+      })
+    }
+  })
 // добавление позиции услуги в приеме (1ое, которое всегда показывается)
 const addPriceItemTemp = document.querySelector('#addPriceItemTemp')
 if (addPriceItemTemp)
@@ -569,6 +939,8 @@ if (addPriceItemTemp)
     deletePriceTemp.addEventListener('click', function (e) {
       priceItemClone.remove()
     })
+    $('input.currency-field').mask('000000')
+
   })
 // добавление телефона клиники в приеме (1ое, которое всегда показывается)
 
@@ -594,14 +966,26 @@ const bgBtn0 = document.querySelector('.js-setBg0')
 const bgBtn1 = document.querySelector('.js-setBg1')
 const bgBtn2 = document.querySelector('.js-setBg2')
 const bgBtn3 = document.querySelector('.js-setBg3')
+const bgBtn4 = document.querySelector('.js-setBg4')
+const bgBtn5 = document.querySelector('.js-setBg5')
+const bgBtn6 = document.querySelector('.js-setBg6')
+const bgBtn7 = document.querySelector('.js-setBg7')
+const bgBtn8 = document.querySelector('.js-setBg8')
 const sectionNav = document.querySelector('.section-nav')
 const sectionTitile = document.querySelector('.section-title')
-if (view && bgBtn0 && bgBtn1 && bgBtn2 && bgBtn3 && sectionNav && sectionTitile) {
+if (view && bgBtn0 && bgBtn1 && bgBtn2 && bgBtn3 && bgBtn4 && bgBtn5 && bgBtn6 && bgBtn7 && bgBtn8 && sectionNav && sectionTitile) {
   bgBtn0.addEventListener('change', function (e) {
-    view.classList.add('bg-0')
+    view.classList.remove('bg-0')
     view.classList.remove('bg-1')
     view.classList.remove('bg-2')
     view.classList.remove('bg-3')
+    view.classList.remove('bg-4')
+    view.classList.remove('bg-5')
+    view.classList.remove('bg-6')
+    view.classList.remove('bg-7')
+    view.classList.remove('bg-8')
+    view.classList.add('bg-0')
+
     sectionNav.querySelectorAll('a').forEach(function (item) {
       item.style.color = '#929FB1'
     })
@@ -612,17 +996,20 @@ if (view && bgBtn0 && bgBtn1 && bgBtn2 && bgBtn3 && sectionNav && sectionTitile)
     })
 
     sectionTitile.style.color = "#182744"
-
     sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_black.svg')
-
-
 
   })
   bgBtn1.addEventListener('change', function (e) {
-    view.classList.add('bg-1')
     view.classList.remove('bg-0')
+    view.classList.remove('bg-1')
     view.classList.remove('bg-2')
     view.classList.remove('bg-3')
+    view.classList.remove('bg-4')
+    view.classList.remove('bg-5')
+    view.classList.remove('bg-6')
+    view.classList.remove('bg-7')
+    view.classList.remove('bg-8')
+    view.classList.add('bg-1')
 
     sectionNav.querySelectorAll('a').forEach(function (item) {
       item.style.color = '#ffffff'
@@ -632,18 +1019,24 @@ if (view && bgBtn0 && bgBtn1 && bgBtn2 && bgBtn3 && sectionNav && sectionTitile)
       let src = value.substr(0, value.lastIndexOf('/') + 1) + 'arrow-icon_1.svg'
       item.setAttribute('src', src)
     })
-    sectionTitile.style.color = "#ffffff"
 
+    sectionTitile.style.color = "#ffffff"
     sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_white.svg')
 
 
 
   })
   bgBtn2.addEventListener('change', function (e) {
-    view.classList.add('bg-2')
     view.classList.remove('bg-0')
     view.classList.remove('bg-1')
+    view.classList.remove('bg-2')
     view.classList.remove('bg-3')
+    view.classList.remove('bg-4')
+    view.classList.remove('bg-5')
+    view.classList.remove('bg-6')
+    view.classList.remove('bg-7')
+    view.classList.remove('bg-8')
+    view.classList.add('bg-2')
     sectionNav.querySelectorAll('a').forEach(function (item) {
       item.style.color = '#929FB1'
     })
@@ -659,10 +1052,16 @@ if (view && bgBtn0 && bgBtn1 && bgBtn2 && bgBtn3 && sectionNav && sectionTitile)
 
   })
   bgBtn3.addEventListener('change', function (e) {
-    view.classList.add('bg-3')
     view.classList.remove('bg-0')
     view.classList.remove('bg-1')
     view.classList.remove('bg-2')
+    view.classList.remove('bg-3')
+    view.classList.remove('bg-4')
+    view.classList.remove('bg-5')
+    view.classList.remove('bg-6')
+    view.classList.remove('bg-7')
+    view.classList.remove('bg-8')
+    view.classList.add('bg-3')
 
     sectionNav.querySelectorAll('a').forEach(function (item) {
       item.style.color = '#182744'
@@ -677,6 +1076,132 @@ if (view && bgBtn0 && bgBtn1 && bgBtn2 && bgBtn3 && sectionNav && sectionTitile)
     sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_black.svg')
 
   })
+  bgBtn4.addEventListener('change', function (e) {
+    view.classList.remove('bg-0')
+    view.classList.remove('bg-1')
+    view.classList.remove('bg-2')
+    view.classList.remove('bg-3')
+    view.classList.remove('bg-4')
+    view.classList.remove('bg-5')
+    view.classList.remove('bg-6')
+    view.classList.remove('bg-7')
+    view.classList.remove('bg-8')
+    view.classList.add('bg-4')
+
+    sectionNav.querySelectorAll('a').forEach(function (item) {
+      item.style.color = '#ffffff'
+    })
+    sectionNav.querySelectorAll('img').forEach(function (item) {
+      let value = item.getAttribute('src')
+      let src = value.substr(0, value.lastIndexOf('/') + 1) + 'arrow-icon_1.svg'
+      item.setAttribute('src', src)
+    })
+    sectionTitile.style.color = "#ffffff"
+
+    sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_white.svg')
+  })
+  bgBtn5.addEventListener('change', function (e) {
+    view.classList.remove('bg-0')
+    view.classList.remove('bg-1')
+    view.classList.remove('bg-2')
+    view.classList.remove('bg-3')
+    view.classList.remove('bg-4')
+    view.classList.remove('bg-5')
+    view.classList.remove('bg-6')
+    view.classList.remove('bg-7')
+    view.classList.remove('bg-8')
+    view.classList.add('bg-5')
+
+    sectionNav.querySelectorAll('img').forEach(function (item) {
+      let value = item.getAttribute('src')
+      let src = value.substr(0, value.lastIndexOf('/') + 1) + 'arrow-icon.svg'
+      item.setAttribute('src', src)
+
+    })
+
+    sectionTitile.style.color = "#ffffff"
+
+    sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_white.svg')
+
+
+  })
+  bgBtn6.addEventListener('change', function (e) {
+    view.classList.remove('bg-0')
+    view.classList.remove('bg-1')
+    view.classList.remove('bg-2')
+    view.classList.remove('bg-3')
+    view.classList.remove('bg-4')
+    view.classList.remove('bg-5')
+    view.classList.remove('bg-6')
+    view.classList.remove('bg-7')
+    view.classList.remove('bg-8')
+    view.classList.add('bg-6')
+
+    sectionNav.querySelectorAll('a').forEach(function (item) {
+      item.style.color = '#182744'
+    })
+    sectionNav.querySelectorAll('img').forEach(function (item) {
+      let value = item.getAttribute('src')
+      let src = value.substr(0, value.lastIndexOf('/') + 1) + 'arrow-icon_3.svg'
+      item.setAttribute('src', src)
+
+    })
+    sectionTitile.style.color = "#182744"
+    sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_black.svg')
+
+  })
+  bgBtn7.addEventListener('change', function (e) {
+    view.classList.remove('bg-0')
+    view.classList.remove('bg-1')
+    view.classList.remove('bg-2')
+    view.classList.remove('bg-3')
+    view.classList.remove('bg-4')
+    view.classList.remove('bg-5')
+    view.classList.remove('bg-6')
+    view.classList.remove('bg-7')
+    view.classList.remove('bg-8')
+    view.classList.add('bg-7')
+
+    sectionNav.querySelectorAll('img').forEach(function (item) {
+      let value = item.getAttribute('src')
+      let src = value.substr(0, value.lastIndexOf('/') + 1) + 'arrow-icon.svg'
+      item.setAttribute('src', src)
+
+    })
+
+    sectionTitile.style.color = "#182744"
+    sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_black.svg')
+
+
+  })
+  bgBtn8.addEventListener('change', function (e) {
+    view.classList.remove('bg-0')
+    view.classList.remove('bg-1')
+    view.classList.remove('bg-2')
+    view.classList.remove('bg-3')
+    view.classList.remove('bg-4')
+    view.classList.remove('bg-5')
+    view.classList.remove('bg-6')
+    view.classList.remove('bg-7')
+    view.classList.remove('bg-8')
+    view.classList.add('bg-8')
+
+
+    sectionNav.querySelectorAll('a').forEach(function (item) {
+      item.style.color = '#ffffff'
+    })
+    sectionNav.querySelectorAll('img').forEach(function (item) {
+      let value = item.getAttribute('src')
+      let src = value.substr(0, value.lastIndexOf('/') + 1) + 'arrow-icon_1.svg'
+      item.setAttribute('src', src)
+    })
+
+    sectionTitile.style.color = "#ffffff"
+    sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_white.svg')
+
+
+  })
+
 }
 
 
@@ -741,6 +1266,7 @@ if (codeForm && sendCode && codeFields.length > 0 && codeTrueField) {
 
 // валидация номеров телефона
 $('input.phone').mask('(000) 000-00-00')
+$('input.currency-field').mask('000000')
 
 
 $('#supportForm').validate({
@@ -978,6 +1504,47 @@ $('#settingsChangePassword').validate({
   errorClass: "invalid",
 
 });
+
+// $('#settingsProfileForm').validate({
+
+//   rules: {
+//     surname: {
+//       required: true,
+//     },
+
+//     name: {
+//       required: true,
+//     },
+//     patronymic: {
+//       required: true,
+//     },
+//     birthday: {
+//       required: true,
+//     },
+//   },
+//   messages: {
+
+//     surname: {
+//       minlength: jQuery.validator.format("Поле не заполнено "),
+//       required: jQuery.validator.format("Поле не заполнено")
+//     },
+//     name: {
+//       minlength: jQuery.validator.format("Поле не заполнено "),
+//       required: jQuery.validator.format("Поле не заполнено")
+//     },
+//     patronymic: {
+//       minlength: jQuery.validator.format("Поле не заполнено "),
+//       required: jQuery.validator.format("Поле не заполнено")
+//     },
+//     birthday: {
+//       required: jQuery.validator.format("Поле не заполнено")
+//     },
+
+//   },
+//   errorElement: "div",
+//   errorClass: "invalid",
+
+// });
 // активация / диактивация кнопки отправки формы 
 function activateSubmit(form) {
 
@@ -1019,8 +1586,6 @@ function activateSubmit(form) {
 
       let successFieldsCount = form.querySelectorAll('.success').length
       if (successFieldsCount == fieldsCount) {
-        console.log(successFieldsCount)
-        console.log('ready')
         form.querySelector('input.form-submit').classList.remove('disabled')
 
       } else {
@@ -1029,7 +1594,6 @@ function activateSubmit(form) {
     }
 
   }
-  // console.log('ERROR: не удалось установить слушатель валидации формы. Элемент не найден')
 
 
   const fields = (form == null) ? null : form.querySelectorAll('.field')
@@ -1045,13 +1609,14 @@ function activateSubmit(form) {
           item.addEventListener('click', onChangeField)
         })
       } else {
-        console.log('input') // проверка обычного поля
         field.addEventListener('input', onChangeField)
       }
 
     })
 
 }
+
+
 if (document.querySelector('#supportForm'))
   activateSubmit(document.querySelector('#supportForm'))
 if (document.querySelector('#loginForm'))
@@ -1070,3 +1635,228 @@ if (document.querySelector('#settingsChangeEmail'))
   activateSubmit(document.querySelector('#settingsChangeEmail'))
 if (document.querySelector('#settingsChangePassword'))
   activateSubmit(document.querySelector('#settingsChangePassword'))
+
+
+// валидация обязательных полей в заполнении профиля 
+const settingsProfileForm = document.querySelector('#settingsProfileForm')
+const settingsProfileFields = settingsProfileForm.querySelectorAll('.js-field-req')
+const settingsProfileSubmit = settingsProfileForm.querySelector('#settingsProfileForm_submit')
+
+if (settingsProfileSubmit && settingsProfileForm) {
+  settingsProfileFields.forEach(function (field) {
+    field.addEventListener('input', function (e) {
+      var er = document.createElement('div');
+      er.innerHTML = 'Поле не заполнено';
+      er.classList.add('invalid')
+
+      if (field.getAttribute('type') == 'text') {
+
+        let minlength = field.getAttribute('minlength')
+        let maxlength = field.getAttribute('maxlength')
+
+        let str = /[^A-Za-zА-Яа-яЁё]/g
+
+        field.value = field.value.replace(str, '')
+
+        if (field.value.length < minlength) {
+          field.classList.add('invalid')
+          field.parentElement.append(er)
+
+        } else {
+          field.classList.remove('invalid')
+          field.parentElement.querySelector('div.invalid').remove()
+
+        }
+        if (field.value.length >= maxlength) {
+          field.value = field.value.replace(field.value, field.value.substr(0, maxlength))
+        }
+      }
+    })
+  })
+}
+
+
+
+// Мои коллеги 
+const colleaguesRecommendMeWrap = document.querySelector('.js-recommendMe')
+const recommendMeMore = document.querySelector('.js-catalogMore-recommendMe')
+
+const colleaguesIRecommendWrap = document.querySelector('.js-IRecommend')
+const IRecommendMore = document.querySelector('.js-catalogMore-IRrecommend')
+
+const colleaguesWouldRecommendWrap = document.querySelector('.js-wouldRecommend')
+const wouldRecommendMore = document.querySelector('.js-catalogMore-wouldRecommend')
+if (colleaguesRecommendMeWrap != null && colleaguesIRecommendWrap != null && colleaguesWouldRecommendWrap != null) {
+  let recommendMeCount = colleaguesRecommendMeWrap.querySelectorAll('.recommendMe').length
+  let IRecommendCount = colleaguesIRecommendWrap.querySelectorAll('.IRecommend').length
+  let wouldRecommendCount = colleaguesWouldRecommendWrap.querySelectorAll('.wouldRecommend').length
+  if (recommendMeCount <= 6)
+    recommendMeMore.classList.add('disabled')
+  else
+    recommendMeMore.classList.remove('disabled')
+
+  if (IRecommendCount <= 6)
+    IRecommendMore.classList.add('disabled')
+  else
+    IRecommendMore.classList.remove('disabled')
+
+  if (wouldRecommendCount <= 6)
+    wouldRecommendMore.classList.add('disabled')
+  else
+    wouldRecommendMore.classList.remove('disabled')
+
+
+  recommendMeMore.addEventListener('click', function (e) {
+    let i = 1
+    colleaguesRecommendMeWrap.querySelectorAll('.recommendMe').forEach(function (item) {
+      if (!item.classList.contains('opened')) {
+        if (i <= 6) {
+          item.classList.add('opened')
+          i++
+        }
+      }
+    })
+
+    if (colleaguesRecommendMeWrap.querySelectorAll('.recommendMe').length == colleaguesRecommendMeWrap.querySelectorAll('.recommendMe.opened').length) {
+      recommendMeMore.classList.add('disabled')
+
+    }
+
+  })
+  IRecommendMore.addEventListener('click', function (e) {
+    let i = 1
+    colleaguesIRecommendWrap.querySelectorAll('.IRecommend').forEach(function (item) {
+      if (!item.classList.contains('opened')) {
+        if (i <= 6) {
+          item.classList.add('opened')
+          i++
+        }
+      }
+    })
+
+    if (colleaguesIRecommendWrap.querySelectorAll('.IRecommend').length == colleaguesIRecommendWrap.querySelectorAll('.IRecommend.opened').length) {
+      IRecommendMore.classList.add('disabled')
+    }
+
+  })
+  wouldRecommendMore.addEventListener('click', function (e) {
+    let i = 1
+    colleaguesWouldRecommendWrap.querySelectorAll('.wouldRecommend').forEach(function (item) {
+      if (!item.classList.contains('opened')) {
+        if (i <= 6) {
+          item.classList.add('opened')
+          i++
+        }
+      }
+    })
+
+    if (colleaguesWouldRecommendWrap.querySelectorAll('.IRecommend').length == colleaguesWouldRecommendWrap.querySelectorAll('.IRecommend.opened').length) {
+      wouldRecommendMore.classList.add('disabled')
+    }
+
+  })
+
+}
+
+
+// открытие пунктов 
+const educationMoreBtn = document.querySelector('.js-moreEducation')
+const educationWrap = document.querySelector('.profile-education__list')
+
+const experianceMoreBtn = document.querySelector('.js-experiance-more')
+const experianceWrap = document.querySelector('.profile-education__wrap.experiance')
+
+const appointmentWrap = document.querySelectorAll('.js-appointmentMoreWrap')
+
+if (educationMoreBtn && educationWrap) {
+  let educationCount = educationWrap.querySelectorAll('.js-education').length
+
+  if (educationCount <= 3)
+    educationMoreBtn.classList.add('disabled')
+  else
+    educationMoreBtn.classList.remove('disabled')
+
+
+  educationMoreBtn.addEventListener('click', function (e) {
+    let i = 1
+    educationWrap.querySelectorAll('.js-education').forEach(function (item) {
+      if (!item.classList.contains('opened')) {
+        if (i <= 3) {
+          item.classList.add('opened')
+          i++
+        }
+      }
+    })
+
+    if (educationWrap.querySelectorAll('.js-education').length == educationWrap.querySelectorAll('.js-education.opened').length) {
+      educationMoreBtn.classList.add('disabled')
+
+    }
+
+  })
+
+
+}
+
+if (experianceWrap && experianceMoreBtn) {
+  let experianceCount = experianceWrap.querySelectorAll('.experiance-item').length
+
+  if (experianceCount <= 3)
+    experianceMoreBtn.classList.add('disabled')
+  else
+    experianceMoreBtn.classList.remove('disabled')
+
+  experianceMoreBtn.addEventListener('click', function (e) {
+    let i = 1
+    experianceWrap.querySelectorAll('.experiance-item').forEach(function (item) {
+      if (!item.classList.contains('opened')) {
+        if (i <= 3) {
+          item.classList.add('opened')
+          i++
+        }
+      }
+    })
+
+    if (experianceWrap.querySelectorAll('.experiance-item').length == experianceWrap.querySelectorAll('.experiance-item.opened').length) {
+      experianceMoreBtn.classList.add('disabled')
+
+    }
+
+  })
+}
+if (appointmentWrap.length > 0) {
+  appointmentWrap.forEach(function (item) {
+    let appointmentCount = item.querySelectorAll('.descr-item').length
+    const appointmentMoreBtn = item.querySelector('.js-appointmentMore')
+
+    if (appointmentMoreBtn) {
+      if (appointmentCount <= 3)
+        appointmentMoreBtn.classList.add('disabled')
+      else
+        appointmentMoreBtn.classList.remove('disabled')
+
+      appointmentMoreBtn.addEventListener('click', function (e) {
+        let i = 1
+        item.querySelectorAll('.descr-item').forEach(function (item) {
+          if (!item.classList.contains('opened')) {
+            if (i <= 3) {
+              item.classList.add('opened')
+              i++
+            }
+          }
+        })
+
+        if (item.querySelectorAll('.descr-item').length == item.querySelectorAll('.descr-item.opened').length) {
+          appointmentMoreBtn.classList.add('disabled')
+
+        }
+
+      })
+    }
+
+
+  })
+
+
+
+}

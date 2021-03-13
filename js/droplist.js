@@ -47,6 +47,7 @@ function droplistChooseItem() {
 
   const selectInput = this.parentElement.parentElement.querySelector('.select__head').querySelector('input')
   if (selectInput) {
+    // selectInput.value = this.textContent
     selectInput.setAttribute('value', this.textContent)
     selectInput.classList.remove('invalid')
     if (selectInput.parentElement.querySelector('div.invalid'))
@@ -56,7 +57,33 @@ function droplistChooseItem() {
   }
 
 
-  // удаление ошибок валидации 
+  // выбор даты рождения 
+  const BDinput = document.querySelector('.js-Birhday')
+
+
+  if (BDinput) {
+    if (this.classList.contains('js-BDday')) {
+      BDinput.setAttribute('data-day', this.textContent)
+    }
+    if (this.classList.contains('js-BDmonth')) {
+      BDinput.setAttribute('data-month', this.getAttribute('data-value'))
+    }
+    if (this.parentElement.classList.contains('js-BDyear')) {
+      BDinput.setAttribute('data-year', this.textContent)
+    }
+
+    
+    // проверяем, все ли значения заполнены 
+    if (BDinput.getAttribute('data-day') != '' && BDinput.getAttribute('data-month') != '' && BDinput.getAttribute('data-year') != '' )
+    {
+      let date = BDinput.getAttribute('data-day').replace(' ', '') + '-' + BDinput.getAttribute('data-month').replace(' ', '') + '-' + BDinput.getAttribute('data-year').replace(' ', '')
+      BDinput.setAttribute('value', date) 
+    } 
+  }
+
+}
+
+function setBirhday(input) {
 
 }
 
