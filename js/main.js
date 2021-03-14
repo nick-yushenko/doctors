@@ -50,6 +50,46 @@ window.addEventListener('scroll', function () {
 })
 
 // открытие меню 
+
+const burger = document.querySelector('.burger')
+const burgerSearch = document.querySelector('.burger-search')
+const menu = document.querySelector('.menu')
+const menuSearch = document.querySelector('.menu-search')
+const menuBg = document.querySelector('.menu-bg')
+
+if (burger && menu && menuBg) {
+  burger.addEventListener('click', function (e) {
+    menu.classList.toggle('active')
+    menuBg.classList.toggle('active')
+  })
+  menu.querySelector('.menu-close').addEventListener('click', function (e) {
+    menu.classList.toggle('active')
+    menuBg.classList.toggle('active')
+
+  })
+}
+
+if (burgerSearch && menuBg && menuSearch) {
+  burgerSearch.addEventListener('click', function (e) {
+    menuSearch.classList.toggle('active')
+    menuBg.classList.toggle('active')
+  })
+
+}
+
+if (menuBg)
+  menuBg.addEventListener('click', function () {
+    if (menu) {
+      menu.classList.remove('active')
+      menuBg.classList.remove('active')
+    }
+    if (menuSearch) {
+      menuSearch.classList.remove('active')
+      menuBg.classList.remove('active')
+    }
+  })
+
+// открытие мини меню 
 const openMenuMini = document.querySelector('.js-toggleHeaderMenu')
 const menuMini = document.querySelector('.js-headerMenu')
 
@@ -122,6 +162,13 @@ if (toChooseCityBtns) {
       modalCity.classList.add('active')
       modalCity.querySelector('.js-searchInput').focus()
       document.querySelector('body').style.overflow = 'hidden'
+      const menu = document.querySelector('.menu')
+      const menuBg = document.querySelector('.menu-bg')
+      if (menuBg && menu) {
+        menu.classList.toggle('active')
+        menuBg.classList.toggle('active')
+
+      }
     })
   })
 }
@@ -134,7 +181,13 @@ if (toLoginBtns) {
       })
       modalLogin.classList.add('active')
       document.querySelector('body').style.overflow = 'hidden'
+      const menu = document.querySelector('.menu')
+      const menuBg = document.querySelector('.menu-bg')
+      if (menuBg && menu) {
+        menu.classList.toggle('active')
+        menuBg.classList.toggle('active')
 
+      }
     })
   })
 }
@@ -147,7 +200,13 @@ if (toResetBtns) {
       })
       modalReset.classList.add('active')
       document.querySelector('body').style.overflow = 'hidden'
+      const menu = document.querySelector('.menu')
+      const menuBg = document.querySelector('.menu-bg')
+      if (menuBg && menu) {
+        menu.classList.toggle('active')
+        menuBg.classList.toggle('active')
 
+      }
     })
   })
 }
@@ -160,7 +219,13 @@ if (toRegisterBtns) {
       })
       modalCode.classList.add('active')
       document.querySelector('body').style.overflow = 'hidden'
+      const menu = document.querySelector('.menu')
+      const menuBg = document.querySelector('.menu-bg')
+      if (menuBg && menu) {
+        menu.classList.toggle('active')
+        menuBg.classList.toggle('active')
 
+      }
     })
   })
 }
@@ -1738,9 +1803,9 @@ function activateProfileSubmit(form) {
           field.classList.add('invalid')
         } else {
           BDsuccessCount++
-        } 
+        }
 
-        
+
         if (BDsuccessCount >= 3) {
           const BDerror = document.querySelector('.js-BDerror')
           BDerror.style.display = 'none'
