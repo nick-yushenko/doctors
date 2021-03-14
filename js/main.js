@@ -669,29 +669,30 @@ if (addJobBtns.length > 0) {
 }
 
 const jobdeleteBtn = document.querySelector('.js-removeJob')
-jobdeleteBtn.addEventListener('click', function (e) {
-  jobdeleteBtn.parentElement.remove()
-  // проверка количества блоков для добавления специальности
-  let jobCount = 0
-  document.querySelectorAll('.settings-jobs__block').forEach(function (item) {
-    if (!item.classList.contains('example'))
-      jobCount++
+if (jobdeleteBtn)
+  jobdeleteBtn.addEventListener('click', function (e) {
+    jobdeleteBtn.parentElement.remove()
+    // проверка количества блоков для добавления специальности
+    let jobCount = 0
+    document.querySelectorAll('.settings-jobs__block').forEach(function (item) {
+      if (!item.classList.contains('example'))
+        jobCount++
+    })
+    if (jobCount == 1) {
+      // диактивировать кнопку удаления 
+      document.querySelectorAll('.settings-jobs__block').forEach(function (item) {
+        if (!item.classList.contains('example'))
+          item.querySelector('.js-removeJob').style.display = 'none'
+      })
+
+    } else {
+
+      document.querySelectorAll('.settings-jobs__block').forEach(function (item) {
+        if (!item.classList.contains('example'))
+          item.querySelector('.js-removeJob').style.display = 'block'
+      })
+    }
   })
-  if (jobCount == 1) {
-    // диактивировать кнопку удаления 
-    document.querySelectorAll('.settings-jobs__block').forEach(function (item) {
-      if (!item.classList.contains('example'))
-        item.querySelector('.js-removeJob').style.display = 'none'
-    })
-
-  } else {
-
-    document.querySelectorAll('.settings-jobs__block').forEach(function (item) {
-      if (!item.classList.contains('example'))
-        item.querySelector('.js-removeJob').style.display = 'block'
-    })
-  }
-})
 
 
 // добавление специальности в место работы (1ое, которое всегда показывается)
@@ -826,6 +827,24 @@ if (addAppoinmentBtns.length > 0) {
         })
       }
 
+      // запрет оставлять чекбокс пустым (в 1ом блоке приема, которое показывается всегда )
+      const appointmentTypeTemp = clone.querySelectorAll('.settings-appointment__type .checkbox input')
+      if (appointmentTypeTemp.length > 0)
+        appointmentTypeTemp.forEach(function (checkbox) {
+          checkbox.addEventListener('change', function (e) {
+
+            let checkedCount = 0
+            appointmentTypeTemp.forEach(function (ch) {
+              if (ch.checked)
+                checkedCount++
+            })
+
+            if (checkedCount == 0)
+              checkbox.checked = true
+          })
+
+        })
+
 
       const deleteBtn = clone.querySelector('.js-removeApointment')
       deleteBtn.addEventListener('click', function (e) {
@@ -898,8 +917,10 @@ if (addAppoinmentBtns.length > 0) {
     })
   })
 }
+
+// удаление приема (1ое, которое всегда показывается)
 const removeAppointmentTemp = document.querySelector('.js-removeApointmentTemp')
-if (removeAppointmentTemp)
+if (removeAppointmentTemp) {
   removeAppointmentTemp.addEventListener('click', function (e) {
     removeAppointmentTemp.parentElement.remove()
     // проверка количества блоков для добавления специальности
@@ -923,6 +944,25 @@ if (removeAppointmentTemp)
       })
     }
   })
+
+  // запрет оставлять чекбокс пустым (в 1ом блоке приема, которое показывается всегда )
+  const appointmentTypeTemp = removeAppointmentTemp.parentElement.querySelectorAll('.settings-appointment__type .checkbox input')
+  if (appointmentTypeTemp.length > 0)
+    appointmentTypeTemp.forEach(function (checkbox) {
+      checkbox.addEventListener('change', function (e) {
+
+        let checkedCount = 0
+        appointmentTypeTemp.forEach(function (ch) {
+          if (ch.checked)
+            checkedCount++
+        })
+
+        if (checkedCount == 0)
+          checkbox.checked = true
+      })
+
+    })
+}
 // добавление позиции услуги в приеме (1ое, которое всегда показывается)
 const addPriceItemTemp = document.querySelector('#addPriceItemTemp')
 if (addPriceItemTemp)
@@ -1505,47 +1545,213 @@ $('#settingsChangePassword').validate({
 
 });
 
-// $('#settingsProfileForm').validate({
+$('#settingsProfileForm').validate({
 
-//   rules: {
-//     surname: {
-//       required: true,
-//     },
+  rules: {
+    surname: {
+      required: true,
+    },
 
-//     name: {
-//       required: true,
-//     },
-//     patronymic: {
-//       required: true,
-//     },
-//     birthday: {
-//       required: true,
-//     },
-//   },
-//   messages: {
+    name: {
+      required: true,
+    },
+    patronymic: {
+      required: true,
+    },
+    birthday: {
+      required: true,
+    },
+    universityName: {
+      required: true,
+    },
+    universityFinishedYear: {
+      required: true,
+    },
+    speciality: {
+      required: true,
+    },
+    universityName1: {
+      required: true,
+    },
+    universityFinishedYear1: {
+      required: true,
+    },
+    specialization1: {
+      required: true,
+    },
+    speciality1: {
+      required: true,
+    },
+    appointmentPlace: {
+      required: true,
+    },
+    appointmentCity: {
+      required: true,
+    },
 
-//     surname: {
-//       minlength: jQuery.validator.format("Поле не заполнено "),
-//       required: jQuery.validator.format("Поле не заполнено")
-//     },
-//     name: {
-//       minlength: jQuery.validator.format("Поле не заполнено "),
-//       required: jQuery.validator.format("Поле не заполнено")
-//     },
-//     patronymic: {
-//       minlength: jQuery.validator.format("Поле не заполнено "),
-//       required: jQuery.validator.format("Поле не заполнено")
-//     },
-//     birthday: {
-//       required: jQuery.validator.format("Поле не заполнено")
-//     },
+    phone: {
+      required: true,
+    },
+  },
+  messages: {
 
-//   },
-//   errorElement: "div",
-//   errorClass: "invalid",
+    surname: {
+      minlength: jQuery.validator.format("Поле не заполнено "),
+      required: jQuery.validator.format("Поле не заполнено")
+    },
+    name: {
+      minlength: jQuery.validator.format("Поле не заполнено "),
+      required: jQuery.validator.format("Поле не заполнено")
+    },
+    patronymic: {
+      minlength: jQuery.validator.format("Поле не заполнено "),
+      required: jQuery.validator.format("Поле не заполнено")
+    },
+    birthday: {
+      required: jQuery.validator.format("Поле не заполнено")
+    },
+    universityName: {
+      minlength: jQuery.validator.format("Введите полное название учебного заведения "),
+      required: jQuery.validator.format("Поле не заполнено")
+    },
+    universityFinishedYear: {
+      required: jQuery.validator.format("Поле не заполнено")
+    },
+    speciality: {
+      required: jQuery.validator.format("Поле не заполнено")
+    },
+    universityName1: {
+      minlength: jQuery.validator.format("Введите полное название учебного заведения "),
+      required: jQuery.validator.format("Поле не заполнено")
+    },
+    universityFinishedYear1: {
+      required: jQuery.validator.format("Поле не заполнено")
+    },
+    specialization1: {
+      required: jQuery.validator.format("Поле не заполнено")
+    },
+    speciality1: {
+      required: jQuery.validator.format("Поле не заполнено")
+    },
+    appointmentPlace: {
+      required: jQuery.validator.format("Поле не заполнено")
+    },
+    appointmentCity: {
+      required: jQuery.validator.format("Поле не заполнено")
+    },
+    phone: {
+      minlength: jQuery.validator.format("Поле не заполнено "),
+      required: jQuery.validator.format("Поле не заполнено")
+    },
+  },
+  errorElement: "div",
+  errorClass: "invalid",
 
-// });
+});
+
+// активация / диактивация кнопки отправки формы НА СТРАНИЦЕ ЗАПОЛНЕНИЯ ПРОФИЛЯ 
+
+function activateProfileSubmit(form) {
+
+
+
+  function onChangeField() {
+    if (form != null) {
+
+      if (this.classList.contains('js-field-req')) {
+        if (this.getAttribute('type') == 'phone') {
+          if (this.value.length == 15)
+            this.classList.add('success')
+          else
+            this.classList.remove('success')
+        } else {
+          let minlenght = (this.hasAttribute('minlength')) ? this.getAttribute('minlength') : -1
+          if (this.value.length > minlenght)
+            this.classList.add('success')
+          else
+            this.classList.remove('success')
+
+        }
+
+      } else {
+        this.parentElement.parentElement.querySelector('.select__head input').classList.add('success')
+      }
+
+      checkForm()
+    }
+
+  }
+
+  function onChangeBDField() {
+    // alert('клик по др')
+    this.parentElement.parentElement.querySelector('.select__head input').classList.add('success')
+    checkForm()
+  }
+
+  function checkForm() {
+    if (form != null) {
+      let successFieldsCount = form.querySelectorAll('.success').length
+      console.log(fieldsCount + '-' + successFieldsCount)
+
+      if (successFieldsCount == fieldsCount) {
+        form.querySelector('input.form-submit').classList.remove('disabled')
+
+      } else {
+        form.querySelector('input.form-submit').classList.add('disabled')
+      }
+    }
+
+  }
+
+
+
+  const fields = (form == null) ? null : form.querySelectorAll('.js-field-req')
+  let fieldsCount = (form == null) ? -1 : fields.length
+
+  if (fields != null && fields.length > 0)
+    fields.forEach(function (field) {
+
+      if (field.parentElement.parentElement.classList.contains('select') && !field.parentElement.parentElement.classList.contains('js-BDselect')) { // проверка дроплиста
+        const selectItems = field.parentElement.parentElement.querySelectorAll('.select__item')
+        selectItems.forEach(function (item) {
+          item.addEventListener('click', onChangeField)
+        })
+
+      } else if (field.parentElement.parentElement.classList.contains('js-BDselect')) {
+        const selectBDItems = field.parentElement.parentElement.querySelectorAll('.select__item')
+        selectBDItems.forEach(function (item) {
+          item.addEventListener('click', onChangeBDField)
+        })
+
+      } else {
+        field.addEventListener('input', onChangeField)
+      }
+
+
+    })
+
+  form.addEventListener('submit', function (e) {
+    let BDsuccessCount
+    fields.forEach(function (field) {
+      if (field.parentElement.parentElement.classList.contains('js-BDselect')) {
+        if (!field.classList.contains('success')) {
+          field.classList.add('invalid')
+        } else {
+          BDsuccessCount++
+        } 
+
+        
+        if (BDsuccessCount >= 3) {
+          const BDerror = document.querySelector('.js-BDerror')
+          BDerror.style.display = 'none'
+        }
+      }
+    })
+  })
+}
+
 // активация / диактивация кнопки отправки формы 
+
 function activateSubmit(form) {
 
 
@@ -1636,44 +1842,58 @@ if (document.querySelector('#settingsChangeEmail'))
 if (document.querySelector('#settingsChangePassword'))
   activateSubmit(document.querySelector('#settingsChangePassword'))
 
+if (document.querySelector('#settingsProfileForm'))
+  activateProfileSubmit(document.querySelector('#settingsProfileForm'))
+
 
 // валидация обязательных полей в заполнении профиля 
-const settingsProfileForm = document.querySelector('#settingsProfileForm')
-const settingsProfileFields = settingsProfileForm.querySelectorAll('.js-field-req')
-const settingsProfileSubmit = settingsProfileForm.querySelector('#settingsProfileForm_submit')
+// const settingsProfileForm = document.querySelector('#settingsProfileForm')
+// const settingsProfileFields = (settingsProfileForm) ? settingsProfileForm.querySelectorAll('.js-field-req') : null
+// const settingsProfileSubmit = (settingsProfileForm) ? settingsProfileForm.querySelector('#settingsProfileForm_submit') : null
 
-if (settingsProfileSubmit && settingsProfileForm) {
-  settingsProfileFields.forEach(function (field) {
-    field.addEventListener('input', function (e) {
-      var er = document.createElement('div');
-      er.innerHTML = 'Поле не заполнено';
-      er.classList.add('invalid')
 
-      if (field.getAttribute('type') == 'text') {
+// if (settingsProfileSubmit && settingsProfileForm) {
+//   settingsProfileFields.forEach(function (field) {
+//     field.addEventListener('input', function (e) {
+//       var er = document.createElement('div');
+//       if (field.hasAttribute('data-minhint'))
+//         er.innerHTML = field.getAttribute('data-minhint') 
+//       else
+//         er.innerHTML = 'Поле не заполнено';
+//       er.classList.add('invalid')
 
-        let minlength = field.getAttribute('minlength')
-        let maxlength = field.getAttribute('maxlength')
+//       if (field.getAttribute('type') == 'text') {
 
-        let str = /[^A-Za-zА-Яа-яЁё]/g
+//         if (field.classList.contains('js-birthday')) {
 
-        field.value = field.value.replace(str, '')
+//         } else {
 
-        if (field.value.length < minlength) {
-          field.classList.add('invalid')
-          field.parentElement.append(er)
+//           let minlength = field.getAttribute('minlength')
+//           let maxlength = field.getAttribute('maxlength')
 
-        } else {
-          field.classList.remove('invalid')
-          field.parentElement.querySelector('div.invalid').remove()
+//           let str = /[^A-Za-zА-Яа-яЁё]/g
 
-        }
-        if (field.value.length >= maxlength) {
-          field.value = field.value.replace(field.value, field.value.substr(0, maxlength))
-        }
-      }
-    })
-  })
-}
+//           field.value = field.value.replace(str, '')
+
+//           if (field.value.length < minlength) {
+//             field.classList.add('invalid')
+//             if (field.parentElement.querySelectorAll('div.invalid').length == 0)
+//               field.parentElement.append(er)
+
+//           } else {
+//             field.classList.remove('invalid')
+//             field.parentElement.querySelector('div.invalid').remove()
+
+//           }
+//           if (field.value.length >= maxlength) {
+//             field.value = field.value.replace(field.value, field.value.substr(0, maxlength))
+//           }
+//         }
+
+//       }
+//     })
+//   })
+// }
 
 
 

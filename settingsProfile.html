@@ -557,7 +557,7 @@
 
         <div class="sidebar ">
           <div class="profile-nav">
-            <input type="submit" value="Продолжить" class="btn  disabled" id="settingsProfileForm_submit"
+            <input type="submit" value="Продолжить" class="btn form-submit  disabled" id="settingsProfileForm_submit"
               style="width: 100%;">
             <a href="#" class="btn-light">Сохранить черновик</a>
             <nav>
@@ -616,13 +616,11 @@
                 <div class="settings-info__item">
                   <span class="settings-info__text">Дата рождения</span>
                   <div class="input-block select-wrap BD">
-                    <input type="text" class="js-Birhday js-field-req" name="birthday" data-day="" data-month=""
-                      data-year="">
 
-                    <div class="select">
+                    <div class="select js-BDselect">
                       <input class="select__input " type="hidden" name="">
                       <div class="select__head" value="">
-                        <input type="text" class="js-Birhday1" placeholder="01">
+                        <input type="text" readonly class="js-BDday js-field-req" placeholder="01">
                       </div>
                       <ul class="select__list" style="display: none;">
                         <li class="select__item js-BDday">01</li>
@@ -658,10 +656,10 @@
                         <li class="select__item js-BDday">31 </li>
                       </ul>
                     </div>
-                    <div class="select">
+                    <div class="select js-BDselect">
                       <input class="select__input" type="hidden" name="">
                       <div class="select__head" value="">
-                        <input type="text" readonly placeholder="Января">
+                        <input type="text" readonly class="js-BDmonth js-field-req" placeholder="Января">
                       </div>
                       <ul class="select__list" style="display: none;">
                         <li class="select__item js-BDmonth" data-value="01">Января </li>
@@ -678,10 +676,10 @@
                         <li class="select__item js-BDmonth" data-value="12">Декабря </li>
                       </ul>
                     </div>
-                    <div class="select">
+                    <div class="select js-BDselect">
                       <input class="select__input" type="hidden" name="">
                       <div class="select__head" value="">
-                        <input type="text" readonly placeholder="2020">
+                        <input type="text" readonly class="js-BDyear js-field-req" placeholder="2020">
                       </div>
                       <ul class="select__list js-BDyear" style="display: none;">
                         <li class="select__item">2020 </li>
@@ -758,6 +756,10 @@
 
                       </ul>
                     </div>
+
+                    <input type="text" class="js-Birthday " name="birthday" data-day="" data-month="" data-year="">
+
+                    <div class="js-BDerror invalid" style="display: none;">Заполните все поля</div>
                   </div>
                 </div>
                 <div class="settings-info__item">
@@ -775,7 +777,7 @@
 
           </div>
 
-          <!-- Базовое образование -->
+          <!--  образование -->
           <div class="settings-box" id="specialityNav">
 
             <div class="settings-education toggle">
@@ -900,31 +902,163 @@
 
             </div>
 
-            <div class="settings-education toggle">
 
-              <div class="settings-education toggle">
-                <h2 class="settings-box__title">Высшее базовое образование</h2>
+            <div class="settings-education toggle opened">
+              <h2 class="settings-box__title">Высшее базовое образование</h2>
 
 
-                <div class="settings-education__close js-toggle-education">
-                  <img src="img/icons/setting-close-icon.svg" alt="">
+              <div class="settings-education__close js-toggle-education">
+                <img src="img/icons/setting-close-icon.svg" alt="">
+              </div>
+
+              <div class="toggle-block">
+
+
+                <div class="settings-education__item">
+                  <span class="settings-education__text">Учебное заведение</span>
+                  <div class="input-block">
+                    <input type="text" placeholder="Институт пирогова" name="universityName" minlength="10" maxlength="200"
+                      data-minhint="Введите полное название учебного заведения"
+                      class="input-block__field field js-field-req">
+                  </div>
                 </div>
+                <div class="settings-education__item">
+                  <span class="settings-education__text">Год окончания</span>
+                  <div class="select">
+                    <input class="select__input" type="hidden" name="">
+                    <div class="select__head" >
+                      <input type="text" readonly name="universityFinishedYear" class="js-field-req" placeholder="2010">
+                      <div class="invalid" style="display: none;">Поле не заполнено</div>
 
-                <div class="toggle-block">
+                    </div>
+                    <ul class="select__list" style="display: none;">
+                      <li class="select__item">2020 </li>
+                      <li class="select__item">2019 </li>
+                      <li class="select__item">2018 </li>
+                      <li class="select__item">2017 </li>
+                      <li class="select__item">2016 </li>
+                      <li class="select__item">2015 </li>
+                      <li class="select__item">2014 </li>
+                      <li class="select__item">2013 </li>
+                      <li class="select__item">2012 </li>
+                      <li class="select__item">2011 </li>
+                      <li class="select__item">2010 </li>
+                      <li class="select__item">2009 </li>
+                      <li class="select__item">2008 </li>
+                      <li class="select__item">2007 </li>
+                      <li class="select__item">2006 </li>
+                      <li class="select__item">2006 </li>
+                      <li class="select__item">2004 </li>
+                      <li class="select__item">2003 </li>
+                      <li class="select__item">2002 </li>
+                      <li class="select__item">2001 </li>
+                      <li class="select__item">2000 </li>
+                      <li class="select__item">1999 </li>
+                      <li class="select__item">1998 </li>
+                      <li class="select__item">1997 </li>
+                      <li class="select__item">1996 </li>
+                      <li class="select__item">1995 </li>
+                      <li class="select__item">1994 </li>
+                      <li class="select__item">1993 </li>
+                      <li class="select__item">1992 </li>
+                      <li class="select__item">1991 </li>
+                      <li class="select__item">1990 </li>
+                      <li class="select__item">1989 </li>
+                      <li class="select__item">1988 </li>
+                      <li class="select__item">1987 </li>
+                      <li class="select__item">1986 </li>
+                      <li class="select__item">1985 </li>
+                      <li class="select__item">1984 </li>
+                      <li class="select__item">1983 </li>
+                      <li class="select__item">1982 </li>
+                      <li class="select__item">1981 </li>
+                      <li class="select__item">1980 </li>
+                      <li class="select__item">1979 </li>
+                      <li class="select__item">1978 </li>
+                      <li class="select__item">1977 </li>
+                      <li class="select__item">1976 </li>
+                      <li class="select__item">1975 </li>
+                      <li class="select__item">1974 </li>
+                      <li class="select__item">1973 </li>
+                      <li class="select__item">1972 </li>
+                      <li class="select__item">1971 </li>
+                      <li class="select__item">1970 </li>
+                      <li class="select__item">1969 </li>
+                      <li class="select__item">1968 </li>
+                      <li class="select__item">1967 </li>
+                      <li class="select__item">1966 </li>
+                      <li class="select__item">1965 </li>
+                      <li class="select__item">1964 </li>
+                      <li class="select__item">1963 </li>
+                      <li class="select__item">1962 </li>
+                      <li class="select__item">1961 </li>
+                      <li class="select__item">1960 </li>
+                      <li class="select__item">1959 </li>
+                      <li class="select__item">1958 </li>
+                      <li class="select__item">1957 </li>
+                      <li class="select__item">1956 </li>
+                      <li class="select__item">1955 </li>
+                      <li class="select__item">1954 </li>
+                      <li class="select__item">1953 </li>
+                      <li class="select__item">1952 </li>
+                      <li class="select__item">1951 </li>
+                      <li class="select__item">1950 </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="settings-education__item">
+                  <span class="settings-education__text">Специальность</span>
+                  <div class="select">
+                    <input class="select__input" type="hidden" name="">
+                    <div class="select__head" value="">
+                      <input type="text" readonly class="js-field-req" name="speciality" placeholder="Лечебное дело">
+                      <div class="invalid" style="display: none;">Поле не заполнено</div>
+
+                    </div>
+                    <ul class="select__list" style="display: none;">
+                      <li class="select__item">Лечебное дело </li>
+                      <li class="select__item">Педиатрия </li>
+                      <li class="select__item">Стоматология </li>
+                      <li class="select__item">Медико-профилактическое дело </li>
+                      <li class="select__item"> Медицинская биофизика </li>
+                      <li class="select__item">Медицинская биохимия </li>
+                      <li class="select__item">Медицинская кибернетика </li>
+                      <li class="select__item"> Высшее сестринское дело </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
 
 
+            </div>
+
+
+
+
+            <div class="settings-add" style="border-top: none;">
+              <h2 class="settings-box__title" style="margin-bottom: 0;">Специальности</h2>
+
+              <div class="settings-add__speciality speciality">
+
+                <div class="settings-add__item speciality-item example" id="specialityExample">
+
+                  <div class="speciality-item__delete js-removeSpeciality">
+                    <img src="img/icons/delete-icon.svg" alt="">
+                  </div>
                   <div class="settings-education__item">
                     <span class="settings-education__text">Учебное заведение</span>
                     <div class="input-block">
-                      <input type="text" placeholder="Институт пирогова" class="input-block__field field">
+                      <input type="text" placeholder="Институт пирогова" name="universityName1"
+                      minlength="10" maxlength="200" class="input-block__field field">
                     </div>
                   </div>
+
                   <div class="settings-education__item">
                     <span class="settings-education__text">Год окончания</span>
                     <div class="select">
                       <input class="select__input" type="hidden" name="">
                       <div class="select__head" value="">
-                        <input type="text" readonly placeholder="2010">
+                        <input type="text" readonly name="universityFinishedYear1" class="js-field-reg" placeholder="2010">
                       </div>
                       <ul class="select__list" style="display: none;">
                         <li class="select__item">2020 </li>
@@ -998,230 +1132,103 @@
                         <li class="select__item">1952 </li>
                         <li class="select__item">1951 </li>
                         <li class="select__item">1950 </li>
+
                       </ul>
                     </div>
                   </div>
+
+                  <div class="settings-education__item ">
+                    <span class="settings-education__text">Специализация</span>
+                    <div class="select">
+                      <input class="select__input" type="hidden" name="">
+                      <div class="select__head" value="">
+                        <input type="text" readonly name="specialization1" class="js-field-reg" placeholder="Ординатура">
+                      </div>
+                      <ul class="select__list" style="display: none;">
+                        <li class="select__item">Ординатура </li>
+                        <li class="select__item">Интернатура </li>
+                        <li class="select__item">Циклы первичной переподготовки</li>
+                      </ul>
+                    </div>
+                  </div>
+
                   <div class="settings-education__item">
                     <span class="settings-education__text">Специальность</span>
                     <div class="select">
                       <input class="select__input" type="hidden" name="">
                       <div class="select__head" value="">
-                        <input type="text" readonly placeholder="Лечебное дело">
+                        <input type="text" readonly name="speciality1" class="js-field-reg" placeholder="Лечебное дело">
                       </div>
                       <ul class="select__list" style="display: none;">
-                        <li class="select__item">Лечебное дело </li>
-                        <li class="select__item">Педиатрия </li>
-                        <li class="select__item">Стоматология </li>
-                        <li class="select__item">Медико-профилактическое дело </li>
-                        <li class="select__item"> Медицинская биофизика </li>
-                        <li class="select__item">Медицинская биохимия </li>
-                        <li class="select__item">Медицинская кибернетика </li>
-                        <li class="select__item"> Высшее сестринское дело </li>
+                        <li class="select__item">Что-то </li>
+                        <li class="select__item">Что-то </li>
+                        <li class="select__item">Что-то </li>
+                        <li class="select__item">Что-то </li>
+                        <li class="select__item">Что-то </li>
+                        <li class="select__item">Что-то </li>
                       </ul>
                     </div>
                   </div>
                 </div>
 
-
               </div>
 
+              <div class="btn-light settings-add__btn js-addSpeciality">Добавить специальность</div>
             </div>
-
-
-
-              <div class="settings-add" style="border-top: none;">
-                <h2 class="settings-box__title" style="margin-bottom: 0;">Специальности</h2>
-
-                <div class="settings-add__speciality speciality">
-
-                  <div class="settings-add__item speciality-item example" id="specialityExample">
-
-                    <div class="speciality-item__delete js-removeSpeciality">
-                      <img src="img/icons/delete-icon.svg" alt="">
-                    </div>
-                    <div class="settings-education__item">
-                      <span class="settings-education__text">Учебное заведение</span>
-                      <div class="input-block">
-                        <input type="text" placeholder="Институт пирогова" class="input-block__field field">
-                      </div>
-                    </div>
-
-                    <div class="settings-education__item">
-                      <span class="settings-education__text">Год окончания</span>
-                      <div class="select">
-                        <input class="select__input" type="hidden" name="">
-                        <div class="select__head" value="">
-                          <input type="text" readonly placeholder="2010">
-                        </div>
-                        <ul class="select__list" style="display: none;">
-                          <li class="select__item">2020 </li>
-                          <li class="select__item">2019 </li>
-                          <li class="select__item">2018 </li>
-                          <li class="select__item">2017 </li>
-                          <li class="select__item">2016 </li>
-                          <li class="select__item">2015 </li>
-                          <li class="select__item">2014 </li>
-                          <li class="select__item">2013 </li>
-                          <li class="select__item">2012 </li>
-                          <li class="select__item">2011 </li>
-                          <li class="select__item">2010 </li>
-                          <li class="select__item">2009 </li>
-                          <li class="select__item">2008 </li>
-                          <li class="select__item">2007 </li>
-                          <li class="select__item">2006 </li>
-                          <li class="select__item">2006 </li>
-                          <li class="select__item">2004 </li>
-                          <li class="select__item">2003 </li>
-                          <li class="select__item">2002 </li>
-                          <li class="select__item">2001 </li>
-                          <li class="select__item">2000 </li>
-                          <li class="select__item">1999 </li>
-                          <li class="select__item">1998 </li>
-                          <li class="select__item">1997 </li>
-                          <li class="select__item">1996 </li>
-                          <li class="select__item">1995 </li>
-                          <li class="select__item">1994 </li>
-                          <li class="select__item">1993 </li>
-                          <li class="select__item">1992 </li>
-                          <li class="select__item">1991 </li>
-                          <li class="select__item">1990 </li>
-                          <li class="select__item">1989 </li>
-                          <li class="select__item">1988 </li>
-                          <li class="select__item">1987 </li>
-                          <li class="select__item">1986 </li>
-                          <li class="select__item">1985 </li>
-                          <li class="select__item">1984 </li>
-                          <li class="select__item">1983 </li>
-                          <li class="select__item">1982 </li>
-                          <li class="select__item">1981 </li>
-                          <li class="select__item">1980 </li>
-                          <li class="select__item">1979 </li>
-                          <li class="select__item">1978 </li>
-                          <li class="select__item">1977 </li>
-                          <li class="select__item">1976 </li>
-                          <li class="select__item">1975 </li>
-                          <li class="select__item">1974 </li>
-                          <li class="select__item">1973 </li>
-                          <li class="select__item">1972 </li>
-                          <li class="select__item">1971 </li>
-                          <li class="select__item">1970 </li>
-                          <li class="select__item">1969 </li>
-                          <li class="select__item">1968 </li>
-                          <li class="select__item">1967 </li>
-                          <li class="select__item">1966 </li>
-                          <li class="select__item">1965 </li>
-                          <li class="select__item">1964 </li>
-                          <li class="select__item">1963 </li>
-                          <li class="select__item">1962 </li>
-                          <li class="select__item">1961 </li>
-                          <li class="select__item">1960 </li>
-                          <li class="select__item">1959 </li>
-                          <li class="select__item">1958 </li>
-                          <li class="select__item">1957 </li>
-                          <li class="select__item">1956 </li>
-                          <li class="select__item">1955 </li>
-                          <li class="select__item">1954 </li>
-                          <li class="select__item">1953 </li>
-                          <li class="select__item">1952 </li>
-                          <li class="select__item">1951 </li>
-                          <li class="select__item">1950 </li>
-
-                        </ul>
-                      </div>
-                    </div>
-
-                    <div class="settings-education__item ">
-                      <span class="settings-education__text">Специализация</span>
-                      <div class="select">
-                        <input class="select__input" type="hidden" name="">
-                        <div class="select__head" value="">
-                          <input type="text" readonly placeholder="Ординатура">
-                        </div>
-                        <ul class="select__list" style="display: none;">
-                          <li class="select__item">Ординатура </li>
-                          <li class="select__item">Интернатура </li>
-                          <li class="select__item">Циклы первичной переподготовки</li>
-                        </ul>
-                      </div>
-                    </div>
-
-                    <div class="settings-education__item">
-                      <span class="settings-education__text">Специальность</span>
-                      <div class="select">
-                        <input class="select__input" type="hidden" name="">
-                        <div class="select__head" value="">
-                          <input type="text" readonly placeholder="Лечебное дело">
-                        </div>
-                        <ul class="select__list" style="display: none;">
-                          <li class="select__item">Что-то </li>
-                          <li class="select__item">Что-то </li>
-                          <li class="select__item">Что-то </li>
-                          <li class="select__item">Что-то </li>
-                          <li class="select__item">Что-то </li>
-                          <li class="select__item">Что-то </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-
+            <div class="settings-education__item">
+              <span class="settings-education__text">Ученая степень</span>
+              <div class="select">
+                <input class="select__input" type="hidden" name="">
+                <div class="select__head" value="">
+                  <input type="text" readonly placeholder="Доктор наук">
                 </div>
-
-                <div class="btn-light settings-add__btn js-addSpeciality">Добавить специальность</div>
+                <ul class="select__list" style="display: none;">
+                  <li class="select__item js-degreeDoctor">Доктор наук </li>
+                  <li class="select__item js-degreeCandidate">Кандидат наук </li>
+                  <li class="select__item js-degreeEmpty"> Нет </li>
+                </ul>
               </div>
-              <div class="settings-education__item">
-                <span class="settings-education__text">Ученая степень</span>
-                <div class="select">
-                  <input class="select__input" type="hidden" name="">
-                  <div class="select__head" value="">
-                    <input type="text" readonly placeholder="Доктор наук">
-                  </div>
-                  <ul class="select__list" style="display: none;">
-                    <li class="select__item js-degreeDoctor">Доктор наук </li>
-                    <li class="select__item js-degreeCandidate">Кандидат наук </li>
-                    <li class="select__item js-degreeEmpty"> Нет </li>
-                  </ul>
+            </div>
+            <div class="settings-education__item js-themeCandidate" style="width: 100%;">
+              <span class="settings-education__text">Тема кандидатской
+                диссертации</span>
+              <div class="input-block">
+                <input type="text" placeholder="Тема кандидатской диссертации" maxlength="300" class="input-block__field field">
+              </div>
+            </div>
+            <div class="settings-education__item js-themeDoctor" style="width: 100%;">
+              <span class="settings-education__text">Тема докторской
+                диссертации</span>
+              <div class="input-block">
+                <input type="text" placeholder="Тема докторской диссертации" maxlength="300" class="input-block__field field">
+              </div>
+            </div>
+            <div class="settings-education__item">
+              <span class="settings-education__text">Ученое звание</span>
+              <div class="select">
+                <input class="select__input" type="hidden" name="">
+                <div class="select__head" value="">
+                  <input type="text" readonly placeholder="Нет">
                 </div>
+                <ul class="select__list" style="display: none;">
+                  <li class="select__item">Да </li>
+                  <li class="select__item">Нет </li>
+                </ul>
               </div>
-              <div class="settings-education__item js-themeCandidate" style="width: 100%;">
-                <span class="settings-education__text">Тема кандидатской
-                  диссертации</span>
-                <div class="input-block">
-                  <input type="text" placeholder="Тема кандидатской диссертации" class="input-block__field field">
+            </div>
+            <div class="settings-education__item">
+              <span class="settings-education__text">Категория</span>
+              <div class="select">
+                <input class="select__input" type="hidden" name="">
+                <div class="select__head" value="">
+                  <input type="text" readonly placeholder="Нет">
                 </div>
+                <ul class="select__list" style="display: none;">
+                  <li class="select__item">Да </li>
+                  <li class="select__item">Нет </li>
+                </ul>
               </div>
-              <div class="settings-education__item js-themeDoctor" style="width: 100%;">
-                <span class="settings-education__text">Тема докторской
-                  диссертации</span>
-                <div class="input-block">
-                  <input type="text" placeholder="Тема докторской диссертации" class="input-block__field field">
-                </div>
-              </div>
-              <div class="settings-education__item">
-                <span class="settings-education__text">Ученое звание</span>
-                <div class="select">
-                  <input class="select__input" type="hidden" name="">
-                  <div class="select__head" value="">
-                    <input type="text" readonly placeholder="Нет">
-                  </div>
-                  <ul class="select__list" style="display: none;">
-                    <li class="select__item">Да </li>
-                    <li class="select__item">Нет </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="settings-education__item">
-                <span class="settings-education__text">Категория</span>
-                <div class="select">
-                  <input class="select__input" type="hidden" name="">
-                  <div class="select__head" value="">
-                    <input type="text" readonly placeholder="Нет">
-                  </div>
-                  <ul class="select__list" style="display: none;">
-                    <li class="select__item">Да </li>
-                    <li class="select__item">Нет </li>
-                  </ul>
-                </div>
-              </div>
+            </div>
 
 
 
@@ -1240,7 +1247,7 @@
                   </div>
                   <div class="settings-jobs__item">
                     <span class="settings-jobs__text">Начало работы</span>
-                   
+
                     <div class="input-block select-wrap">
 
                       <div class="select">
@@ -1474,7 +1481,8 @@
                       </div>
                       <div class="input-block ">
                         <input type="text" placeholder="Мануальный терапевт" class="input-block__field field">
-                        <div class="settings-jobs-speciality__delete js-removeJobspeciality" id="removeJobspecialityTemp" style="display: none;">
+                        <div class="settings-jobs-speciality__delete js-removeJobspeciality"
+                          id="removeJobspecialityTemp" style="display: none;">
                           <img src="img/icons/delete-icon_disable.svg" alt="">
                         </div>
                       </div>
@@ -1725,7 +1733,8 @@
                       </div>
                       <div class="input-block">
                         <input type="text" placeholder="Мануальный терапевт" class="input-block__field field">
-                        <div class="settings-jobs-speciality__delete js-removeJobspeciality js-removeJobspecialityTemp" style="display: none;">
+                        <div class="settings-jobs-speciality__delete js-removeJobspeciality js-removeJobspecialityTemp"
+                          style="display: none;">
                           <img src="img/icons/delete-icon_disable.svg" alt="">
                         </div>
                       </div>
@@ -1743,6 +1752,7 @@
             </div>
 
           </div>
+
           <!-- Доп информация  -->
           <div class="settings-box" id="moreNav">
             <h2 class="settings-box__title">Дополнительная информация</h2>
@@ -1772,7 +1782,7 @@
                   <div class="settings-appointment__item">
                     <span class="settings-appointment__text">Место приема</span>
                     <div class="input-block">
-                      <input type="text" placeholder="Открытая клиника" class="input-block__field field">
+                      <input type="text" placeholder="Открытая клиника"  maxlength="200" class="input-block__field field">
                     </div>
                   </div>
                   <div class="settings-appointment__item">
@@ -1884,19 +1894,20 @@
                 </div>
 
                 <div class="settings-appointment__block">
-                  <div class="settings-appointment__delete js-removeApointment js-removeApointmentTemp" style="display: none;">
+                  <div class="settings-appointment__delete js-removeApointment js-removeApointmentTemp"
+                    style="display: none;">
                     <img src="img/icons/delete-icon.svg" alt="">
                   </div>
                   <div class="settings-appointment__item">
                     <span class="settings-appointment__text">Место приема</span>
                     <div class="input-block">
-                      <input type="text" placeholder="Открытая клиника" class="input-block__field field">
+                      <input type="text" placeholder="Открытая клиника" name="appointmentPlace" maxlength="200" class="input-block__field field js-field-req">
                     </div>
                   </div>
                   <div class="settings-appointment__item">
                     <span class="settings-appointment__text">Город</span>
                     <div class="input-block">
-                      <input type="text" placeholder="Новосибирск" class="input-block__field field">
+                      <input type="text" placeholder="Новосибирск" name="appointmentCity" class="input-block__field field js-field-req">
                     </div>
                   </div>
                   <div class="settings-appointment__item withPhone ">
@@ -1917,7 +1928,7 @@
                       <div class="settings-phone__item">
                         <div class="input-block phone">
                           <input type="phone" placeholder="(123) 456-78-55" name="phone" minlength="15" maxlength="15"
-                            class="input-block__field phone field">
+                            class="input-block__field phone field js-field-req">
                           <input type="text" readonly class="phone-code " value="+7">
 
                         </div>
@@ -2034,7 +2045,7 @@
               <div class="input-block">
                 <span class="input-block__hint">Расскажите свои пациентам, как подготовиться к приему.</span>
 
-                <textarea class="input-block__field textarea" name="" id="" cols="30" rows="30"
+                <textarea class="input-block__field textarea" name="" id="" maxlength="3000" cols="30" rows="30"
                   placeholder="Введите текст"></textarea>
               </div>
             </div>

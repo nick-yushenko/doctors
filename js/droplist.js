@@ -58,34 +58,89 @@ function droplistChooseItem() {
 
 
   // выбор даты рождения 
-  const BDinput = document.querySelector('.js-Birhday')
-
+  const BDinput = document.querySelector('.js-Birthday')
+  const BDday = document.querySelector('.js-BDday')
+  const BDmonth = document.querySelector('.js-BDmonth')
+  const BDyear = document.querySelector('.js-BDyear')
+  const BDerror = BDinput.parentElement.querySelector('div.invalid')
 
   if (BDinput) {
     if (this.classList.contains('js-BDday')) {
       BDinput.setAttribute('data-day', this.textContent)
+      BDday.classList.remove('invalid')
+      BDerror.style.display = 'none'
+
+      if (BDmonth.value == '') {
+        BDmonth.classList.add('invalid')
+        BDerror.style.display = 'block'
+        console.log('day - month')
+
+      }
+      if (BDyear.value == '') {
+        BDyear.classList.add('invalid')
+        BDerror.style.display = 'block'
+        console.log('day - yaer')
+
+      }
+
     }
     if (this.classList.contains('js-BDmonth')) {
       BDinput.setAttribute('data-month', this.getAttribute('data-value'))
+      BDmonth.classList.remove('indalid')
+      BDerror.style.display = 'none'
+
+      if (BDday.value == '') {
+        BDday.classList.add('invalid')
+        BDerror.style.display = 'block'
+        console.log('month day')
+
+      }
+      if (BDyear.value == '') {
+        BDyear.classList.add('invalid')
+        BDerror.style.display = 'block'
+        console.log('month - year')
+
+
+      }
+
     }
     if (this.parentElement.classList.contains('js-BDyear')) {
       BDinput.setAttribute('data-year', this.textContent)
+      BDyear.classList.remove('invalid')
+      
+      BDerror.style.display = 'none'
+
+      if (BDday.value == '') {
+        BDday.classList.add('invalid')
+        BDerror.style.display = 'block'
+        console.log('year - day')
+
+
+      }
+      if (BDmonth.value == '') {
+        BDmonth.classList.add('invalid')
+        BDerror.style.display = 'block'
+
+        console.log('year - month')
+
+      }
+
     }
 
-    
+
     // проверяем, все ли значения заполнены 
-    if (BDinput.getAttribute('data-day') != '' && BDinput.getAttribute('data-month') != '' && BDinput.getAttribute('data-year') != '' )
-    {
+    if (BDinput.getAttribute('data-day') != '' && BDinput.getAttribute('data-month') != '' && BDinput.getAttribute('data-year') != '') {
       let date = BDinput.getAttribute('data-day').replace(' ', '') + '-' + BDinput.getAttribute('data-month').replace(' ', '') + '-' + BDinput.getAttribute('data-year').replace(' ', '')
-      BDinput.setAttribute('value', date) 
-    } 
+      BDinput.setAttribute('value', date)
+      BDerror.style.display = 'none'
+      console.log(BDerror)
+      
+    }
   }
 
 }
 
-function setBirhday(input) {
 
-}
 
 $(document).click(function (e) {
   if (!$(e.target).closest('.select').length) {
