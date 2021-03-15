@@ -140,7 +140,54 @@ function droplistChooseItem() {
 
 }
 
+document.querySelectorAll('.select input').forEach(input => {
 
+
+  input.addEventListener('input', function (e) {
+
+    let str = /[^A-Za-zА-Яа-яЁё]/g
+    input.value = input.value.replace(str, '')
+    var request = input.value.toUpperCase()
+
+    var listWrap = input.parentElement.nextElementSibling
+    console.log(listWrap)
+    var results = listWrap.querySelectorAll('.select__item')
+
+    
+    var elemToShow = 0;
+    results.forEach(item => {
+      var userName = item.textContent.toUpperCase();
+      var dataSearch = ''
+      if (item.hasAttribute('data-search')) {
+        dataSearch = item.getAttribute('data-search').toUpperCase()
+      }
+      console.log(item)
+      console.log(dataSearch)
+      if (userName.includes(request) || request.includes(userName)) {
+
+        item.style.display = 'block'
+
+        elemToShow++
+
+      } else if (dataSearch != '' && (dataSearch.includes(request) || request.includes(dataSearch))) {
+        item.style.display = 'block'
+
+        elemToShow++
+      } else {
+        item.style.display = 'none'
+
+      }
+
+      if (elemToShow == 0) {
+        listWrap.querySelector('.empty').style.display = 'block'
+      } else {
+        listWrap.querySelector('.empty').style.display = 'none'
+
+      }
+    })
+  })
+
+})
 
 $(document).click(function (e) {
   if (!$(e.target).closest('.select').length) {

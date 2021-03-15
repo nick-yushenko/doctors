@@ -870,6 +870,8 @@ if (addAppoinmentBtns.length > 0) {
       example.parentElement.append(clone)
 
       $('input.currency-field').mask('000000')
+      $('input.phone').mask('(000) 000-00-00')
+
 
       // проверка количества блоков для добавления специальности
       let appointmentCount = 0
@@ -941,7 +943,54 @@ if (addAppoinmentBtns.length > 0) {
       $(clone.querySelectorAll('.select')).on('click', '.select__item', droplistChooseItem)
       $(clone.querySelectorAll('.select select__head input')).on('focus', onInputFocus)
 
+      clone.querySelectorAll('.select input').forEach(input => {
 
+
+        input.addEventListener('input', function (e) {
+      
+          let str = /[^A-Za-zА-Яа-яЁё]/g
+          input.value = input.value.replace(str, '')
+          var request = input.value.toUpperCase()
+      
+          var listWrap = input.parentElement.nextElementSibling
+          console.log(listWrap)
+          var results = listWrap.querySelectorAll('.select__item')
+      
+          
+          var elemToShow = 0;
+          results.forEach(item => {
+            var userName = item.textContent.toUpperCase();
+            var dataSearch = ''
+            if (item.hasAttribute('data-search')) {
+              dataSearch = item.getAttribute('data-search').toUpperCase()
+            }
+            console.log(item)
+            console.log(dataSearch)
+            if (userName.includes(request) || request.includes(userName)) {
+      
+              item.style.display = 'block'
+      
+              elemToShow++
+      
+            } else if (dataSearch != '' && (dataSearch.includes(request) || request.includes(dataSearch))) {
+              item.style.display = 'block'
+      
+              elemToShow++
+            } else {
+              item.style.display = 'none'
+      
+            }
+      
+            if (elemToShow == 0) {
+              listWrap.querySelector('.empty').style.display = 'block'
+            } else {
+              listWrap.querySelector('.empty').style.display = 'none'
+      
+            }
+          })
+        })
+      
+      })
       // добавление новой позиции в список улуг
       const addPriceItem = clone.querySelector('.js-addPriceItem')
       addPriceItem.addEventListener('click', function (e) {
@@ -976,7 +1025,9 @@ if (addAppoinmentBtns.length > 0) {
         removePhone.addEventListener('click', function (e) {
           addPhoneClone.remove()
         })
-        $('input.-field').mask('000000')
+        $('input.phone').mask('(000) 000-00-00')
+
+        $('input.currency-field').mask('000000')
 
       })
     })
@@ -1061,6 +1112,8 @@ if (addPhoneTemp)
     removePhoneTemp.addEventListener('click', function (e) {
       phoneTempClone.remove()
     })
+    $('input.phone').mask('(000) 000-00-00')
+
   })
 
 
@@ -2142,6 +2195,47 @@ if (appointmentWrap.length > 0) {
 
   })
 
-
-
 }
+
+const validatuinFields = document.querySelectorAll('.js-validation-field')
+
+if (validatuinFields.length > 0)
+  validatuinFields.forEach(function (field) {
+    field.addEventListener('input', function (e) {
+      var er = document.createElement('div');
+      if (field.hasAttribute('data-minhint'))
+        er.innerHTML = field.getAttribute('data-minhint')
+      else
+        er.innerHTML = 'Поле не заполнено';
+      er.classList.add('invalid')
+      if (field.getAttribute('type') == 'text') {
+
+        if (field.classList.contains('js-birthday')) {
+
+        } else {
+
+          let minlength = field.getAttribute('minlength')
+          let maxlength = field.getAttribute('maxlength')
+
+          let str = /[^A-Za-zА-Яа-яЁё]/g
+
+          field.value = field.value.replace(str, '')
+
+          if (field.value.length < minlength) {
+            field.classList.add('invalid')
+            if (field.parentElement.querySelectorAll('div.invalid').length == 0)
+              field.parentElement.append(er)
+
+          } else {
+            field.classList.remove('invalid')
+            field.parentElement.querySelector('div.invalid').remove()
+
+          }
+          if (field.value.length >= maxlength) {
+            field.value = field.value.replace(field.value, field.value.substr(0, maxlength))
+          }
+        }
+
+      }
+    })
+  })
