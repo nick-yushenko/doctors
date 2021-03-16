@@ -54,10 +54,23 @@ window.addEventListener('scroll', function () {
     header.classList.remove('header_fixed')
 
   if (sidebar) {
-    if (window.scrollY < 26)
-      sidebar.style.top = sidebarTop - window.scrollY + 'px'
-    // else
-      // alert('выровнять')
+    if (sidebar.classList.contains('filter')) {
+      if (window.innerWidth > 1024)
+        if (window.scrollY < 26) {
+          sidebar.style.top = sidebarTop - window.scrollY + 'px'
+        } else {
+          let headerHeight = document.querySelector('.header').clientHeight
+          sidebar.style.top = headerHeight + 14 + 'px'
+        }
+    } else {
+      if (window.scrollY < 26)
+        sidebar.style.top = sidebarTop - window.scrollY + 'px'
+      else {
+        let headerHeight = document.querySelector('.header').clientHeight
+        sidebar.style.top = headerHeight + 14 + 'px'
+      }
+
+    }
 
   }
 })
@@ -67,8 +80,11 @@ window.addEventListener('scroll', function () {
 const burger = document.querySelector('.burger')
 const burgerSearch = document.querySelector('.burger-search')
 const menu = document.querySelector('.menu')
+const filter = document.querySelector('.filter')
+const toFilter = document.querySelectorAll('.js-toFilter')
 const menuSearch = document.querySelector('.menu-search')
 const menuBg = document.querySelector('.menu-bg')
+const closeFilter = document.querySelectorAll('.filter-close')
 
 if (burger && menu && menuBg) {
   burger.addEventListener('click', function (e) {
@@ -90,6 +106,25 @@ if (burgerSearch && menuBg && menuSearch) {
 
 }
 
+if (filter && toFilter) {
+  toFilter.forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      filter.classList.toggle('active')
+      menuBg.classList.toggle('active')
+
+    })
+  })
+  closeFilter.forEach(function (close) {
+    close.addEventListener('click', function (e) {
+      filter.classList.remove('active')
+      menuBg.classList.remove('active')
+
+    })
+  })
+
+}
+
+
 if (menuBg)
   menuBg.addEventListener('click', function () {
     if (menu) {
@@ -99,6 +134,11 @@ if (menuBg)
     if (menuSearch) {
       menuSearch.classList.remove('active')
       menuBg.classList.remove('active')
+    }
+    if (filter){
+      filter.classList.remove('active')
+      menuBg.classList.remove('active')
+
     }
   })
 
@@ -178,8 +218,8 @@ if (toChooseCityBtns) {
       const menu = document.querySelector('.menu')
       const menuBg = document.querySelector('.menu-bg')
       if (menuBg && menu) {
-        menu.classList.toggle('active')
-        menuBg.classList.toggle('active')
+        menu.classList.remove('active')
+        menuBg.classList.remove('active')
 
       }
     })
@@ -197,8 +237,8 @@ if (toLoginBtns) {
       const menu = document.querySelector('.menu')
       const menuBg = document.querySelector('.menu-bg')
       if (menuBg && menu) {
-        menu.classList.toggle('active')
-        menuBg.classList.toggle('active')
+        menu.classList.remove('active')
+        menuBg.classList.remove('active')
 
       }
     })
@@ -216,8 +256,8 @@ if (toResetBtns) {
       const menu = document.querySelector('.menu')
       const menuBg = document.querySelector('.menu-bg')
       if (menuBg && menu) {
-        menu.classList.toggle('active')
-        menuBg.classList.toggle('active')
+        menu.classList.remove('active')
+        menuBg.classList.remove('active')
 
       }
     })
@@ -235,8 +275,8 @@ if (toRegisterBtns) {
       const menu = document.querySelector('.menu')
       const menuBg = document.querySelector('.menu-bg')
       if (menuBg && menu) {
-        menu.classList.toggle('active')
-        menuBg.classList.toggle('active')
+        menu.classList.remove('active')
+        menuBg.classList.remove('active')
 
       }
     })
