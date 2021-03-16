@@ -40,13 +40,26 @@ if (searchInputs) {
 // header 
 
 const header = document.querySelector('.header')
+const sidebar = document.querySelector('.sidebar')
+if (sidebar) {
+  var sidebarTop = window.getComputedStyle(sidebar).getPropertyValue("top")
+  sidebarTop = sidebarTop.replace('px', '')
+  console.log(sidebarTop)
 
+}
 window.addEventListener('scroll', function () {
   if (window.pageYOffset >= header.clientHeight * 0.9)
     header.classList.add('header_fixed')
   else
     header.classList.remove('header_fixed')
 
+  if (sidebar) {
+    if (window.scrollY < 26)
+      sidebar.style.top = sidebarTop - window.scrollY + 'px'
+    // else
+      // alert('выровнять')
+
+  }
 })
 
 // открытие меню 
@@ -947,16 +960,16 @@ if (addAppoinmentBtns.length > 0) {
 
 
         input.addEventListener('input', function (e) {
-      
+
           let str = /[^A-Za-zА-Яа-яЁё]/g
           input.value = input.value.replace(str, '')
           var request = input.value.toUpperCase()
-      
+
           var listWrap = input.parentElement.nextElementSibling
           console.log(listWrap)
           var results = listWrap.querySelectorAll('.select__item')
-      
-          
+
+
           var elemToShow = 0;
           results.forEach(item => {
             var userName = item.textContent.toUpperCase();
@@ -967,29 +980,29 @@ if (addAppoinmentBtns.length > 0) {
             console.log(item)
             console.log(dataSearch)
             if (userName.includes(request) || request.includes(userName)) {
-      
+
               item.style.display = 'block'
-      
+
               elemToShow++
-      
+
             } else if (dataSearch != '' && (dataSearch.includes(request) || request.includes(dataSearch))) {
               item.style.display = 'block'
-      
+
               elemToShow++
             } else {
               item.style.display = 'none'
-      
+
             }
-      
+
             if (elemToShow == 0) {
               listWrap.querySelector('.empty').style.display = 'block'
             } else {
               listWrap.querySelector('.empty').style.display = 'none'
-      
+
             }
           })
         })
-      
+
       })
       // добавление новой позиции в список улуг
       const addPriceItem = clone.querySelector('.js-addPriceItem')
@@ -2217,7 +2230,7 @@ if (validatuinFields.length > 0)
           let minlength = field.getAttribute('minlength')
           let maxlength = field.getAttribute('maxlength')
 
-          let str = /[^A-Za-zА-Яа-яЁё]/g
+          let str = /[^A-Za-zА-Яа-яЁё()-.,]/g
 
           field.value = field.value.replace(str, '')
 
