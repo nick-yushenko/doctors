@@ -564,9 +564,9 @@
 
   <header class="header header_login ">
     <div class="wrap content-flex">
-      <div class="logo">
+      <a href="index.html" class="logo">
         <img src="img/icons/logo.svg" alt="Визитка Врача">
-      </div>
+      </a>
       <div class="city toModal js-toChooseCity">
         <img src="img/icons/city-icon.svg" alt="">
         <span class="name">Москва</span>
@@ -619,9 +619,90 @@
         </div>
       </div>
 
+      <div class="burgers">
+        <div class="burger-search">
+          <img src="img/icons/burger-search-icon.svg" alt="">
+        </div>
+        <div class="burger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
 
     </div>
   </header>
+  <div class="header-nav__wrap ">
+    <div class="header-nav wrap">
+      <nav>
+        <li class="header-nav__item current"><a href="#recommendMe" class="anchor">Меня рекомендуют</a>
+        </li>
+        <li class="header-nav__item "><a href="#iRecommend" class="anchor">Я рекомендую</a></li>
+        <li class="header-nav__item "><a href="#wouldRecommend" class="anchor">Кого бы Вы порекомендовали?</a>
+        </li>
+      </nav>
+    </div>
+  </div>
+  
+  <div class="menu-search ">
+    <form role="search" method="get" class="search-form " action="#">
+      <label>
+        <span class="screen-reader-text">
+        </span>
+        <input type="text" class="search-field field " placeholder="Поиск" maxlength="70" />
+
+
+      </label>
+      <button type="submit" class="menu-search__submit">
+        <img src="img/icons/search-icon_white.svg" alt="" class="header-search__icon">
+      </button>
+    </form>
+
+  </div>
+  <div class="menu ">
+    <div class="menu-close">
+      <img src="img/icons/menu-close-icon.svg" alt="">
+    </div>
+
+    
+    <div class="menu-actions__wrap">
+      <a href="profile.html" class="menu-actions__item ">
+        <img src="img/icons/header-mini-1-icon.svg" alt="">
+        <img src="img/icons/header-mini-1-icon_active.svg" alt="" class="current">
+
+        <span>Мой профиль</span>
+      </a>
+      <a href="colleagues.html" class="menu-actions__item current ">
+        <img src="img/icons/header-mini-2-icon.svg" alt="">
+        <img src="img/icons/header-mini-2-icon_active.svg" alt="" class="current">
+        <span>Мои коллеги</span>
+      </a>
+      <div class="line"></div>
+      <a href="settings.html" class="menu-actions__item">
+        <img src="img/icons/header-mini-3-icon.svg" alt="">
+        <img src="img/icons/header-mini-3-icon_active.svg" alt="" class="current">
+
+        <span>Настройки</span>
+      </a>
+      <a href="index.html" class="menu-actions__item">
+        <img src="img/icons/header-mini-4-icon_active.svg" alt="" class="current">
+        <img src="img/icons/header-mini-4-icon.svg" alt="">
+        <span>Выйти</span>
+      </a>
+    </div>
+
+    <a href="invited.html" class="btn menu-invite">
+      Пригласить
+    </a>
+
+    <div class="menu-city js-toChooseCity">
+      <img src="img/icons/city-icon.svg" alt="">
+      <span class="name">Москва</span>
+    </div>
+
+  </div>
+
+  <div class="menu-bg "></div>
 
 
   <main class="main ">
@@ -1208,7 +1289,7 @@
           </div>
 
           <div class="colleagues-block" id="wouldRecommend">
-            <h2 class="section-subtitle ">Кого бы Вы порекомендовали ?</h2>
+            <h2 class="section-subtitle ">Кого бы Вы порекомендовали?</h2>
 
             <div class="catalog-wrap js-wouldRecommend">
 

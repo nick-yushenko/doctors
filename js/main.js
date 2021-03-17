@@ -60,6 +60,8 @@ window.addEventListener('scroll', function () {
           sidebar.style.top = sidebarTop - window.scrollY + 'px'
         } else {
           let headerHeight = document.querySelector('.header').clientHeight
+          if (document.querySelector('.header-nav__wrap'))
+            headerHeight += document.querySelector('.header-nav__wrap').clientHeight
           sidebar.style.top = headerHeight + 14 + 'px'
         }
     } else {
@@ -67,6 +69,8 @@ window.addEventListener('scroll', function () {
         sidebar.style.top = sidebarTop - window.scrollY + 'px'
       else {
         let headerHeight = document.querySelector('.header').clientHeight
+        if (document.querySelector('.header-nav__wrap'))
+          headerHeight += document.querySelector('.header-nav__wrap').clientHeight
         sidebar.style.top = headerHeight + 14 + 'px'
       }
 
@@ -135,7 +139,7 @@ if (menuBg)
       menuSearch.classList.remove('active')
       menuBg.classList.remove('active')
     }
-    if (filter){
+    if (filter) {
       filter.classList.remove('active')
       menuBg.classList.remove('active')
 
@@ -481,7 +485,11 @@ if (toggleFilterBtns.length > 0) {
 
 // Меню на странице профиля
 let headerHeight = document.querySelector('.header').clientHeight
+if (document.querySelector('.header-nav__wrap'))
+  headerHeight += document.querySelector('.header-nav__wrap').clientHeight
 const menuItems = document.querySelectorAll('.profile-nav__item a')
+const headerNavItems = document.querySelectorAll('.header-nav__item a')
+
 if (menuItems)
   menuItems.forEach(function (item) {
     item.addEventListener('click', function (e) {
@@ -494,6 +502,17 @@ if (menuItems)
       }
     })
   })
+headerNavItems.forEach(function (item) {
+  item.addEventListener('click', function (e) {
+    // e.preventDefault();
+
+    if (!item.parentElement.classList.contains('current')) {
+      // item.parentElement.classList.add('current')
+      item.parentElement.parentElement.querySelector('.current').classList.remove('current')
+      item.parentElement.classList.add('current')
+    }
+  })
+})
 
 const anchors = document.querySelectorAll('a[href*="#"]')
 if (anchors)
