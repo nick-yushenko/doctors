@@ -37,6 +37,20 @@ if (searchInputs) {
 
 }
 
+// адаптив высоты модальных окон 
+document.querySelectorAll('.modal').forEach(function (item) {
+  CheckModal(item)
+})
+
+function CheckModal(modal) {
+  const wrapper = modal.querySelector('.modal-wrap')
+  if (wrapper)
+    if (wrapper.clientHeight + 50 >= window.innerHeight) {
+      modal.style.alignItems = 'flex-start'
+      wrapper.style.marginTop = '30px'
+      wrapper.style.marginBottom = '30px'
+    }
+}
 // header 
 
 const header = document.querySelector('.header')
@@ -237,6 +251,8 @@ if (toDeleteBtns) {
 
       modalDelete.classList.add('active')
       document.querySelector('body').style.overflow = 'hidden'
+      CheckModal(modalDelete)
+
     })
   })
 }
@@ -255,8 +271,9 @@ if (toChooseCityBtns) {
       if (menuBg && menu) {
         menu.classList.remove('active')
         menuBg.classList.remove('active')
-
       }
+
+      CheckModal(modalCity)
     })
   })
 }
@@ -276,6 +293,8 @@ if (toLoginBtns) {
         menuBg.classList.remove('active')
 
       }
+      CheckModal(modalLogin)
+
     })
   })
 }
@@ -295,6 +314,8 @@ if (toResetBtns) {
         menuBg.classList.remove('active')
 
       }
+      CheckModal(modalReset)
+
     })
   })
 }
@@ -314,6 +335,8 @@ if (toRegisterBtns) {
         menuBg.classList.remove('active')
 
       }
+      CheckModal(modalCode)
+
     })
   })
 }
@@ -354,7 +377,7 @@ if (toNocodeBtns) {
       })
       modalNocode.classList.add('active')
       document.querySelector('body').style.overflow = 'hidden'
-
+      CheckModal(modalNocode)
     })
   })
 }
@@ -373,6 +396,8 @@ if (toSupportBtns) {
         modalSupport.querySelector('.modal-back').style.display = 'block'
 
       }
+      CheckModal(modalSupport)
+
     })
   })
 }
@@ -397,6 +422,7 @@ if (toRecommendBtns) {
       })
       modalRecommend.classList.add('active')
       document.querySelector('body').style.overflow = 'hidden'
+      CheckModal(modalRecommend)
 
     })
   })
@@ -410,6 +436,7 @@ if (toComplainBtns) {
       })
       modalComplain.classList.add('active')
       document.querySelector('body').style.overflow = 'hidden'
+      CheckModal(modalComplain)
 
     })
   })
