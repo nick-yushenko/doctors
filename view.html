@@ -27,7 +27,7 @@
         <div class="header-mini js-toggleHeaderMenu ">
           Муратов. А
         </div>
-        <div class="header-mini__wrap  js-headerMenu">
+        <div class="header-mini__wrap mini-wrap_right  js-headerMenu">
           <a href="profile.html" class="header-mini__item current">
             <img src="img/icons/header-mini-1-icon.svg" alt="">
             <img src="img/icons/header-mini-1-icon_active.svg" alt="" class="current">
@@ -53,15 +53,137 @@
           </a>
         </div>
       </div>
+      <div class="burgers">
+        <div class="burger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
 
 
     </div>
   </header>
 
 
+  <div class="menu-view ">
+    <div class="menu-view-toggle">
+      <img src="img/icons/filter-icon.svg" alt="">
+    </div>
+    <a href="#" class="btn">Опубликовать</a>
+    <a href="#" class="btn-light">Сохранить черновик</a>
+    <a href="settingsProfile.html" class="btn-light">Редактировать данные</a>
+    <div class="view-bg menu-view-bg">
+
+      <span class="view-bg__title">Фон</span>
+
+      <div class="view-bg__wrap">
+        <label class="radio  view-bg__item js-setBg0">
+          <input type="radio" name="background" checked>
+          <span class="radio__text">Без фона</span>
+        </label>
+        <label class="radio  view-bg__item js-setBg1">
+          <input type="radio" name="background">
+          <span class="radio__text">Фон 1</span>
+        </label>
+        <label class="radio  view-bg__item js-setBg2">
+          <input type="radio" name="background">
+          <span class="radio__text">Фон 2</span>
+        </label>
+        <label class="radio  view-bg__item js-setBg3">
+          <input type="radio" name="background">
+          <span class="radio__text">Фон 3</span>
+        </label>
+        <label class="radio  view-bg__item js-setBg4">
+          <input type="radio" name="background">
+          <span class="radio__text">Фон 4</span>
+        </label>
+        <label class="radio  view-bg__item js-setBg5">
+          <input type="radio" name="background">
+          <span class="radio__text">Фон 5</span>
+        </label>
+        <label class="radio  view-bg__item js-setBg6">
+          <input type="radio" name="background">
+          <span class="radio__text">Фон 6</span>
+        </label>
+        <label class="radio  view-bg__item js-setBg7">
+          <input type="radio" name="background">
+          <span class="radio__text">Фон 7</span>
+        </label>
+        <label class="radio  view-bg__item js-setBg8">
+          <input type="radio" name="background">
+          <span class="radio__text">Фон 8</span>
+        </label>
+      </div>
+
+
+
+    </div>
+
+  </div>
+  <div class="menu-search ">
+    <form role="search" method="get" class="search-form " action="#">
+      <label>
+        <span class="screen-reader-text">
+        </span>
+        <input type="text" class="search-field field " placeholder="Поиск" maxlength="70" />
+
+
+      </label>
+      <button type="submit" class="menu-search__submit">
+        <img src="img/icons/search-icon_white.svg" alt="" class="header-search__icon">
+      </button>
+    </form>
+
+  </div>
+  <div class="menu ">
+    <div class="menu-close">
+      <img src="img/icons/menu-close-icon.svg" alt="">
+    </div>
+
+    
+    <div class="menu-actions__wrap">
+      <a href="profile.html" class="menu-actions__item ">
+        <img src="img/icons/header-mini-1-icon.svg" alt="">
+        <img src="img/icons/header-mini-1-icon_active.svg" alt="" class="current">
+
+        <span>Мой профиль</span>
+      </a>
+      <a href="colleagues.html" class="menu-actions__item current ">
+        <img src="img/icons/header-mini-2-icon.svg" alt="">
+        <img src="img/icons/header-mini-2-icon_active.svg" alt="" class="current">
+        <span>Мои коллеги</span>
+      </a>
+      <div class="line"></div>
+      <a href="settings.html" class="menu-actions__item">
+        <img src="img/icons/header-mini-3-icon.svg" alt="">
+        <img src="img/icons/header-mini-3-icon_active.svg" alt="" class="current">
+
+        <span>Настройки</span>
+      </a>
+      <a href="index.html" class="menu-actions__item">
+        <img src="img/icons/header-mini-4-icon_active.svg" alt="" class="current">
+        <img src="img/icons/header-mini-4-icon.svg" alt="">
+        <span>Выйти</span>
+      </a>
+    </div>
+
+
+    <div class="menu-city js-toChooseCity">
+      <img src="img/icons/city-icon.svg" alt="">
+      <span class="name">Москва</span>
+    </div>
+
+  </div>
+
+
+  <div class="menu-bg "></div>
+
+
   <main class="main ">
     <!-- Фоновое изображение задается через классs bg-0 (белый), bg-1, bg-2, bg-3 -->
-    <section class="section view bg-0" id="viewBg">
+    <section class="section withoutNav view bg-0" id="viewBg">
 
       <div class="wrap">
         <div class="section-nav">

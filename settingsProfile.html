@@ -601,9 +601,78 @@
         </div>
       </div>
 
+      <div class="burgers">
+        <div class="burger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
 
     </div>
   </header>
+
+  <div class="header-nav__wrap ">
+    <div class="header-nav wrap">
+      <nav>
+        <li class="header-nav__item current"><a href="#personalNav" class="anchor">Персональная информация</a>
+        </li>
+        <li class="header-nav__item "><a href="#specialityNav" class="anchor">Образование</a></li>
+        <li class="header-nav__item "><a href="#jobNav" class="anchor">Опыт работы</a></li>
+        <li class="header-nav__item "><a href="#moreNav" class="anchor">Дополнительная информация </a></li>
+        <li class="header-nav__item "><a href="#appointmentNav" class="anchor">Прием</a></li>
+        <li class="header-nav__item "><a href="#prepareNav" class="anchor">Как подготовиться к&nbsp;приему</a>
+        </li>
+      </nav>
+    </div>
+  </div>
+  <div class="menu ">
+    <div class="menu-close">
+      <img src="img/icons/menu-close-icon.svg" alt="">
+    </div>
+
+
+    <div class="menu-actions__wrap">
+      <a href="profile.html" class="menu-actions__item ">
+        <img src="img/icons/header-mini-1-icon.svg" alt="">
+        <img src="img/icons/header-mini-1-icon_active.svg" alt="" class="current">
+
+        <span>Мой профиль</span>
+      </a>
+      <a href="colleagues.html" class="menu-actions__item current ">
+        <img src="img/icons/header-mini-2-icon.svg" alt="">
+        <img src="img/icons/header-mini-2-icon_active.svg" alt="" class="current">
+        <span>Мои коллеги</span>
+      </a>
+      <div class="line"></div>
+      <a href="settings.html" class="menu-actions__item">
+        <img src="img/icons/header-mini-3-icon.svg" alt="">
+        <img src="img/icons/header-mini-3-icon_active.svg" alt="" class="current">
+
+        <span>Настройки</span>
+      </a>
+      <a href="index.html" class="menu-actions__item">
+        <img src="img/icons/header-mini-4-icon_active.svg" alt="" class="current">
+        <img src="img/icons/header-mini-4-icon.svg" alt="">
+        <span>Выйти</span>
+      </a>
+    </div>
+
+    <a href="invited.html" class="btn menu-invite">
+      Пригласить
+    </a>
+
+    <div class="menu-city js-toChooseCity">
+      <img src="img/icons/city-icon.svg" alt="">
+      <span class="name">Москва</span>
+    </div>
+
+  </div>
+
+
+  <div class="menu-bg "></div>
+
+
 
   <main class="main ">
 
@@ -620,6 +689,16 @@
       </div>
 
       <form action="#" class="wrap content-flex" id="settingsProfileForm">
+
+        <div class="menu-view menu-view_settings">
+          <div class="menu-view-toggle">
+            <img src="img/icons/filter-icon.svg" alt="">
+          </div>
+          <input type="submit" value="Продолжить" class="btn form-submit js-settingsFormSubmit disabled"
+            id="settingsProfileForm_submit">
+          <a href="#" class="btn-light">Сохранить черновик</a>
+
+        </div>
 
         <div class="sidebar ">
           <div class="profile-nav">
@@ -648,8 +727,10 @@
 
             <div class="settings-box__wrap">
               <div class="settings-photo">
+                <div class="settings-photo__icon">
+                  <img src="img/icons/camera-icon.svg" alt="" class="">
 
-                <img src="img/icons/camera-icon.svg" alt="" class="settings-photo__icon">
+                </div>
                 <span class="settings-photo__text">Загрузитите фотографию&nbsp;профиля</span>
                 <input type="file" id="photo" class="settings-photo__file">
                 <label for="photo" class="settings-photo__submit btn">
@@ -1885,8 +1966,9 @@
                       <div class="settings-phone__item example" id="phoneExample">
 
                         <div class="input-block phone">
-                          <input type="phone" placeholder="(123) 456-78-55" name="phone" minlength="15" maxlength="15"
+                          <input type="text" placeholder="(123) 456-78-55" name="" minlength="15" maxlength="15"
                             class="input-block__field phone field">
+
                           <input type="text" readonly class="phone-code " value="+7">
                           <div class="settings-phone__delete">
                             <img src="img/icons/delete-icon_disable.svg" alt="">
@@ -1897,7 +1979,7 @@
                       </div>
                       <div class="settings-phone__item">
                         <div class="input-block phone">
-                          <input type="phone" placeholder="(123) 456-78-55" name="phone" minlength="15" maxlength="15"
+                          <input type="text" placeholder="(123) 456-78-55" name="phone" minlength="15" maxlength="15"
                             class="input-block__field phone field">
                           <input type="text" readonly class="phone-code " value="+7">
 
@@ -1997,7 +2079,8 @@
                       <input class="select__input" type="hidden" name="">
                       <div class="select__head" value="">
                         <!-- здесь нельзя указать placeholder содержащий слово ГОРОД, так как тогда будет показываться подсказка от google -->
-                        <input type="text" autocomplete="off"  name="appointmentCity" placeholder="Новосибирск">
+                        <input class=" js-field-req" type="text" autocomplete="off_" name="appointmentCity"
+                          placeholder="Новосибирск">
                       </div>
 
                       <ul class="select__list" style="display: none;">
@@ -2016,7 +2099,7 @@
 
                       <div class="settings-phone__item example" id="phoneExampleTemp">
                         <div class="input-block phone">
-                          <input type="phone" placeholder="(123) 456-78-55" name="phone" minlength="15" maxlength="15"
+                          <input type="text" placeholder="(123) 456-78-55" name="phone" minlength="15" maxlength="15"
                             class="input-block__field phone field">
                           <input type="text" readonly class="phone-code " value="+7">
                           <div class="settings-phone__delete">
@@ -2027,7 +2110,7 @@
                       </div>
                       <div class="settings-phone__item">
                         <div class="input-block phone">
-                          <input type="phone" placeholder="(123) 456-78-55" name="phone" minlength="15" maxlength="15"
+                          <input type="text" placeholder="(123) 456-78-55" name="phone" minlength="15" maxlength="15"
                             class="input-block__field phone field js-field-req">
                           <input type="text" readonly class="phone-code " value="+7">
 

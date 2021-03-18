@@ -44,7 +44,6 @@ const sidebar = document.querySelector('.sidebar')
 if (sidebar) {
   var sidebarTop = window.getComputedStyle(sidebar).getPropertyValue("top")
   sidebarTop = sidebarTop.replace('px', '')
-  console.log(sidebarTop)
 
 }
 window.addEventListener('scroll', function () {
@@ -89,19 +88,45 @@ const toFilter = document.querySelectorAll('.js-toFilter')
 const menuSearch = document.querySelector('.menu-search')
 const menuBg = document.querySelector('.menu-bg')
 const closeFilter = document.querySelectorAll('.filter-close')
+const toViewMenu = document.querySelector('.menu-view-toggle')
+const viewMenu = document.querySelector('.menu-view')
 
 if (burger && menu && menuBg) {
   burger.addEventListener('click', function (e) {
     menu.classList.toggle('active')
     menuBg.classList.toggle('active')
+    if (viewMenu)
+      viewMenu.style.zIndex = '180'
   })
   menu.querySelector('.menu-close').addEventListener('click', function (e) {
     menu.classList.toggle('active')
     menuBg.classList.toggle('active')
+    if (viewMenu)
+      viewMenu.style.zIndex = '200'
 
   })
 }
 
+if (viewMenu && toViewMenu) {
+  toViewMenu.addEventListener('click', function (e) {
+    viewMenu.classList.toggle('active')
+    menuBg.classList.toggle('active')
+  })
+
+  if (window.innerWidth <= 1024) {
+    document.querySelector('.footer').style.paddingBottom = "130px"
+  }
+  if (window.innerWidth <= 860) {
+    document.querySelector('.footer').style.paddingBottom = "110px"
+  }
+  if (window.innerWidth <= 425) {
+    document.querySelector('.footer').style.paddingBottom = "94px"
+  }
+  if (window.innerWidth > 1024) {
+    document.querySelector('.footer').style.paddingBottom = window.getComputedStyle(document.querySelector('.footer')).paddingTop
+  }
+
+}
 if (burgerSearch && menuBg && menuSearch) {
   burgerSearch.addEventListener('click', function (e) {
     menuSearch.classList.toggle('active')
@@ -142,8 +167,14 @@ if (menuBg)
     if (filter) {
       filter.classList.remove('active')
       menuBg.classList.remove('active')
-
     }
+    if (viewMenu) {
+      viewMenu.classList.remove('active')
+      menuBg.classList.remove('active')
+    }
+    if (viewMenu)
+      viewMenu.style.zIndex = '200'
+
   })
 
 // открытие мини меню 
@@ -1025,7 +1056,6 @@ if (addAppoinmentBtns.length > 0) {
           var request = input.value.toUpperCase()
 
           var listWrap = input.parentElement.nextElementSibling
-          console.log(listWrap)
           var results = listWrap.querySelectorAll('.select__item')
 
 
@@ -1036,8 +1066,6 @@ if (addAppoinmentBtns.length > 0) {
             if (item.hasAttribute('data-search')) {
               dataSearch = item.getAttribute('data-search').toUpperCase()
             }
-            console.log(item)
-            console.log(dataSearch)
             if (userName.includes(request) || request.includes(userName)) {
 
               item.style.display = 'block'
@@ -1834,6 +1862,25 @@ $('#settingsProfileForm').validate({
       required: jQuery.validator.format("Поле не заполнено")
     },
   },
+  highlight: function (element) {
+    $(element).parent('div').addClass('error');
+    $(element).addClass('invalid');
+  },
+  unhighlight: function (element) {
+    $(element).parent('div').addClass('error 2');
+    $(element).removeClass('invalid');
+
+  },
+  // errorPlacement: function (error, element) {
+  //   $(element).parent('div').addClass('error')
+  //   // console.log(element.parent('div'))
+  //   // if (element.parent('div')) {
+  //   //   //     $(this).prev("div").addClass('checkbox-error');
+  //   // } else {
+  //   //   return true;
+  //   // }
+
+  // },
   errorElement: "div",
   errorClass: "invalid",
 
@@ -1849,7 +1896,7 @@ function activateProfileSubmit(form) {
     if (form != null) {
 
       if (this.classList.contains('js-field-req')) {
-        if (this.getAttribute('type') == 'phone') {
+        if (this.classList.contains('phone') && this.getAttribute('type') == 'text') {
           if (this.value.length == 15)
             this.classList.add('success')
           else
@@ -1879,15 +1926,26 @@ function activateProfileSubmit(form) {
   }
 
   function checkForm() {
+
     if (form != null) {
       let successFieldsCount = form.querySelectorAll('.success').length
       console.log(fieldsCount + '-' + successFieldsCount)
-
+      fields.forEach(function (i) {
+        if (!i.classList.contains('success'))
+          console.log(i)
+      })
       if (successFieldsCount == fieldsCount) {
-        form.querySelector('input.form-submit').classList.remove('disabled')
+        form.querySelectorAll('input.form-submit').forEach(function (item) {
+          item.classList.remove('disabled')
+        })
+        // form.querySelector('input.form-submit').classList.remove('disabled')
 
       } else {
-        form.querySelector('input.form-submit').classList.add('disabled')
+        form.querySelectorAll('input.form-submit').forEach(function (item) {
+          item.classList.add('disabled')
+          console.log(item)
+        })
+        // form.querySelector('input.form-submit').classList.add('disabled')
       }
     }
 
@@ -2013,6 +2071,7 @@ function activateSubmit(form) {
 }
 
 
+
 if (document.querySelector('#supportForm'))
   activateSubmit(document.querySelector('#supportForm'))
 if (document.querySelector('#loginForm'))
@@ -2032,59 +2091,15 @@ if (document.querySelector('#settingsChangeEmail'))
 if (document.querySelector('#settingsChangePassword'))
   activateSubmit(document.querySelector('#settingsChangePassword'))
 
-if (document.querySelector('#settingsProfileForm'))
+if (document.querySelector('#settingsProfileForm')) {
   activateProfileSubmit(document.querySelector('#settingsProfileForm'))
+  // if (innerWidth <= 1024) {
+  //   document.querySelector('.js-settingsFormSubmit').addEventListener('click', function (e) {
+  //     document.querySelector('#settingsProfileForm').submit()
 
-
-// валидация обязательных полей в заполнении профиля 
-// const settingsProfileForm = document.querySelector('#settingsProfileForm')
-// const settingsProfileFields = (settingsProfileForm) ? settingsProfileForm.querySelectorAll('.js-field-req') : null
-// const settingsProfileSubmit = (settingsProfileForm) ? settingsProfileForm.querySelector('#settingsProfileForm_submit') : null
-
-
-// if (settingsProfileSubmit && settingsProfileForm) {
-//   settingsProfileFields.forEach(function (field) {
-//     field.addEventListener('input', function (e) {
-//       var er = document.createElement('div');
-//       if (field.hasAttribute('data-minhint'))
-//         er.innerHTML = field.getAttribute('data-minhint') 
-//       else
-//         er.innerHTML = 'Поле не заполнено';
-//       er.classList.add('invalid')
-
-//       if (field.getAttribute('type') == 'text') {
-
-//         if (field.classList.contains('js-birthday')) {
-
-//         } else {
-
-//           let minlength = field.getAttribute('minlength')
-//           let maxlength = field.getAttribute('maxlength')
-
-//           let str = /[^A-Za-zА-Яа-яЁё]/g
-
-//           field.value = field.value.replace(str, '')
-
-//           if (field.value.length < minlength) {
-//             field.classList.add('invalid')
-//             if (field.parentElement.querySelectorAll('div.invalid').length == 0)
-//               field.parentElement.append(er)
-
-//           } else {
-//             field.classList.remove('invalid')
-//             field.parentElement.querySelector('div.invalid').remove()
-
-//           }
-//           if (field.value.length >= maxlength) {
-//             field.value = field.value.replace(field.value, field.value.substr(0, maxlength))
-//           }
-//         }
-
-//       }
-//     })
-//   })
-// }
-
+  //   })
+  // }
+}
 
 
 // Мои коллеги 
@@ -2271,8 +2286,11 @@ if (appointmentWrap.length > 0) {
 
 const validatuinFields = document.querySelectorAll('.js-validation-field')
 
+
+
 if (validatuinFields.length > 0)
   validatuinFields.forEach(function (field) {
+
     field.addEventListener('input', function (e) {
       var er = document.createElement('div');
       if (field.hasAttribute('data-minhint'))
@@ -2300,7 +2318,9 @@ if (validatuinFields.length > 0)
 
           } else {
             field.classList.remove('invalid')
-            field.parentElement.querySelector('div.invalid').remove()
+            field.classList.add('success')
+            if (field.parentElement.querySelector('div.invalid'))
+              field.parentElement.querySelector('div.invalid').remove()
 
           }
           if (field.value.length >= maxlength) {

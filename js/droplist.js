@@ -43,6 +43,7 @@ function droplistChooseItem() {
     candidateTheme.style.display = 'none'
   }
   $('.select__head').removeClass('open');
+  $('.select__head').removeClass('error');
   $('.select__list').fadeOut(5);
 
   const selectInput = this.parentElement.parentElement.querySelector('.select__head').querySelector('input')
