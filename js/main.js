@@ -626,8 +626,9 @@ function droplistChooseItem() {
   $('.select__head').removeClass('open');
   $('.select__list').fadeOut(5);
 
-  this.parentElement.parentElement.querySelector('.select__head input').setAttribute('value', this.textContent)
-  this.parentElement.parentElement.querySelector('.select__input').setAttribute('value', this.textContent)
+  // this.parentElement.parentElement.querySelector('.select__head input').setAttribute('value', this.textContent)
+  this.parentElement.parentElement.querySelector('.select__head input').value = this.textContent
+  this.parentElement.parentElement.querySelector('.select__input').value = this.textContent
 }
 // --- Добавление информации --- 
 
@@ -1077,7 +1078,6 @@ if (addAppoinmentBtns.length > 0) {
 
 
         input.addEventListener('input', function (e) {
-
           let str = /[^A-Za-zА-Яа-яЁё]/g
           input.value = input.value.replace(str, '')
           var request = input.value.toUpperCase()
@@ -1164,6 +1164,27 @@ if (addAppoinmentBtns.length > 0) {
 
 // удаление приема (1ое, которое всегда показывается)
 const removeAppointmentTemp = document.querySelector('.js-removeApointmentTemp')
+const cityAppointmentTemp = document.querySelectorAll('.settings-appointment__block')
+if (cityAppointmentTemp.length > 0) {
+  cityAppointmentTemp.forEach(function (item) {
+    if (!item.classList.contains('example'))
+    // console.log(item.querySelector('')
+    {
+      item.querySelectorAll('.settings-appointment__text').forEach(function (hint) {
+        if (hint.textContent == "Город")
+          {
+            const newItem = hint.parentElement
+            // console.log(newItem)
+            $(newItem.querySelectorAll('.select')).on('focus', '.select__head', onSelectFocus)
+            $(newItem.querySelectorAll('.select')).on('click', '.select__item', droplistChooseItem)
+            $(newItem.querySelectorAll('.select select__head input')).on('focus', onInputFocus)
+          }
+
+      })
+    }
+
+  })
+}
 if (removeAppointmentTemp) {
   removeAppointmentTemp.addEventListener('click', function (e) {
     removeAppointmentTemp.parentElement.remove()
@@ -1209,7 +1230,8 @@ if (removeAppointmentTemp) {
 }
 // добавление позиции услуги в приеме (1ое, которое всегда показывается)
 const addPriceItemTemp = document.querySelector('#addPriceItemTemp')
-if (addPriceItemTemp)
+if (addPriceItemTemp) {
+
   addPriceItemTemp.addEventListener('click', function (e) {
     const priceItemExample = e.target.parentElement.querySelector('.example')
     const priceItemClone = priceItemExample.cloneNode(true)
@@ -1226,6 +1248,8 @@ if (addPriceItemTemp)
     $('input.currency-field').mask('000000')
 
   })
+}
+
 // добавление телефона клиники в приеме (1ое, которое всегда показывается)
 
 const addPhoneTemp = document.querySelector('#addPhoneTemp')
@@ -1957,7 +1981,7 @@ function activateProfileSubmit(form) {
 
     if (form != null) {
       let successFieldsCount = form.querySelectorAll('.success').length
-      console.log(fieldsCount + '-' + successFieldsCount)
+      // console.log(fieldsCount + '-' + successFieldsCount)
       // fields.forEach(function (i) {
       //   if (!i.classList.contains('success'))
       //     console.log(i)
@@ -1971,7 +1995,7 @@ function activateProfileSubmit(form) {
       } else {
         form.querySelectorAll('input.form-submit').forEach(function (item) {
           item.classList.add('disabled')
-          console.log(item)
+          // console.log(item)
         })
         // form.querySelector('input.form-submit').classList.add('disabled')
       }

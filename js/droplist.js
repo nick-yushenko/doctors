@@ -50,6 +50,7 @@ function droplistChooseItem() {
   if (selectInput) {
     // selectInput.value = this.textContent
     selectInput.setAttribute('value', this.textContent)
+    selectInput.setAttribute.value = this.textContent
     selectInput.classList.remove('invalid')
     if (selectInput.parentElement.querySelector('div.invalid'))
       selectInput.parentElement.querySelector('div.invalid').remove()
