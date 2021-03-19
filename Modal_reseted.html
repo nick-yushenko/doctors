@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/style.min.css">
+
+  <title>Визитка врача</title>
+</head>
+
+<body>
+
+<!-- Пароль сброшен -->
+<div class="modal modal-notify active">
+
+  <div class="modal-wrap modal-notify-wrap">
+
+    <h2 class="modal-title"> Пароль сброшен</h2>
+
+    <span class="modal-reset-text">На вашу почту было отправлено письмо с инструкциями по сбросу пароля. Перейдите
+      по ссылке в этом письме, чтобы продолжить процесс и создать новый пароль.</span>
+
+    <div class="btn  modal-notify-btn ">На главную</div>
+  </div>
+
+</div>
+
+
+  <header class="header header_main header_fixed">
+    <div class="wrap content-flex">
+      <div class="logo">
+        <img src="img/icons/logo.svg" alt="Визитка Врача">
+      </div>
+      <div class="city toModal js-toChooseCity">
+        <img src="img/icons/city-icon.svg" alt="">
+        <span class="name">Москва</span>
+      </div>
+      <div class="buttons content-flex">
+        <div class="signup js-toRegister">
+          Регистрация
+        </div>
+        <div class="login btn js-toLogin">
+          Вход
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="hero">
+      <img src="img/main/hero-img.png" alt="" class="hero-bg">
+      <div class="wrap">
+        <h1 class="hero-title">Поможем найти вашего врача</h1>
+
+        <form role="search" method="get" class="hero-search search-form " action="#">
+          <label>
+            <span class="screen-reader-text">
+            </span>
+            <img src="img/icons/search-icon.svg" alt="" class="hero-search__icon">
+            <input type="text" class="search-field field hero-search__field "
+              placeholder="Имя врача или специальность" />
+
+          </label>
+          <input type="submit" class="search-submit btn" value="Найти" />
+        </form>
+      </div>
+    </section>
+    <section class="recommend">
+      <div class="wrap">
+
+        <div class="recommend-head">
+          <h2 class="recommend-title">Рекомендуем в </h2>
+          <div class="recommend-city toModal js-toChooseCity">
+            <img src="img/icons/city-icon.svg" alt="">
+            <span class="name">Москва</span>
+          </div>
+          <a href="catalog.html" class="recommend-more">Все врачи</a>
+        </div>
+        <div class="recommend-wrap content-flex">
+
+          <a href="#" class="recommend-item">
+            <div class="recommend-item__img">
+              <img src="img/main/recommend-doctor-1.png" alt="">
+            </div>
+            <span class="recommend-item__specialisation">Стоматолог</span>
+            <span class="recommend-item__name">Муратов Александр Викторович</span>
+          </a>
+          <a href="#" class="recommend-item">
+            <div class="recommend-item__img">
+              <img src="img/main/recommend-doctor-2.png" alt="">
+            </div>
+            <span class="recommend-item__specialisation">Аллерголог</span>
+            <span class="recommend-item__name">Игнатова Антонина Валерьевна</span>
+          </a>
+          <a href="#" class="recommend-item">
+            <div class="recommend-item__img">
+              <img src="img/main/recommend-doctor-3.png" alt="">
+            </div>
+            <span class="recommend-item__specialisation">ЛОР</span>
+            <span class="recommend-item__name">Потапенко Анатолий Васильевич</span>
+          </a>
+          <a href="#" class="recommend-item">
+            <div class="recommend-item__img">
+              <img src="img/main/recommend-doctor-4.png" alt="">
+            </div>
+            <span class="recommend-item__specialisation">Гастроэнтеролог</span>
+            <span class="recommend-item__name">Шевченоко Наталья Юрьевна</span>
+          </a>
+          <a href="#" class="recommend-item">
+            <div class="recommend-item__img">
+              <img src="img/main/recommend-doctor-5.png" alt="">
+            </div>
+            <span class="recommend-item__specialisation">Детский стоматолог</span>
+            <span class="recommend-item__name">Исхандер Иоланта Сергеевна</span>
+          </a>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap content-flex between">
+      <div class="footer-item">
+        © AО “Визитка врача”, 2021.
+      </div>
+
+      <div class="footer-item">
+        <span> Написать в тех. поддержку</span>
+        <a href="mailto:Info@mail.com" class="link">Info@mail.com</a>
+      </div>
+
+      <div class="footer-item link">
+        Политика обработки информации
+      </div>
+
+    </div>
+  </footer>
+
+
+  <script src="js/jquery.js"></script>
+  <script src="js/droplist.js"></script>
+  <script src="js/jquery.mask.min.js"></script>
+  <script src="js/jquery.validate.min.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>
