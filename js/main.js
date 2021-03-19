@@ -1,3 +1,5 @@
+var isIE = /*@cc_on!@*/ false || !!document.documentMode;
+
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = function (callback, thisArg) {
     thisArg = thisArg || window;
@@ -41,10 +43,10 @@ if (!("nextElementSibling" in document.documentElement)) {
 })([Element.prototype, Document.prototype, DocumentFragment.prototype]);
 
 if (!('remove' in Element.prototype)) {
-  Element.prototype.remove = function() {
-      if (this.parentNode) {
-          this.parentNode.removeChild(this);
-      }
+  Element.prototype.remove = function () {
+    if (this.parentNode) {
+      this.parentNode.removeChild(this);
+    }
   };
 }
 
@@ -119,8 +121,8 @@ window.addEventListener('scroll', function () {
   if (sidebar) {
     if (sidebar.classList.contains('filter')) {
       if (window.innerWidth > 1024)
-        if (window.scrollY < 26) {
-          sidebar.style.top = sidebarTop - window.scrollY + 'px'
+        if (window.pageYOffset < 26) {
+          sidebar.style.top = sidebarTop - window.pageYOffset + 'px'
         } else {
           let headerHeight = document.querySelector('.header').clientHeight
           if (document.querySelector('.header-nav__wrap'))
@@ -128,8 +130,8 @@ window.addEventListener('scroll', function () {
           sidebar.style.top = headerHeight + 14 + 'px'
         }
     } else {
-      if (window.scrollY < 26)
-        sidebar.style.top = sidebarTop - window.scrollY + 'px'
+      if (window.pageYOffset < 26)
+        sidebar.style.top = sidebarTop - window.pageYOffset + 'px'
       else {
         let headerHeight = document.querySelector('.header').clientHeight
         if (document.querySelector('.header-nav__wrap'))
@@ -1320,245 +1322,272 @@ if (addPhoneTemp)
 // редактирование внешнего вида 
 
 const view = document.querySelector('#viewBg')
-const bgBtn0 = document.querySelector('.js-setBg0')
-const bgBtn1 = document.querySelector('.js-setBg1')
-const bgBtn2 = document.querySelector('.js-setBg2')
-const bgBtn3 = document.querySelector('.js-setBg3')
-const bgBtn4 = document.querySelector('.js-setBg4')
-const bgBtn5 = document.querySelector('.js-setBg5')
-const bgBtn6 = document.querySelector('.js-setBg6')
-const bgBtn7 = document.querySelector('.js-setBg7')
-const bgBtn8 = document.querySelector('.js-setBg8')
+const bgBtn0 = document.querySelectorAll('.js-setBg0')
+const bgBtn1 = document.querySelectorAll('.js-setBg1')
+const bgBtn2 = document.querySelectorAll('.js-setBg2')
+const bgBtn3 = document.querySelectorAll('.js-setBg3')
+const bgBtn4 = document.querySelectorAll('.js-setBg4')
+const bgBtn5 = document.querySelectorAll('.js-setBg5')
+const bgBtn6 = document.querySelectorAll('.js-setBg6')
+const bgBtn7 = document.querySelectorAll('.js-setBg7')
+const bgBtn8 = document.querySelectorAll('.js-setBg8')
 const sectionNav = document.querySelector('.section-nav')
 const sectionTitile = document.querySelector('.section-title')
-if (view && bgBtn0 && bgBtn1 && bgBtn2 && bgBtn3 && bgBtn4 && bgBtn5 && bgBtn6 && bgBtn7 && bgBtn8 && sectionNav && sectionTitile) {
-  bgBtn0.addEventListener('change', function (e) {
-    view.classList.remove('bg-0')
-    view.classList.remove('bg-1')
-    view.classList.remove('bg-2')
-    view.classList.remove('bg-3')
-    view.classList.remove('bg-4')
-    view.classList.remove('bg-5')
-    view.classList.remove('bg-6')
-    view.classList.remove('bg-7')
-    view.classList.remove('bg-8')
-    view.classList.add('bg-0')
+console.log(bgBtn1)
+if (view && bgBtn0.length > 0 && bgBtn1.length > 0 && bgBtn2.length > 0 && bgBtn3.length > 0 && bgBtn4.length > 0 && bgBtn5.length > 0 && bgBtn6.length > 0 && bgBtn7.length > 0 && bgBtn8.length > 0 && sectionNav && sectionTitile) {
+  bgBtn0.forEach(function (btn) {
 
-    sectionNav.querySelectorAll('a').forEach(function (item) {
-      item.style.color = '#929FB1'
-    })
-    sectionNav.querySelectorAll('img').forEach(function (item) {
-      let value = item.getAttribute('src')
-      let src = value.substr(0, value.lastIndexOf('/') + 1) + 'arrow-icon.svg'
-      item.setAttribute('src', src)
-    })
+    btn.addEventListener('change', function (e) {
+      view.classList.remove('bg-0')
+      view.classList.remove('bg-1')
+      view.classList.remove('bg-2')
+      view.classList.remove('bg-3')
+      view.classList.remove('bg-4')
+      view.classList.remove('bg-5')
+      view.classList.remove('bg-6')
+      view.classList.remove('bg-7')
+      view.classList.remove('bg-8')
+      view.classList.add('bg-0')
 
-    sectionTitile.style.color = "#182744"
-    sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_black.svg')
+      sectionNav.querySelectorAll('a').forEach(function (item) {
+        item.style.color = '#929FB1'
+      })
+      sectionNav.querySelectorAll('img').forEach(function (item) {
+        let value = item.getAttribute('src')
+        let src = value.substr(0, value.lastIndexOf('/') + 1) + 'arrow-icon.svg'
+        item.setAttribute('src', src)
+      })
+
+      sectionTitile.style.color = "#182744"
+      sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_black.svg')
+
+    })
+  })
+  bgBtn1.forEach(function (btn) {
+    btn.addEventListener('change', function (e) {
+      view.classList.remove('bg-0')
+      view.classList.remove('bg-1')
+      view.classList.remove('bg-2')
+      view.classList.remove('bg-3')
+      view.classList.remove('bg-4')
+      view.classList.remove('bg-5')
+      view.classList.remove('bg-6')
+      view.classList.remove('bg-7')
+      view.classList.remove('bg-8')
+      view.classList.add('bg-1')
+
+      sectionNav.querySelectorAll('a').forEach(function (item) {
+        item.style.color = '#ffffff'
+      })
+      sectionNav.querySelectorAll('img').forEach(function (item) {
+        let value = item.getAttribute('src')
+        let src = value.substr(0, value.lastIndexOf('/') + 1) + 'arrow-icon_1.svg'
+        item.setAttribute('src', src)
+      })
+
+      sectionTitile.style.color = "#ffffff"
+      sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_white.svg')
+
+
+
+    })
+  })
+
+  bgBtn2.forEach(function (btn) {
+    btn.addEventListener('change', function (e) {
+      view.classList.remove('bg-0')
+      view.classList.remove('bg-1')
+      view.classList.remove('bg-2')
+      view.classList.remove('bg-3')
+      view.classList.remove('bg-4')
+      view.classList.remove('bg-5')
+      view.classList.remove('bg-6')
+      view.classList.remove('bg-7')
+      view.classList.remove('bg-8')
+      view.classList.add('bg-2')
+      sectionNav.querySelectorAll('a').forEach(function (item) {
+        item.style.color = '#929FB1'
+      })
+      sectionNav.querySelectorAll('img').forEach(function (item) {
+        let value = item.getAttribute('src')
+        let src = value.substr(0, value.lastIndexOf('/') + 1) + 'arrow-icon.svg'
+        item.setAttribute('src', src)
+
+      })
+      sectionTitile.style.color = "#182744"
+
+      sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_black.svg')
+
+    })
+  })
+  bgBtn3.forEach(function (btn) {
+    btn.addEventListener('change', function (e) {
+      view.classList.remove('bg-0')
+      view.classList.remove('bg-1')
+      view.classList.remove('bg-2')
+      view.classList.remove('bg-3')
+      view.classList.remove('bg-4')
+      view.classList.remove('bg-5')
+      view.classList.remove('bg-6')
+      view.classList.remove('bg-7')
+      view.classList.remove('bg-8')
+      view.classList.add('bg-3')
+
+      sectionNav.querySelectorAll('a').forEach(function (item) {
+        item.style.color = '#182744'
+      })
+      sectionNav.querySelectorAll('img').forEach(function (item) {
+        let value = item.getAttribute('src')
+        let src = value.substr(0, value.lastIndexOf('/') + 1) + 'arrow-icon_3.svg'
+        item.setAttribute('src', src)
+
+      })
+      sectionTitile.style.color = "#182744"
+      sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_black.svg')
+
+    })
+  })
+  bgBtn4.forEach(function (btn) {
+    btn.addEventListener('change', function (e) {
+      view.classList.remove('bg-0')
+      view.classList.remove('bg-1')
+      view.classList.remove('bg-2')
+      view.classList.remove('bg-3')
+      view.classList.remove('bg-4')
+      view.classList.remove('bg-5')
+      view.classList.remove('bg-6')
+      view.classList.remove('bg-7')
+      view.classList.remove('bg-8')
+      view.classList.add('bg-4')
+
+      sectionNav.querySelectorAll('a').forEach(function (item) {
+        item.style.color = '#ffffff'
+      })
+      sectionNav.querySelectorAll('img').forEach(function (item) {
+        let value = item.getAttribute('src')
+        let src = value.substr(0, value.lastIndexOf('/') + 1) + 'arrow-icon_1.svg'
+        item.setAttribute('src', src)
+      })
+      sectionTitile.style.color = "#ffffff"
+
+      sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_white.svg')
+    })
+  })
+  bgBtn5.forEach(function (btn) {
+
+    btn.addEventListener('change', function (e) {
+      view.classList.remove('bg-0')
+      view.classList.remove('bg-1')
+      view.classList.remove('bg-2')
+      view.classList.remove('bg-3')
+      view.classList.remove('bg-4')
+      view.classList.remove('bg-5')
+      view.classList.remove('bg-6')
+      view.classList.remove('bg-7')
+      view.classList.remove('bg-8')
+      view.classList.add('bg-5')
+
+      sectionNav.querySelectorAll('img').forEach(function (item) {
+        let value = item.getAttribute('src')
+        let src = value.substr(0, value.lastIndexOf('/') + 1) + 'arrow-icon.svg'
+        item.setAttribute('src', src)
+
+      })
+
+      sectionTitile.style.color = "#ffffff"
+
+      sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_white.svg')
+
+
+    })
+  })
+  bgBtn6.forEach(function (btn) {
+    btn.addEventListener('change', function (e) {
+      view.classList.remove('bg-0')
+      view.classList.remove('bg-1')
+      view.classList.remove('bg-2')
+      view.classList.remove('bg-3')
+      view.classList.remove('bg-4')
+      view.classList.remove('bg-5')
+      view.classList.remove('bg-6')
+      view.classList.remove('bg-7')
+      view.classList.remove('bg-8')
+      view.classList.add('bg-6')
+
+      sectionNav.querySelectorAll('a').forEach(function (item) {
+        item.style.color = '#182744'
+      })
+      sectionNav.querySelectorAll('img').forEach(function (item) {
+        let value = item.getAttribute('src')
+        let src = value.substr(0, value.lastIndexOf('/') + 1) + 'arrow-icon_3.svg'
+        item.setAttribute('src', src)
+
+      })
+      sectionTitile.style.color = "#182744"
+      sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_black.svg')
+
+    })
+  })
+  bgBtn7.forEach(function (btn) {
+    btn.addEventListener('change', function (e) {
+      view.classList.remove('bg-0')
+      view.classList.remove('bg-1')
+      view.classList.remove('bg-2')
+      view.classList.remove('bg-3')
+      view.classList.remove('bg-4')
+      view.classList.remove('bg-5')
+      view.classList.remove('bg-6')
+      view.classList.remove('bg-7')
+      view.classList.remove('bg-8')
+      view.classList.add('bg-7')
+
+      sectionNav.querySelectorAll('img').forEach(function (item) {
+        let value = item.getAttribute('src')
+        let src = value.substr(0, value.lastIndexOf('/') + 1) + 'arrow-icon.svg'
+        item.setAttribute('src', src)
+
+      })
+
+      sectionTitile.style.color = "#182744"
+      sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_black.svg')
+
+
+    })
 
   })
-  bgBtn1.addEventListener('change', function (e) {
-    view.classList.remove('bg-0')
-    view.classList.remove('bg-1')
-    view.classList.remove('bg-2')
-    view.classList.remove('bg-3')
-    view.classList.remove('bg-4')
-    view.classList.remove('bg-5')
-    view.classList.remove('bg-6')
-    view.classList.remove('bg-7')
-    view.classList.remove('bg-8')
-    view.classList.add('bg-1')
+  bgBtn8.forEach(function (btn) {
+    btn.addEventListener('change', function (e) {
+      view.classList.remove('bg-0')
+      view.classList.remove('bg-1')
+      view.classList.remove('bg-2')
+      view.classList.remove('bg-3')
+      view.classList.remove('bg-4')
+      view.classList.remove('bg-5')
+      view.classList.remove('bg-6')
+      view.classList.remove('bg-7')
+      view.classList.remove('bg-8')
+      view.classList.add('bg-8')
 
-    sectionNav.querySelectorAll('a').forEach(function (item) {
-      item.style.color = '#ffffff'
+
+      sectionNav.querySelectorAll('a').forEach(function (item) {
+        item.style.color = '#ffffff'
+      })
+      sectionNav.querySelectorAll('img').forEach(function (item) {
+        let value = item.getAttribute('src')
+        let src = value.substr(0, value.lastIndexOf('/') + 1) + 'arrow-icon_1.svg'
+        item.setAttribute('src', src)
+      })
+
+      sectionTitile.style.color = "#ffffff"
+      sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_white.svg')
+
+
     })
-    sectionNav.querySelectorAll('img').forEach(function (item) {
-      let value = item.getAttribute('src')
-      let src = value.substr(0, value.lastIndexOf('/') + 1) + 'arrow-icon_1.svg'
-      item.setAttribute('src', src)
-    })
-
-    sectionTitile.style.color = "#ffffff"
-    sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_white.svg')
-
-
-
   })
-  bgBtn2.addEventListener('change', function (e) {
-    view.classList.remove('bg-0')
-    view.classList.remove('bg-1')
-    view.classList.remove('bg-2')
-    view.classList.remove('bg-3')
-    view.classList.remove('bg-4')
-    view.classList.remove('bg-5')
-    view.classList.remove('bg-6')
-    view.classList.remove('bg-7')
-    view.classList.remove('bg-8')
-    view.classList.add('bg-2')
-    sectionNav.querySelectorAll('a').forEach(function (item) {
-      item.style.color = '#929FB1'
-    })
-    sectionNav.querySelectorAll('img').forEach(function (item) {
-      let value = item.getAttribute('src')
-      let src = value.substr(0, value.lastIndexOf('/') + 1) + 'arrow-icon.svg'
-      item.setAttribute('src', src)
-
-    })
-    sectionTitile.style.color = "#182744"
-
-    sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_black.svg')
-
-  })
-  bgBtn3.addEventListener('change', function (e) {
-    view.classList.remove('bg-0')
-    view.classList.remove('bg-1')
-    view.classList.remove('bg-2')
-    view.classList.remove('bg-3')
-    view.classList.remove('bg-4')
-    view.classList.remove('bg-5')
-    view.classList.remove('bg-6')
-    view.classList.remove('bg-7')
-    view.classList.remove('bg-8')
-    view.classList.add('bg-3')
-
-    sectionNav.querySelectorAll('a').forEach(function (item) {
-      item.style.color = '#182744'
-    })
-    sectionNav.querySelectorAll('img').forEach(function (item) {
-      let value = item.getAttribute('src')
-      let src = value.substr(0, value.lastIndexOf('/') + 1) + 'arrow-icon_3.svg'
-      item.setAttribute('src', src)
-
-    })
-    sectionTitile.style.color = "#182744"
-    sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_black.svg')
-
-  })
-  bgBtn4.addEventListener('change', function (e) {
-    view.classList.remove('bg-0')
-    view.classList.remove('bg-1')
-    view.classList.remove('bg-2')
-    view.classList.remove('bg-3')
-    view.classList.remove('bg-4')
-    view.classList.remove('bg-5')
-    view.classList.remove('bg-6')
-    view.classList.remove('bg-7')
-    view.classList.remove('bg-8')
-    view.classList.add('bg-4')
-
-    sectionNav.querySelectorAll('a').forEach(function (item) {
-      item.style.color = '#ffffff'
-    })
-    sectionNav.querySelectorAll('img').forEach(function (item) {
-      let value = item.getAttribute('src')
-      let src = value.substr(0, value.lastIndexOf('/') + 1) + 'arrow-icon_1.svg'
-      item.setAttribute('src', src)
-    })
-    sectionTitile.style.color = "#ffffff"
-
-    sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_white.svg')
-  })
-  bgBtn5.addEventListener('change', function (e) {
-    view.classList.remove('bg-0')
-    view.classList.remove('bg-1')
-    view.classList.remove('bg-2')
-    view.classList.remove('bg-3')
-    view.classList.remove('bg-4')
-    view.classList.remove('bg-5')
-    view.classList.remove('bg-6')
-    view.classList.remove('bg-7')
-    view.classList.remove('bg-8')
-    view.classList.add('bg-5')
-
-    sectionNav.querySelectorAll('img').forEach(function (item) {
-      let value = item.getAttribute('src')
-      let src = value.substr(0, value.lastIndexOf('/') + 1) + 'arrow-icon.svg'
-      item.setAttribute('src', src)
-
-    })
-
-    sectionTitile.style.color = "#ffffff"
-
-    sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_white.svg')
 
 
-  })
-  bgBtn6.addEventListener('change', function (e) {
-    view.classList.remove('bg-0')
-    view.classList.remove('bg-1')
-    view.classList.remove('bg-2')
-    view.classList.remove('bg-3')
-    view.classList.remove('bg-4')
-    view.classList.remove('bg-5')
-    view.classList.remove('bg-6')
-    view.classList.remove('bg-7')
-    view.classList.remove('bg-8')
-    view.classList.add('bg-6')
-
-    sectionNav.querySelectorAll('a').forEach(function (item) {
-      item.style.color = '#182744'
-    })
-    sectionNav.querySelectorAll('img').forEach(function (item) {
-      let value = item.getAttribute('src')
-      let src = value.substr(0, value.lastIndexOf('/') + 1) + 'arrow-icon_3.svg'
-      item.setAttribute('src', src)
-
-    })
-    sectionTitile.style.color = "#182744"
-    sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_black.svg')
-
-  })
-  bgBtn7.addEventListener('change', function (e) {
-    view.classList.remove('bg-0')
-    view.classList.remove('bg-1')
-    view.classList.remove('bg-2')
-    view.classList.remove('bg-3')
-    view.classList.remove('bg-4')
-    view.classList.remove('bg-5')
-    view.classList.remove('bg-6')
-    view.classList.remove('bg-7')
-    view.classList.remove('bg-8')
-    view.classList.add('bg-7')
-
-    sectionNav.querySelectorAll('img').forEach(function (item) {
-      let value = item.getAttribute('src')
-      let src = value.substr(0, value.lastIndexOf('/') + 1) + 'arrow-icon.svg'
-      item.setAttribute('src', src)
-
-    })
-
-    sectionTitile.style.color = "#182744"
-    sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_black.svg')
 
 
-  })
-  bgBtn8.addEventListener('change', function (e) {
-    view.classList.remove('bg-0')
-    view.classList.remove('bg-1')
-    view.classList.remove('bg-2')
-    view.classList.remove('bg-3')
-    view.classList.remove('bg-4')
-    view.classList.remove('bg-5')
-    view.classList.remove('bg-6')
-    view.classList.remove('bg-7')
-    view.classList.remove('bg-8')
-    view.classList.add('bg-8')
-
-
-    sectionNav.querySelectorAll('a').forEach(function (item) {
-      item.style.color = '#ffffff'
-    })
-    sectionNav.querySelectorAll('img').forEach(function (item) {
-      let value = item.getAttribute('src')
-      let src = value.substr(0, value.lastIndexOf('/') + 1) + 'arrow-icon_1.svg'
-      item.setAttribute('src', src)
-    })
-
-    sectionTitile.style.color = "#ffffff"
-    sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_white.svg')
-
-
-  })
 
 }
 
@@ -1578,14 +1607,14 @@ if (codeForm && sendCode && codeFields.length > 0 && codeTrueField) {
   let code = ""
   // символьный класс содержащий только цифры (далее будут удалены все символы из строки, кроме этих символов)
   const codeFormat = /[^\d]/g;
-
   for (let i = 0; i < codeFields.length; i++) {
 
     codeFields[i].addEventListener('input', function (e) {
       // маска для поле
-      codeFields[i].value = codeFields[i].value.replace(codeFormat, '')
 
-      codeArray[i - 1] = codeFields[i].value
+      this.value = this.value.replace(codeFormat, '')
+
+      codeArray[i - 1] = this.value
 
       codeCounter = codeFields[0].value.length + codeFields[1].value.length + codeFields[2].value.length + codeFields[3].value.length
       if (codeCounter == 16) {
@@ -1596,19 +1625,21 @@ if (codeForm && sendCode && codeFields.length > 0 && codeTrueField) {
         sendCode.classList.add('disabled')
 
       // переход к следующему полю, если это заполнено
-      if (codeFields[i].value.length == 4 && i < codeFields.length - 1) {
+      if (this.value.length == 4 && i < codeFields.length - 1) {
         codeFields[i + 1].focus()
 
       }
 
       // если заполнено последнее поле
-      if (codeFields[i].value.length == 4 && i == codeFields.length) {
+      if (this.value.length == 4 && i == codeFields.length) {
         sendCode.focus()
       }
 
       // переход к предыдущему полю, если это очищено
-      if (codeFields[i].value.length == 0 && i > 0)
+      if (this.value.length == 0 && i > 0 && !isIE) {
         codeFields[i - 1].focus()
+
+      }
     })
   }
 
