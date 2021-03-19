@@ -12,55 +12,38 @@
 
 <body>
 
-    <!-- Выбор города -->
-    <div class="modal modal-city">
+      <!-- Выбор города -->
+  <div class="modal modal-city">
 
-      <div class="modal-wrap modal-city-wrap">
-        <h2 class="modal-title">Выберите город</h2>
-  
-        <div role="search" method="get" class="modal-city-search search-form" action="#">
-          <label>
-            <span class="screen-reader-text">
-            </span>
-            <input type="text" class="search-field field modal-city-search__field js-searchInput" placeholder="Ваш город"
-              id="modalCitySearchField" data-listWrapClass="modal-city-list" />
-  
-          </label>
-          <button type="submit" class="search-submit btn modal-city-search__submit">
-            <img src="img/icons/search-icon_white.svg" alt="" class="modal-city-search__icon">
-          </button>
-        </div>
-  
-        <ul class="modal-city-list">
-          <li class="modal-city-item empty">Ничего не найдено</li>
-  
-          <li class="modal-city-item" onclick="chooseCity(event)">Екатеринбург</li>
-          <li class="modal-city-item" onclick="chooseCity(event)">Казань</li>
-          <li class="modal-city-item" onclick="chooseCity(event)">Краснодар</li>
-          <li class="modal-city-item current" onclick="chooseCity(event)">Москва</li>
-          <li class="modal-city-item" onclick="chooseCity(event)">Нижний Новгород</li>
-          <li class="modal-city-item" onclick="chooseCity(event)">Новосибирск</liv>
-          <li class="modal-city-item" onclick="chooseCity(event)">Ростов-на-Дону</liv>
-          <li class="modal-city-item" onclick="chooseCity(event)">Самара</liv>
-          <li class="modal-city-item" onclick="chooseCity(event)">Санкт-Петербург</liv>
-          <li class="modal-city-item" onclick="chooseCity(event)">Уфа</liv>
-          <li class="modal-city-item" onclick="chooseCity(event)">Челябинск</liv>
-          <li class="modal-city-item" onclick="chooseCity(event)">Екатеринбург</li>
-          <li class="modal-city-item" onclick="chooseCity(event)">Казань</li>
-          <li class="modal-city-item" onclick="chooseCity(event)">Краснодар</li>
-          <li class="modal-city-item" onclick="chooseCity(event)">Нижний Новгород</li>
-          <li class="modal-city-item" onclick="chooseCity(event)">Новосибирск</liv>
-          <li class="modal-city-item" onclick="chooseCity(event)">Ростов-на-Дону</liv>
-          <li class="modal-city-item" onclick="chooseCity(event)">Самара</liv>
-          <li class="modal-city-item" onclick="chooseCity(event)">Санкт-Петербург</liv>
-          <li class="modal-city-item" onclick="chooseCity(event)">Уфа</liv>
-          <li class="modal-city-item" onclick="chooseCity(event)">Челябинск</liv>
-  
-        </ul>
-  
-  
+    <div class="modal-wrap modal-city-wrap">
+      <h2 class="modal-title">Выберите город</h2>
+
+      <div role="search" method="get" class="modal-city-search search-form" action="#">
+        <label>
+          <span class="screen-reader-text">
+          </span>
+          <input type="text" class="search-field field modal-city-search__field js-searchInput" placeholder="Ваш город"
+            id="modalCitySearchField" data-listWrapClass="modal-city-list" />
+
+        </label>
+        <button type="submit" class="search-submit btn modal-city-search__submit">
+          <img src="img/icons/search-icon_white.svg" alt="" class="modal-city-search__icon">
+        </button>
       </div>
+
+      <ul class="modal-city-list">
+        <li class="modal-city-item empty">Ничего не найдено</li>
+
+        <li class="modal-city-item current" onclick="chooseCity(event)">Казань</li>
+        <li class="modal-city-item" onclick="chooseCity(event)">Набережные Челны</li>
+        <li class="modal-city-item" onclick="chooseCity(event)">Нижнекамск</li>
+        <li class="modal-city-item" onclick="chooseCity(event)">Альметьевск</li>
+  
+      </ul>
+
+
     </div>
+  </div>
   
     <!-- Вход (+) -->
     <div class="modal modal-login ">
@@ -562,12 +545,12 @@
 
   <header class="header header_login ">
     <div class="wrap content-flex">
-      <div class="logo">
+      <a href="index.html" class="logo">
         <img src="img/icons/logo.svg" alt="Визитка Врача">
-      </div>
+      </a>
       <div class="city toModal js-toChooseCity">
         <img src="img/icons/city-icon.svg" alt="">
-        <span class="name">Москва</span>
+        <span class="name">Казань</span>
       </div>
       <form role="search" method="get" class="header-search search-form " action="#">
         <label>
@@ -592,9 +575,81 @@
 
       </div>
 
+      
+      <div class="burgers">
+        <div class="burger-search">
+          <img src="img/icons/burger-search-icon.svg" alt="">
+        </div>
+        <div class="burger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
 
     </div>
   </header>
+
+  <div class="menu-search ">
+    <form role="search" method="get" class="search-form " action="#">
+      <label>
+        <span class="screen-reader-text">
+        </span>
+        <input type="text" class="search-field field " placeholder="Поиск" maxlength="70" />
+
+
+      </label>
+      <button type="submit" class="menu-search__submit">
+        <img src="img/icons/search-icon_white.svg" alt="" class="header-search__icon">
+      </button>
+    </form>
+
+  </div>
+  <div class="menu ">
+    <div class="menu-close">
+      <img src="img/icons/menu-close-icon.svg" alt="">
+    </div>
+
+    
+    <div class="menu-actions__wrap">
+      <a href="profile.html" class="menu-actions__item ">
+        <img src="img/icons/header-mini-1-icon.svg" alt="">
+        <img src="img/icons/header-mini-1-icon_active.svg" alt="" class="current">
+
+        <span>Мой профиль</span>
+      </a>
+      <a href="colleagues.html" class="menu-actions__item current ">
+        <img src="img/icons/header-mini-2-icon.svg" alt="">
+        <img src="img/icons/header-mini-2-icon_active.svg" alt="" class="current">
+        <span>Мои коллеги</span>
+      </a>
+      <div class="line"></div>
+      <a href="settings.html" class="menu-actions__item">
+        <img src="img/icons/header-mini-3-icon.svg" alt="">
+        <img src="img/icons/header-mini-3-icon_active.svg" alt="" class="current">
+
+        <span>Настройки</span>
+      </a>
+      <a href="index.html" class="menu-actions__item">
+        <img src="img/icons/header-mini-4-icon_active.svg" alt="" class="current">
+        <img src="img/icons/header-mini-4-icon.svg" alt="">
+        <span>Выйти</span>
+      </a>
+    </div>
+
+    <a href="invited.html" class="btn menu-invite">
+      Пригласить
+    </a>
+
+    <div class="menu-city js-toChooseCity">
+      <img src="img/icons/city-icon.svg" alt="">
+      <span class="name">Казань</span>
+    </div>
+
+  </div>
+
+  <div class="menu-bg "></div>
+
 
 
   <main class="main ">

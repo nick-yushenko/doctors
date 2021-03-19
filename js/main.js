@@ -1,3 +1,53 @@
+if (window.NodeList && !NodeList.prototype.forEach) {
+  NodeList.prototype.forEach = function (callback, thisArg) {
+    thisArg = thisArg || window;
+    for (var i = 0; i < this.length; i++) {
+      callback.call(thisArg, this[i], i, this);
+    }
+  };
+}
+if (!("nextElementSibling" in document.documentElement)) {
+  Object.defineProperty(Element.prototype, "nextElementSibling", {
+    get: function () {
+      var e = this.nextSibling;
+      while (e && 1 !== e.nodeType)
+        e = e.nextSibling;
+      return e;
+    }
+  });
+}
+(function (arr) {
+  arr.forEach(function (item) {
+    if (item.hasOwnProperty('append')) {
+      return;
+    }
+    Object.defineProperty(item, 'append', {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function append() {
+        var argArr = Array.prototype.slice.call(arguments),
+          docFrag = document.createDocumentFragment();
+
+        argArr.forEach(function (argItem) {
+          var isNode = argItem instanceof Node;
+          docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
+        });
+
+        this.appendChild(docFrag);
+      }
+    });
+  });
+})([Element.prototype, Document.prototype, DocumentFragment.prototype]);
+
+if (!('remove' in Element.prototype)) {
+  Element.prototype.remove = function() {
+      if (this.parentNode) {
+          this.parentNode.removeChild(this);
+      }
+  };
+}
+
 // поиск города 
 
 const searchInputs = document.querySelectorAll('.js-searchInput')
@@ -11,10 +61,10 @@ if (searchInputs) {
       var results = listWrap.querySelectorAll('.modal-city-item')
 
       var elemToShow = 0;
-      results.forEach(item => {
+      results.forEach(function (item) {
         var city = item.textContent.toUpperCase();
 
-        if (city.includes(request) || request.includes(city)) {
+        if (city.indexOf(request) != -1 || request.indexOf(city) != -1) {
 
           item.style.display = 'flex'
 
@@ -256,7 +306,7 @@ if (toDeleteBtns) {
     })
   })
 }
-if (toChooseCityBtns) {
+if (toChooseCityBtns.length > 0) {
   toChooseCityBtns.forEach(function (item) {
 
     item.addEventListener('click', function () {
@@ -264,7 +314,6 @@ if (toChooseCityBtns) {
         item.classList.remove('active')
       })
       modalCity.classList.add('active')
-      modalCity.querySelector('.js-searchInput').focus()
       document.querySelector('body').style.overflow = 'hidden'
       const menu = document.querySelector('.menu')
       const menuBg = document.querySelector('.menu-bg')
@@ -1074,7 +1123,7 @@ if (addAppoinmentBtns.length > 0) {
       $(clone.querySelectorAll('.select')).on('click', '.select__item', droplistChooseItem)
       $(clone.querySelectorAll('.select select__head input')).on('focus', onInputFocus)
 
-      clone.querySelectorAll('.select input').forEach(input => {
+      clone.querySelectorAll('.select input').forEach(function (input) {
 
 
         input.addEventListener('input', function (e) {
@@ -1087,19 +1136,19 @@ if (addAppoinmentBtns.length > 0) {
 
 
           var elemToShow = 0;
-          results.forEach(item => {
+          results.forEach(function (item) {
             var userName = item.textContent.toUpperCase();
             var dataSearch = ''
             if (item.hasAttribute('data-search')) {
               dataSearch = item.getAttribute('data-search').toUpperCase()
             }
-            if (userName.includes(request) || request.includes(userName)) {
+            if (userName.indexOf(request) != -1 || request.indexOf(userName) != -1) {
 
               item.style.display = 'block'
 
               elemToShow++
 
-            } else if (dataSearch != '' && (dataSearch.includes(request) || request.includes(dataSearch))) {
+            } else if (dataSearch != '' && (dataSearch.indexOf(request) != -1 || request.indexOf(dataSearch) != -1)) {
               item.style.display = 'block'
               item.addEventListener('click', droplistChooseItem)
 
@@ -1171,14 +1220,13 @@ if (cityAppointmentTemp.length > 0) {
     // console.log(item.querySelector('')
     {
       item.querySelectorAll('.settings-appointment__text').forEach(function (hint) {
-        if (hint.textContent == "Город")
-          {
-            const newItem = hint.parentElement
-            // console.log(newItem)
-            $(newItem.querySelectorAll('.select')).on('focus', '.select__head', onSelectFocus)
-            $(newItem.querySelectorAll('.select')).on('click', '.select__item', droplistChooseItem)
-            $(newItem.querySelectorAll('.select select__head input')).on('focus', onInputFocus)
-          }
+        if (hint.textContent == "Город") {
+          const newItem = hint.parentElement
+          // console.log(newItem)
+          $(newItem.querySelectorAll('.select')).on('focus', '.select__head', onSelectFocus)
+          $(newItem.querySelectorAll('.select')).on('click', '.select__item', droplistChooseItem)
+          $(newItem.querySelectorAll('.select select__head input')).on('focus', onInputFocus)
+        }
 
       })
     }

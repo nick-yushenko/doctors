@@ -1,3 +1,55 @@
+if (window.NodeList && !NodeList.prototype.forEach) {
+  NodeList.prototype.forEach = function (callback, thisArg) {
+    thisArg = thisArg || window;
+    for (var i = 0; i < this.length; i++) {
+      callback.call(thisArg, this[i], i, this);
+    }
+  };
+}
+if (!("nextElementSibling" in document.documentElement)) {
+  Object.defineProperty(Element.prototype, "nextElementSibling", {
+    get: function () {
+      var e = this.nextSibling;
+      while (e && 1 !== e.nodeType)
+        e = e.nextSibling;
+      return e;
+    }
+  });
+}
+
+(function (arr) {
+  arr.forEach(function (item) {
+    if (item.hasOwnProperty('append')) {
+      return;
+    }
+    Object.defineProperty(item, 'append', {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function append() {
+        var argArr = Array.prototype.slice.call(arguments),
+          docFrag = document.createDocumentFragment();
+
+        argArr.forEach(function (argItem) {
+          var isNode = argItem instanceof Node;
+          docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
+        });
+
+        this.appendChild(docFrag);
+      }
+    });
+  });
+})([Element.prototype, Document.prototype, DocumentFragment.prototype]);
+
+if (!('remove' in Element.prototype)) {
+  Element.prototype.remove = function () {
+    if (this.parentNode) {
+      this.parentNode.removeChild(this);
+    }
+  };
+}
+
+
 $('.select').on('focus', '.select__head', onSelectFocus);
 
 
@@ -50,7 +102,7 @@ function droplistChooseItem() {
   if (selectInput) {
     // selectInput.value = this.textContent
     selectInput.setAttribute('value', this.textContent)
-    selectInput.setAttribute.value = this.textContent
+    selectInput.value = this.textContent
     selectInput.classList.remove('invalid')
     if (selectInput.parentElement.querySelector('div.invalid'))
       selectInput.parentElement.querySelector('div.invalid').remove()
@@ -75,13 +127,11 @@ function droplistChooseItem() {
       if (BDmonth.value == '') {
         BDmonth.classList.add('invalid')
         BDerror.style.display = 'block'
-        console.log('day - month')
 
       }
       if (BDyear.value == '') {
         BDyear.classList.add('invalid')
         BDerror.style.display = 'block'
-        console.log('day - yaer')
 
       }
 
@@ -94,13 +144,11 @@ function droplistChooseItem() {
       if (BDday.value == '') {
         BDday.classList.add('invalid')
         BDerror.style.display = 'block'
-        console.log('month day')
 
       }
       if (BDyear.value == '') {
         BDyear.classList.add('invalid')
         BDerror.style.display = 'block'
-        console.log('month - year')
 
 
       }
@@ -109,13 +157,12 @@ function droplistChooseItem() {
     if (this.parentElement.classList.contains('js-BDyear')) {
       BDinput.setAttribute('data-year', this.textContent)
       BDyear.classList.remove('invalid')
-      
+
       BDerror.style.display = 'none'
 
       if (BDday.value == '') {
         BDday.classList.add('invalid')
         BDerror.style.display = 'block'
-        console.log('year - day')
 
 
       }
@@ -123,7 +170,6 @@ function droplistChooseItem() {
         BDmonth.classList.add('invalid')
         BDerror.style.display = 'block'
 
-        console.log('year - month')
 
       }
 
@@ -134,15 +180,15 @@ function droplistChooseItem() {
     if (BDinput.getAttribute('data-day') != '' && BDinput.getAttribute('data-month') != '' && BDinput.getAttribute('data-year') != '') {
       let date = BDinput.getAttribute('data-day').replace(' ', '') + '-' + BDinput.getAttribute('data-month').replace(' ', '') + '-' + BDinput.getAttribute('data-year').replace(' ', '')
       BDinput.setAttribute('value', date)
+      BDinput.value = date
       BDerror.style.display = 'none'
-      console.log(BDerror)
-      
+
     }
   }
 
 }
 
-document.querySelectorAll('.select input').forEach(input => {
+document.querySelectorAll('.select input').forEach(function (input) {
 
 
   input.addEventListener('input', function (e) {
@@ -152,26 +198,25 @@ document.querySelectorAll('.select input').forEach(input => {
     var request = input.value.toUpperCase()
 
     var listWrap = input.parentElement.nextElementSibling
-    console.log(listWrap)
     var results = listWrap.querySelectorAll('.select__item')
 
-    
+
     var elemToShow = 0;
-    results.forEach(item => {
+    results.forEach(function (item) {
       var userName = item.textContent.toUpperCase();
       var dataSearch = ''
       if (item.hasAttribute('data-search')) {
         dataSearch = item.getAttribute('data-search').toUpperCase()
       }
-      console.log(item)
-      console.log(dataSearch)
-      if (userName.includes(request) || request.includes(userName)) {
+      // console.log(item)
+      // console.log(dataSearch)
+      if (userName.indexOf(request) != -1 || request.indexOf(userName) != -1) {
 
         item.style.display = 'block'
 
         elemToShow++
 
-      } else if (dataSearch != '' && (dataSearch.includes(request) || request.includes(dataSearch))) {
+      } else if (dataSearch != '' && (dataSearch.indexOf(request) != -1 || request.indexOf(dataSearch) != -1)) {
         item.style.display = 'block'
 
         elemToShow++
@@ -181,8 +226,10 @@ document.querySelectorAll('.select input').forEach(input => {
       }
 
       if (elemToShow == 0) {
-        listWrap.querySelector('.empty').style.display = 'block'
+        if (listWrap.querySelector('.empty'))
+          listWrap.querySelector('.empty').style.display = 'block'
       } else {
+        if (listWrap.querySelector('.empty'))
         listWrap.querySelector('.empty').style.display = 'none'
 
       }
