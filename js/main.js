@@ -1101,6 +1101,7 @@ if (addAppoinmentBtns.length > 0) {
 
             } else if (dataSearch != '' && (dataSearch.includes(request) || request.includes(dataSearch))) {
               item.style.display = 'block'
+              item.addEventListener('click', droplistChooseItem)
 
               elemToShow++
             } else {
@@ -1957,10 +1958,10 @@ function activateProfileSubmit(form) {
     if (form != null) {
       let successFieldsCount = form.querySelectorAll('.success').length
       console.log(fieldsCount + '-' + successFieldsCount)
-      fields.forEach(function (i) {
-        if (!i.classList.contains('success'))
-          console.log(i)
-      })
+      // fields.forEach(function (i) {
+      //   if (!i.classList.contains('success'))
+      //     console.log(i)
+      // })
       if (successFieldsCount == fieldsCount) {
         form.querySelectorAll('input.form-submit').forEach(function (item) {
           item.classList.remove('disabled')
