@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.min.css">
+  <meta name="format-detection" content="telephone=no">
   <title>Визитка врача</title>
 </head>
 
@@ -470,7 +471,7 @@
           <span class="invite-card__count">осталось 3 приглашения</span>
         </div>
         <div class="invite-card__code">
-          <span>1111 – 2222 – 3333 – 4444</span>
+          <span onclick="copyCode(this)">1111 – 2222 – 3333 – 4444</span>
         </div>
         <div class="invite-card__info">
           <div class="invite-card__text">
@@ -547,6 +548,7 @@
     <div class="wrap content-flex">
       <a href="index.html" class="logo">
         <img src="img/icons/logo.svg" alt="Визитка Врача">
+        <img src="img/icons/logo-mb.svg" alt="Визитка Врача">
       </a>
       <div class="city toModal js-toChooseCity">
         <img src="img/icons/city-icon.svg" alt="">
@@ -557,7 +559,7 @@
         <div class="header-mini js-toggleHeaderMenu ">
           Муратов. А
         </div>
-        <div class="header-mini__wrap  js-headerMenu">
+        <div class="header-mini__wrap mini-wrap_right  js-headerMenu">
           <a href="profile.html" class="header-mini__item current">
             <img src="img/icons/header-mini-1-icon.svg" alt="">
             <img src="img/icons/header-mini-1-icon_active.svg" alt="" class="current">
@@ -616,13 +618,13 @@
 
 
     <div class="menu-actions__wrap">
-      <a href="profile.html" class="menu-actions__item ">
+      <a href="profile.html" class="menu-actions__item current ">
         <img src="img/icons/header-mini-1-icon.svg" alt="">
         <img src="img/icons/header-mini-1-icon_active.svg" alt="" class="current">
 
         <span>Мой профиль</span>
       </a>
-      <a href="colleagues.html" class="menu-actions__item current ">
+      <a href="colleagues.html" class="menu-actions__item  ">
         <img src="img/icons/header-mini-2-icon.svg" alt="">
         <img src="img/icons/header-mini-2-icon_active.svg" alt="" class="current">
         <span>Мои коллеги</span>
@@ -923,7 +925,7 @@
                 <div class="settings-education__item">
                   <span class="settings-education__text">Учебное заведение</span>
                   <div class="input-block">
-                    <input type="text" placeholder="Институт пирогова" class="input-block__field field">
+                    <input type="text" placeholder="Институт пирогова" minlength="10" maxlength="200" name="MiddleCollegeName" class="input-block__field field">
                   </div>
                 </div>
                 <div class="settings-education__item">
@@ -1609,13 +1611,13 @@
 
                     <div class="settings-jobs__speciality">
                       <div class="input-block example">
-                        <input type="text" placeholder="Мануальный терапевт" class="input-block__field field">
+                        <input type="text" placeholder="Мануальный терапевт" maxlength="200" style="padding-right: 35px;" class="input-block__field field">
                         <div class="settings-jobs-speciality__delete js-removeJobspeciality">
                           <img src="img/icons/delete-icon_disable.svg" alt="">
                         </div>
                       </div>
                       <div class="input-block ">
-                        <input type="text" placeholder="Мануальный терапевт" class="input-block__field field">
+                        <input type="text" placeholder="Мануальный терапевт" maxlength="200" style="padding-right: 35px;" class="input-block__field field">
                         <div class="settings-jobs-speciality__delete js-removeJobspeciality"
                           id="removeJobspecialityTemp" style="display: none;">
                           <img src="img/icons/delete-icon_disable.svg" alt="">
@@ -1862,13 +1864,13 @@
                     <div class="settings-jobs__speciality">
 
                       <div class="input-block example">
-                        <input type="text" placeholder="Мануальный терапевт" class="input-block__field field">
+                        <input type="text" placeholder="Мануальный терапевт" maxlength="200" style="padding-right: 35px;" class="input-block__field field">
                         <div class="settings-jobs-speciality__delete js-removeJobspeciality ">
                           <img src="img/icons/delete-icon_disable.svg" alt="">
                         </div>
                       </div>
                       <div class="input-block">
-                        <input type="text" placeholder="Мануальный терапевт" class="input-block__field field">
+                        <input type="text" placeholder="Мануальный терапевт" maxlength="200" style="padding-right: 35px;" class="input-block__field field">
                         <div class="settings-jobs-speciality__delete js-removeJobspeciality js-removeJobspecialityTemp"
                           style="display: none;">
                           <img src="img/icons/delete-icon_disable.svg" alt="">

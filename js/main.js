@@ -50,6 +50,32 @@ if (!('remove' in Element.prototype)) {
   };
 }
 
+
+
+function copyCode(el) {
+  /* Get the text field */
+  // var copyText = document.getElementById("myInput");
+  var codeField = document.createElement("input");
+  codeField.setAttribute('type', 'text')
+  codeField.style.height = '0px'
+  codeField.style.width = '1px'
+  codeField.style.border = 'none'
+  codeField.style.zIndex = '-1'
+  codeField.value = el.textContent
+
+  // Добавляем только что созданный элемент в дерево DOM
+
+  el.after(codeField)
+
+  codeField.select()
+  /* Select the text field */
+  // el.select();
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+
+  /* Alert the copied text */
+}
 // поиск города 
 
 const searchInputs = document.querySelectorAll('.js-searchInput')
@@ -1897,10 +1923,14 @@ $('#settingsChangePassword').validate({
 $('#settingsProfileForm').validate({
 
   rules: {
+
     surname: {
       required: true,
     },
 
+    // MiddleCollegeName: {
+    // minlength: 10,
+    // },
     name: {
       required: true,
     },
@@ -1958,6 +1988,9 @@ $('#settingsProfileForm').validate({
     },
     birthday: {
       required: jQuery.validator.format("Поле не заполнено")
+    },
+    MiddleCollegeName: {
+      minlength: jQuery.validator.format("Введите полное название учебного заведения "),
     },
     universityName: {
       minlength: jQuery.validator.format("Введите полное название учебного заведения "),
@@ -2438,7 +2471,7 @@ if (validatuinFields.length > 0)
           let minlength = field.getAttribute('minlength')
           let maxlength = field.getAttribute('maxlength')
 
-          let str = /[^A-Za-zА-Яа-яЁё()-.,]/g
+          let str = /[^A-Za-zА-Яа-яЁё()-., ]/g
 
           field.value = field.value.replace(str, '')
 
