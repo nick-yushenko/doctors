@@ -313,6 +313,8 @@ const modalSupport = document.querySelector('.modal-support')
 const notifyBtns = document.querySelectorAll('.modal-notify-btn')
 const modalRecommend = document.querySelector('.modal-recommend')
 const toRecommendBtns = document.querySelectorAll('.js-toRecommend')
+const modalDeleteRecommend = document.querySelector('.modal-recommend-delete')
+const toDeleteRecommendBtns = document.querySelectorAll('.js-toDeleteRecommend')
 const modalComplain = document.querySelector('.modal-complain')
 const toComplainBtns = document.querySelectorAll('.js-toComplain')
 const modalDelete = document.querySelector('.modal-delete')
@@ -500,6 +502,20 @@ if (toRecommendBtns) {
       modalRecommend.classList.add('active')
       document.querySelector('body').style.overflow = 'hidden'
       CheckModal(modalRecommend)
+
+    })
+  })
+}
+if (toDeleteRecommendBtns.length > 0) {
+  toDeleteRecommendBtns.forEach(function (item) {
+
+    item.addEventListener('click', function () {
+      modals.forEach(function (item) {
+        item.classList.remove('active')
+      })
+      modalDeleteRecommend.classList.add('active')
+      document.querySelector('body').style.overflow = 'hidden'
+      CheckModal(modalDeleteRecommend)
 
     })
   })

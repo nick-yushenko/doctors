@@ -409,6 +409,23 @@
     </div>
   </div>
 
+  <!-- Удалить рeкомендовать -->
+  <div class="modal modal-recommend-delete">
+    <div class="modal-wrap modal-notify-wrap">
+      <div class="modal-close">
+        <img src="img/icons/close-icon.svg" alt="">
+      </div>
+      <h2 class="modal-title">Удалить рекомендацию</h2>
+      <span class="modal-reset-text">
+        Вы действительно хотите удалить свою рекомендацию на этого врача? 
+      </span>
+
+      <form action="#">
+        <input type="submit" value="Удалить" class="btn" style="width: 100%;">
+      </form>
+    </div>
+  </div>
+
   <!-- Отправка жалобы  -->
   <div class="modal modal-complain  ">
     <div class="modal-wrap modal-complain-wrap">
@@ -1088,7 +1105,7 @@
                 </div>
                 <div class="catalog-item__hover">
                   <a href="doctor.html" class="btn ">Посмотреть профиль</a>
-                  <div class="btn-light js-toRecommend">Удалить рекомендацию</div>
+                  <div class="btn-light js-toDeleteRecommend">Удалить рекомендацию</div>
                 </div>
               </div>
               <div class="catalog-item colleagues-item IRecommend opened">
@@ -1106,42 +1123,7 @@
                 </div>
                 <div class="catalog-item__hover">
                   <a href="doctor.html" class="btn ">Посмотреть профиль</a>
-                  <div class="btn-light js-toRecommend">Удалить рекомендацию</div>
-                </div>
-              </div>
-              <div class="catalog-item colleagues-item IRecommend opened">
-                <div class="catalog-item__img">
-                  <img src="img/catalog/catalog-item-1.png" alt="">
-                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
-                </div>
-                <div class="catalog-item__descr">
-                  <span class="location">Москва, Химки</span>
-                  <span class="name">Муратов Александр Викторович</span>
-                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
-                  <span class="experience"><span>Стаж</span>14 лет</span>
-
-                </div>
-                <div class="catalog-item__hover">
-                  <a href="doctor.html" class="btn ">Посмотреть профиль</a>
-                  <div class="btn-light js-toRecommend">Удалить рекомендацию</div>
-                </div>
-              </div>
-              <div class="catalog-item colleagues-item IRecommend opened">
-                <div class="catalog-item__img">
-                  <img src="img/catalog/catalog-item_empty.svg" alt="">
-                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
-
-                </div>
-                <div class="catalog-item__descr">
-                  <span class="location">Москва, Химки</span>
-                  <span class="name">Муратов Александр Викторович</span>
-                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
-                  <span class="experience"><span>Стаж</span>14 лет</span>
-
-                </div>
-                <div class="catalog-item__hover">
-                  <a href="doctor.html" class="btn ">Посмотреть профиль</a>
-                  <div class="btn-light js-toRecommend">Удалить рекомендацию</div>
+                  <div class="btn-light js-toDeleteRecommend">Удалить рекомендацию</div>
                 </div>
               </div>
               <div class="catalog-item colleagues-item IRecommend opened">
@@ -1158,7 +1140,7 @@
                 </div>
                 <div class="catalog-item__hover">
                   <a href="doctor.html" class="btn ">Посмотреть профиль</a>
-                  <div class="btn-light js-toRecommend">Удалить рекомендацию</div>
+                  <div class="btn-light js-toDeleteRecommend">Удалить рекомендацию</div>
                 </div>
               </div>
               <div class="catalog-item colleagues-item IRecommend opened">
@@ -1176,7 +1158,42 @@
                 </div>
                 <div class="catalog-item__hover">
                   <a href="doctor.html" class="btn ">Посмотреть профиль</a>
-                  <div class="btn-light js-toRecommend">Удалить рекомендацию</div>
+                  <div class="btn-light js-toDeleteRecommend">Удалить рекомендацию</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item IRecommend opened">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item-1.png" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="doctor.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toDeleteRecommend">Удалить рекомендацию</div>
+                </div>
+              </div>
+              <div class="catalog-item colleagues-item IRecommend opened">
+                <div class="catalog-item__img">
+                  <img src="img/catalog/catalog-item_empty.svg" alt="">
+                  <img src="img/catalog/catalog-img-line.svg" alt="" class="line">
+
+                </div>
+                <div class="catalog-item__descr">
+                  <span class="location">Москва, Химки</span>
+                  <span class="name">Муратов Александр Викторович</span>
+                  <span class="descr">Мануальный терапевт, невролог, остеопат, рефлексотерапевт...</span>
+                  <span class="experience"><span>Стаж</span>14 лет</span>
+
+                </div>
+                <div class="catalog-item__hover">
+                  <a href="doctor.html" class="btn ">Посмотреть профиль</a>
+                  <div class="btn-light js-toDeleteRecommend">Удалить рекомендацию</div>
                 </div>
               </div>
               <div class="catalog-item colleagues-item IRecommend ">
@@ -1194,7 +1211,7 @@
                 </div>
                 <div class="catalog-item__hover">
                   <a href="doctor.html" class="btn ">Посмотреть профиль</a>
-                  <div class="btn-light js-toRecommend">Удалить рекомендацию</div>
+                  <div class="btn-light js-toDeleteRecommend">Удалить рекомендацию</div>
                 </div>
               </div>
               <div class="catalog-item colleagues-item IRecommend ">
@@ -1212,7 +1229,7 @@
                 </div>
                 <div class="catalog-item__hover">
                   <a href="doctor.html" class="btn ">Посмотреть профиль</a>
-                  <div class="btn-light js-toRecommend">Удалить рекомендацию</div>
+                  <div class="btn-light js-toDeleteRecommend">Удалить рекомендацию</div>
                 </div>
               </div>
               <div class="catalog-item colleagues-item IRecommend ">
@@ -1230,7 +1247,7 @@
                 </div>
                 <div class="catalog-item__hover">
                   <a href="doctor.html" class="btn ">Посмотреть профиль</a>
-                  <div class="btn-light js-toRecommend">Удалить рекомендацию</div>
+                  <div class="btn-light js-toDeleteRecommend">Удалить рекомендацию</div>
                 </div>
               </div>
               <div class="catalog-item colleagues-item IRecommend ">
@@ -1248,7 +1265,7 @@
                 </div>
                 <div class="catalog-item__hover">
                   <a href="doctor.html" class="btn ">Посмотреть профиль</a>
-                  <div class="btn-light js-toRecommend">Удалить рекомендацию</div>
+                  <div class="btn-light js-toDeleteRecommend">Удалить рекомендацию</div>
                 </div>
               </div>
               <div class="catalog-item colleagues-item IRecommend ">
@@ -1266,7 +1283,7 @@
                 </div>
                 <div class="catalog-item__hover">
                   <a href="doctor.html" class="btn ">Посмотреть профиль</a>
-                  <div class="btn-light js-toRecommend">Удалить рекомендацию</div>
+                  <div class="btn-light js-toDeleteRecommend">Удалить рекомендацию</div>
                 </div>
               </div>
               <div class="catalog-item colleagues-item IRecommend ">
@@ -1284,7 +1301,7 @@
                 </div>
                 <div class="catalog-item__hover">
                   <a href="doctor.html" class="btn ">Посмотреть профиль</a>
-                  <div class="btn-light js-toRecommend">Удалить рекомендацию</div>
+                  <div class="btn-light js-toDeleteRecommend">Удалить рекомендацию</div>
                 </div>
               </div>
 
