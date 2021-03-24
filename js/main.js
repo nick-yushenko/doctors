@@ -168,8 +168,19 @@ window.addEventListener('scroll', function () {
     }
 
   }
+
+  scrollNav()
 })
 
+// Прокрутка навигации вслед за страницей (на мобилках)
+function scrollNav() {
+  const headerNav = document.querySelector('.header-nav')
+  if (headerNav) {
+
+  } else {
+    return null
+  }
+}
 // открытие меню 
 
 const burger = document.querySelector('.burger')
@@ -292,6 +303,35 @@ $(document).click(function (e) {
   }
 });
 
+
+// Открытие кнопок для действия с докторами на странице Мои Коллеги 
+const colleagues = document.querySelectorAll('.colleagues-item')
+if (colleagues.length > 0) {
+  colleagues.forEach(function (item) {
+    item.addEventListener('click', function (e) {
+      if (window.innerWidth <= 992) {
+
+        colleagues.forEach(function (item) {
+          item.classList.remove('hovered')
+        })
+        item.classList.toggle('hovered')
+      }
+
+    })
+  })
+}
+
+$(document).mouseup(function (e) { // событие клика по веб-документу
+  if (colleagues.length > 0) {
+    var colleagueItems = $('.colleagues-item')
+    if (!colleagueItems.is(e.target) && colleagueItems.has(e.target).length === 0) { // если клик был не по нашему блоку и не по его дочерним элементам
+      colleagues.forEach(function (item) {
+        item.classList.remove('hovered')
+      })
+    }
+  }
+
+});
 // смена города 
 const modals = document.querySelectorAll('.modal')
 
@@ -807,6 +847,41 @@ if (addSpecialityBtns.length > 0) {
     })
   })
 }
+
+// удаление первой специальности (которая открыта всегда)
+const removeSpecialityTemp = document.querySelector('.js-removeSpecialityTemp')
+if (removeSpecialityTemp)
+  removeSpecialityTemp.addEventListener('click', function (e) {
+    const specialityTemp = document.querySelector('.js-specialityTemp')
+    const parent = specialityTemp.parentElement
+
+    if (specialityTemp) {
+      specialityTemp.remove()
+    }
+
+    // проверка количества блоков для добавления специальности
+    let specialityCount = 0
+    parent.querySelectorAll('.speciality-item').forEach(function (item) {
+      if (!item.classList.contains('example'))
+        specialityCount++
+    })
+    if (specialityCount == 1) {
+      // диактивировать кнопку удаления 
+      parent.querySelectorAll('.speciality-item').forEach(function (item) {
+        if (!item.classList.contains('example'))
+          item.querySelector('.js-removeSpeciality').style.display = 'none'
+      })
+
+    } else {
+
+      parent.querySelectorAll('.speciality-item').forEach(function (item) {
+        if (!item.classList.contains('example'))
+          item.querySelector('.js-removeSpeciality').style.display = 'block'
+      })
+    }
+  })
+
+
 // добавление еще 1 еста работы 
 const addJobBtns = document.querySelectorAll('.js-addJob')
 
@@ -1376,7 +1451,7 @@ const bgBtn8 = document.querySelectorAll('.js-setBg8')
 const sectionNav = document.querySelector('.section-nav')
 const sectionTitile = document.querySelector('.section-title')
 console.log(bgBtn1)
-if (view && bgBtn0.length > 0 && bgBtn1.length > 0 && bgBtn2.length > 0 && bgBtn3.length > 0 && bgBtn4.length > 0 && bgBtn5.length > 0 && bgBtn6.length > 0 && bgBtn7.length > 0 && bgBtn8.length > 0 && sectionNav && sectionTitile) {
+if (view && bgBtn0.length > 0) {
   bgBtn0.forEach(function (btn) {
 
     btn.addEventListener('change', function (e) {
@@ -1405,6 +1480,8 @@ if (view && bgBtn0.length > 0 && bgBtn1.length > 0 && bgBtn2.length > 0 && bgBtn
 
     })
   })
+}
+if (view && bgBtn1.length > 0) {
   bgBtn1.forEach(function (btn) {
     btn.addEventListener('change', function (e) {
       view.classList.remove('bg-0')
@@ -1435,6 +1512,9 @@ if (view && bgBtn0.length > 0 && bgBtn1.length > 0 && bgBtn2.length > 0 && bgBtn
     })
   })
 
+}
+
+if (view && bgBtn2.length > 0) {
   bgBtn2.forEach(function (btn) {
     btn.addEventListener('change', function (e) {
       view.classList.remove('bg-0')
@@ -1462,6 +1542,9 @@ if (view && bgBtn0.length > 0 && bgBtn1.length > 0 && bgBtn2.length > 0 && bgBtn
 
     })
   })
+}
+
+if (view && bgBtn3.length > 0) {
   bgBtn3.forEach(function (btn) {
     btn.addEventListener('change', function (e) {
       view.classList.remove('bg-0')
@@ -1489,6 +1572,9 @@ if (view && bgBtn0.length > 0 && bgBtn1.length > 0 && bgBtn2.length > 0 && bgBtn
 
     })
   })
+}
+
+if (view && bgBtn4.length > 0) {
   bgBtn4.forEach(function (btn) {
     btn.addEventListener('change', function (e) {
       view.classList.remove('bg-0')
@@ -1515,6 +1601,9 @@ if (view && bgBtn0.length > 0 && bgBtn1.length > 0 && bgBtn2.length > 0 && bgBtn
       sectionTitile.querySelector('img').setAttribute('src', sectionTitile.querySelector('img').getAttribute('src').substr(0, sectionTitile.querySelector('img').getAttribute('src').lastIndexOf('/') + 1) + 'back-icon_white.svg')
     })
   })
+}
+
+if (view && bgBtn5.length > 0) {
   bgBtn5.forEach(function (btn) {
 
     btn.addEventListener('change', function (e) {
@@ -1543,6 +1632,9 @@ if (view && bgBtn0.length > 0 && bgBtn1.length > 0 && bgBtn2.length > 0 && bgBtn
 
     })
   })
+}
+
+if (view && bgBtn6.length > 0) {
   bgBtn6.forEach(function (btn) {
     btn.addEventListener('change', function (e) {
       view.classList.remove('bg-0')
@@ -1570,6 +1662,9 @@ if (view && bgBtn0.length > 0 && bgBtn1.length > 0 && bgBtn2.length > 0 && bgBtn
 
     })
   })
+}
+
+if (view && bgBtn7.length > 0) {
   bgBtn7.forEach(function (btn) {
     btn.addEventListener('change', function (e) {
       view.classList.remove('bg-0')
@@ -1597,6 +1692,10 @@ if (view && bgBtn0.length > 0 && bgBtn1.length > 0 && bgBtn2.length > 0 && bgBtn
     })
 
   })
+}
+
+if (view && bgBtn8.length > 0) {
+
   bgBtn8.forEach(function (btn) {
     btn.addEventListener('change', function (e) {
       view.classList.remove('bg-0')
@@ -1627,11 +1726,11 @@ if (view && bgBtn0.length > 0 && bgBtn1.length > 0 && bgBtn2.length > 0 && bgBtn
     })
   })
 
-
-
-
-
 }
+
+
+
+
 
 
 // заполнение первой формы регистрации (ввода кода). 
@@ -1943,10 +2042,6 @@ $('#settingsProfileForm').validate({
     surname: {
       required: true,
     },
-
-    // MiddleCollegeName: {
-    // minlength: 10,
-    // },
     name: {
       required: true,
     },
@@ -1978,14 +2073,14 @@ $('#settingsProfileForm').validate({
       required: true,
     },
     appointmentPlace: {
-      required: true,
+      // required: true,
     },
     appointmentCity: {
       required: true,
     },
 
     phone: {
-      required: true,
+
     },
   },
   messages: {
