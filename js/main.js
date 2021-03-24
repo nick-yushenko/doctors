@@ -2061,16 +2061,16 @@ $('#settingsProfileForm').validate({
       required: true,
     },
     universityName1: {
-      required: true,
+      // required: true,
     },
     universityFinishedYear1: {
-      required: true,
+      // required: true,
     },
     specialization1: {
-      required: true,
+      // required: true,
     },
     speciality1: {
-      required: true,
+      // required: true,
     },
     appointmentPlace: {
       // required: true,
