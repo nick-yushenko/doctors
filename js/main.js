@@ -141,6 +141,7 @@ if (sidebar) {
 
 let scrollPos = 0;
 let curIndex = 0
+var containerOuterWidth = $('.container').outerWidth()
 
 window.addEventListener('scroll', function () {
   if (window.pageYOffset >= header.clientHeight * 0.9)
@@ -183,19 +184,20 @@ function scrollNav() {
 
   const headerNav = document.querySelector('.header-nav')
   if (headerNav) {
-      // console.log(window.innerHeight)
-      console.log(window.scrollY)
-      console.log(document.clientHeight)
+
 
     if (window.innerWidth <= 1024) {
       const navItems = headerNav.querySelectorAll('.header-nav__item')
       var navBlocks = new Array()
-
       const headerHeight = document.querySelector('.header').clientHeight
       const headerNavHeight = headerNav.clientHeight
       const sectionNavHeight = document.querySelector('.section-nav').clientHeight + 26
       const totalHeaderHeight = headerHeight + headerNavHeight
-      const e = 10 // расстояние от всех шапок до блока, к которому скролят (погрешность)
+      const e = 5 // расстояние от всех шапок до блока, к которому скролят (погрешность)
+
+
+      // const container = document.querySelector('.header-nav__wrap')
+      // console.log(container.scrollLeft)
 
       navItems.forEach(function (item) {
         let blockId = item.querySelector('a').getAttribute('href')
@@ -214,45 +216,63 @@ function scrollNav() {
 
       })
 
+
+
       var st = $(this).scrollTop();
       if (st > scrollPos) { // скролл вниз
 
         if (curIndex + 1 < navBlocks.length) {
           if (getCoords(navBlocks[curIndex + 1].block).top <= (scrollY + totalHeaderHeight + e)) {
             curIndex++
-            if (curIndex > 0)
+            if (curIndex > 0) {
               navBlocks[curIndex - 1].blockNavitem.classList.remove('current')
+            }
             navBlocks[curIndex].blockNavitem.classList.add('current')
 
-   
-            $(".header-nav__wrap").animate({
-              scrollLeft: $(navBlocks[curIndex].id).offset().left + "px"
-            }, {
-              duration: 500,
-              easing: "swing"
-            });
-          } else {
-          }
+          
+            document.getElementsByClassName('header-nav__wrap')[0].scrollTo({
+              top: 0,
+              left: document.getElementsByClassName('header-nav__item')[curIndex].offsetLeft - 10,
+              behavior: 'smooth'
+            })
+
+            // $(".header-nav__wrap").animate({
+            //   scrollLeft: scrollLeftUpd
+            // }, {
+            //   duration: 500,
+            //   easing: "swing"
+            // });
+          } else {}
           // если доскролили до конца 
-    
-        } else {
-        }
+          if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+            console.log('end pf the page')
+            navBlocks[navBlocks.length - 2].blockNavitem.classList.remove('current')
+            navBlocks[navBlocks.length - 1].blockNavitem.classList.add('current')
+            curIndex ++
+          }
+        } else {}
       } else { // скролл вверх
 
         if (curIndex - 1 >= 0) {
           if (getCoords(navBlocks[curIndex - 1].block).top + navBlocks[curIndex - 1].blockHeight / 2 >= (scrollY + totalHeaderHeight + e)) {
             // console.log('to ' + (curIndex - 1))
             curIndex--
-            if (curIndex < navBlocks.length)
+            if (curIndex < navBlocks.length) {
               navBlocks[curIndex + 1].blockNavitem.classList.remove('current')
+            }
             navBlocks[curIndex].blockNavitem.classList.add('current')
 
-            $(".header-nav__wrap").animate({
-              scrollLeft: $(navBlocks[curIndex].id).offset().left + "px"
-            }, {
-              duration: 500,
-              easing: "swing"
-            });
+            document.getElementsByClassName('header-nav__wrap')[0].scrollTo({
+              top: 0,
+              left: document.getElementsByClassName('header-nav__item')[curIndex].offsetLeft - 10,
+              behavior: 'smooth'
+            })
+            // $(".header-nav__wrap").animate({
+            //   scrollLeft: scrollLeftUpd
+            // }, {
+            //   duration: 500,
+            //   easing: "swing"
+            // });
           } else {
             // console.log('все еще на блоке ' + curIndex)
           }
