@@ -229,12 +229,9 @@ function scrollNav() {
             }
             navBlocks[curIndex].blockNavitem.classList.add('current')
 
-          
-            document.getElementsByClassName('header-nav__wrap')[0].scrollTo({
-              top: 0,
-              left: document.getElementsByClassName('header-nav__item')[curIndex].offsetLeft - 10,
-              behavior: 'smooth'
-            })
+            $('.header-nav__wrap').animate({
+              scrollLeft: document.getElementsByClassName('header-nav__item')[curIndex].offsetLeft - 10
+            }, 300)
 
             // $(".header-nav__wrap").animate({
             //   scrollLeft: scrollLeftUpd
@@ -248,7 +245,7 @@ function scrollNav() {
             console.log('end pf the page')
             navBlocks[navBlocks.length - 2].blockNavitem.classList.remove('current')
             navBlocks[navBlocks.length - 1].blockNavitem.classList.add('current')
-            curIndex ++
+            curIndex++
           }
         } else {}
       } else { // скролл вверх
@@ -262,11 +259,14 @@ function scrollNav() {
             }
             navBlocks[curIndex].blockNavitem.classList.add('current')
 
-            document.getElementsByClassName('header-nav__wrap')[0].scrollTo({
-              top: 0,
-              left: document.getElementsByClassName('header-nav__item')[curIndex].offsetLeft - 10,
-              behavior: 'smooth'
-            })
+            // document.getElementsByClassName('header-nav__wrap')[0].scrollTo({
+            //   top: 0,
+            //   left: document.getElementsByClassName('header-nav__item')[curIndex].offsetLeft - 10,
+            //   behavior: 'smooth'
+            // })
+            $('.header-nav__wrap').animate({
+              scrollLeft: document.getElementsByClassName('header-nav__item')[curIndex].offsetLeft - 10
+            }, 300)
             // $(".header-nav__wrap").animate({
             //   scrollLeft: scrollLeftUpd
             // }, {
