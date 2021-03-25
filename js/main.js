@@ -138,6 +138,10 @@ if (sidebar) {
   sidebarTop = sidebarTop.replace('px', '')
 
 }
+
+let scrollPos = 0;
+let curIndex = 0
+
 window.addEventListener('scroll', function () {
   if (window.pageYOffset >= header.clientHeight * 0.9)
     header.classList.add('header_fixed')
@@ -168,18 +172,111 @@ window.addEventListener('scroll', function () {
     }
 
   }
-
   scrollNav()
+
 })
+
+
 
 // Прокрутка навигации вслед за страницей (на мобилках)
 function scrollNav() {
+
   const headerNav = document.querySelector('.header-nav')
   if (headerNav) {
+      // console.log(window.innerHeight)
+      console.log(window.scrollY)
+      console.log(document.clientHeight)
+
+    if (window.innerWidth <= 1024) {
+      const navItems = headerNav.querySelectorAll('.header-nav__item')
+      var navBlocks = new Array()
+
+      const headerHeight = document.querySelector('.header').clientHeight
+      const headerNavHeight = headerNav.clientHeight
+      const sectionNavHeight = document.querySelector('.section-nav').clientHeight + 26
+      const totalHeaderHeight = headerHeight + headerNavHeight
+      const e = 10 // расстояние от всех шапок до блока, к которому скролят (погрешность)
+
+      navItems.forEach(function (item) {
+        let blockId = item.querySelector('a').getAttribute('href')
+        let block = document.querySelector(blockId)
+        if (block) {
+          let blockHeight = block.clientHeight
+          navBlocks.push({
+            id: blockId,
+            block: block,
+            blockHeight: blockHeight,
+            blockNavitem: item,
+          })
+        } else {
+          console.error("Не удалось найти блок " + blockId)
+        }
+
+      })
+
+      var st = $(this).scrollTop();
+      if (st > scrollPos) { // скролл вниз
+
+        if (curIndex + 1 < navBlocks.length) {
+          if (getCoords(navBlocks[curIndex + 1].block).top <= (scrollY + totalHeaderHeight + e)) {
+            curIndex++
+            if (curIndex > 0)
+              navBlocks[curIndex - 1].blockNavitem.classList.remove('current')
+            navBlocks[curIndex].blockNavitem.classList.add('current')
+
+   
+            $(".header-nav__wrap").animate({
+              scrollLeft: $(navBlocks[curIndex].id).offset().left + "px"
+            }, {
+              duration: 500,
+              easing: "swing"
+            });
+          } else {
+          }
+          // если доскролили до конца 
+    
+        } else {
+        }
+      } else { // скролл вверх
+
+        if (curIndex - 1 >= 0) {
+          if (getCoords(navBlocks[curIndex - 1].block).top + navBlocks[curIndex - 1].blockHeight / 2 >= (scrollY + totalHeaderHeight + e)) {
+            // console.log('to ' + (curIndex - 1))
+            curIndex--
+            if (curIndex < navBlocks.length)
+              navBlocks[curIndex + 1].blockNavitem.classList.remove('current')
+            navBlocks[curIndex].blockNavitem.classList.add('current')
+
+            $(".header-nav__wrap").animate({
+              scrollLeft: $(navBlocks[curIndex].id).offset().left + "px"
+            }, {
+              duration: 500,
+              easing: "swing"
+            });
+          } else {
+            // console.log('все еще на блоке ' + curIndex)
+          }
+        } else {
+
+        }
+      }
+      scrollPos = st;
+
+    }
 
   } else {
     return null
   }
+}
+
+function getCoords(elem) {
+  let box = elem.getBoundingClientRect();
+
+  return {
+    top: box.top + pageYOffset,
+    left: box.left + pageXOffset,
+    bottom: box.bottom
+  };
 }
 // открытие меню 
 
