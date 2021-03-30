@@ -1,5 +1,6 @@
 var isIE = /*@cc_on!@*/ false || !!document.documentMode;
 
+
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = function (callback, thisArg) {
     thisArg = thisArg || window;
@@ -173,7 +174,11 @@ window.addEventListener('scroll', function () {
     }
 
   }
-  scrollNav()
+  if (window.innerWidth <= 1024) {
+    scrollNav()
+  } else {
+    scrollNavDesktop()
+  }
 
 })
 
@@ -185,104 +190,173 @@ function scrollNav() {
   const headerNav = document.querySelector('.header-nav')
   if (headerNav) {
 
-
-    if (window.innerWidth <= 1024) {
-      const navItems = headerNav.querySelectorAll('.header-nav__item')
-      var navBlocks = new Array()
-      const headerHeight = document.querySelector('.header').clientHeight
-      const headerNavHeight = headerNav.clientHeight
-      const sectionNavHeight = document.querySelector('.section-nav').clientHeight + 26
-      const totalHeaderHeight = headerHeight + headerNavHeight
-      const e = 5 // расстояние от всех шапок до блока, к которому скролят (погрешность)
+    const navItems = headerNav.querySelectorAll('.header-nav__item')
+    var navBlocks = new Array()
+    const headerHeight = document.querySelector('.header').clientHeight
+    const headerNavHeight = headerNav.clientHeight
+    const sectionNavHeight = document.querySelector('.section-nav').clientHeight + 26
+    const totalHeaderHeight = headerHeight + headerNavHeight
+    const e = 5 // расстояние от всех шапок до блока, к которому скролят (погрешность)
 
 
-      // const container = document.querySelector('.header-nav__wrap')
-      // console.log(container.scrollLeft)
+    // const container = document.querySelector('.header-nav__wrap')
 
-      navItems.forEach(function (item) {
-        let blockId = item.querySelector('a').getAttribute('href')
-        let block = document.querySelector(blockId)
-        if (block) {
-          let blockHeight = block.clientHeight
-          navBlocks.push({
-            id: blockId,
-            block: block,
-            blockHeight: blockHeight,
-            blockNavitem: item,
-          })
-        } else {
-          console.error("Не удалось найти блок " + blockId)
-        }
-
-      })
-
-
-
-      var st = $(this).scrollTop();
-      if (st > scrollPos) { // скролл вниз
-
-        if (curIndex + 1 < navBlocks.length) {
-          if (getCoords(navBlocks[curIndex + 1].block).top <= (scrollY + totalHeaderHeight + e)) {
-            curIndex++
-            if (curIndex > 0) {
-              navBlocks[curIndex - 1].blockNavitem.classList.remove('current')
-            }
-            navBlocks[curIndex].blockNavitem.classList.add('current')
-
-            $('.header-nav__wrap').animate({
-              scrollLeft: document.getElementsByClassName('header-nav__item')[curIndex].offsetLeft - 10
-            }, 300)
-
-            // $(".header-nav__wrap").animate({
-            //   scrollLeft: scrollLeftUpd
-            // }, {
-            //   duration: 500,
-            //   easing: "swing"
-            // });
-          } else {}
-          // если доскролили до конца 
-          if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
-            console.log('end pf the page')
-            navBlocks[navBlocks.length - 2].blockNavitem.classList.remove('current')
-            navBlocks[navBlocks.length - 1].blockNavitem.classList.add('current')
-            curIndex++
-          }
-        } else {}
-      } else { // скролл вверх
-
-        if (curIndex - 1 >= 0) {
-          if (getCoords(navBlocks[curIndex - 1].block).top + navBlocks[curIndex - 1].blockHeight / 2 >= (scrollY + totalHeaderHeight + e)) {
-            // console.log('to ' + (curIndex - 1))
-            curIndex--
-            if (curIndex < navBlocks.length) {
-              navBlocks[curIndex + 1].blockNavitem.classList.remove('current')
-            }
-            navBlocks[curIndex].blockNavitem.classList.add('current')
-
-            // document.getElementsByClassName('header-nav__wrap')[0].scrollTo({
-            //   top: 0,
-            //   left: document.getElementsByClassName('header-nav__item')[curIndex].offsetLeft - 10,
-            //   behavior: 'smooth'
-            // })
-            $('.header-nav__wrap').animate({
-              scrollLeft: document.getElementsByClassName('header-nav__item')[curIndex].offsetLeft - 10
-            }, 300)
-            // $(".header-nav__wrap").animate({
-            //   scrollLeft: scrollLeftUpd
-            // }, {
-            //   duration: 500,
-            //   easing: "swing"
-            // });
-          } else {
-            // console.log('все еще на блоке ' + curIndex)
-          }
-        } else {
-
-        }
+    navItems.forEach(function (item) {
+      let blockId = item.querySelector('a').getAttribute('href')
+      let block = document.querySelector(blockId)
+      if (block) {
+        let blockHeight = block.clientHeight
+        navBlocks.push({
+          id: blockId,
+          block: block,
+          blockHeight: blockHeight,
+          blockNavitem: item,
+        })
+      } else {
+        console.error("Не удалось найти блок " + blockId)
       }
-      scrollPos = st;
 
+    })
+
+
+
+    var st = $(this).scrollTop();
+    if (st > scrollPos) { // скролл вниз
+
+      if (curIndex + 1 < navBlocks.length) {
+        if (getCoords(navBlocks[curIndex + 1].block).top <= (scrollY + totalHeaderHeight + e)) {
+          curIndex++
+          if (curIndex > 0) {
+            navBlocks[curIndex - 1].blockNavitem.classList.remove('current')
+          }
+          navBlocks[curIndex].blockNavitem.classList.add('current')
+
+          $('.header-nav__wrap').animate({
+            scrollLeft: document.getElementsByClassName('header-nav__item')[curIndex].offsetLeft - 10
+          }, 300)
+
+          // $(".header-nav__wrap").animate({
+          //   scrollLeft: scrollLeftUpd
+          // }, {
+          //   duration: 500,
+          //   easing: "swing"
+          // });
+        } else {}
+        // если доскролили до конца 
+        if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+          navBlocks[navBlocks.length - 2].blockNavitem.classList.remove('current')
+          navBlocks[navBlocks.length - 1].blockNavitem.classList.add('current')
+          curIndex++
+        }
+      } else {}
+    } else { // скролл вверх
+
+      if (curIndex - 1 >= 0) {
+        if (getCoords(navBlocks[curIndex - 1].block).top + navBlocks[curIndex - 1].blockHeight / 2 >= (scrollY + totalHeaderHeight + e)) {
+          curIndex--
+          if (curIndex < navBlocks.length) {
+            navBlocks[curIndex + 1].blockNavitem.classList.remove('current')
+          }
+          navBlocks[curIndex].blockNavitem.classList.add('current')
+
+
+          $('.header-nav__wrap').animate({
+            scrollLeft: document.getElementsByClassName('header-nav__item')[curIndex].offsetLeft - 10
+          }, 300)
+        } else {}
+      } else {
+
+      }
     }
+    scrollPos = st;
+
+
+
+  } else {
+    return null
+  }
+}
+
+function scrollNavDesktop() {
+
+  const sidebarNav = document.querySelector('.profile-nav')
+  if (sidebarNav) {
+
+
+    const navItems = sidebarNav.querySelectorAll('.profile-nav__item')
+    var navBlocks = new Array()
+    const headerHeight = document.querySelector('.header').clientHeight
+    const sectionNavHeight = document.querySelector('.section-nav').clientHeight + 26
+    const totalHeaderHeight = headerHeight 
+    const e = 5 // расстояние от всех шапок до блока, к которому скролят (погрешность)
+
+    
+
+
+    navItems.forEach(function (item) {
+      let blockId = item.querySelector('a').getAttribute('href')
+      let block = document.querySelector(blockId)
+      if (block) {
+        let blockHeight = block.clientHeight
+        navBlocks.push({
+          id: blockId,
+          block: block,
+          blockHeight: blockHeight,
+          blockNavitem: item,
+        })
+      } else {
+        console.error("Не удалось найти блок " + blockId)
+      }
+
+    })
+
+
+    var st = $(this).scrollTop();
+    if (st > scrollPos) { // скролл вниз
+
+      if (curIndex + 1 < navBlocks.length) {
+        if (getCoords(navBlocks[curIndex + 1].block).top <= (scrollY + totalHeaderHeight + e)) {
+          curIndex++
+          if (curIndex > 0) {
+            navBlocks[curIndex - 1].blockNavitem.classList.remove('current')
+          }
+          navBlocks[curIndex].blockNavitem.classList.add('current')
+
+
+          // $(".header-nav__wrap").animate({
+          //   scrollLeft: scrollLeftUpd
+          // }, {
+          //   duration: 500,
+          //   easing: "swing"
+          // });
+        } else {}
+        // если доскролили до конца 
+        if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+          navBlocks[navBlocks.length - 2].blockNavitem.classList.remove('current')
+          navBlocks[navBlocks.length - 1].blockNavitem.classList.add('current')
+          curIndex++
+        }
+      } else {}
+    } else { // скролл вверх
+
+      if (curIndex - 1 >= 0) {
+        if (getCoords(navBlocks[curIndex - 1].block).top + navBlocks[curIndex - 1].blockHeight  >= (scrollY + totalHeaderHeight + e)) {
+          curIndex--
+          if (curIndex < navBlocks.length) {
+            navBlocks[curIndex + 1].blockNavitem.classList.remove('current')
+          }
+          navBlocks[curIndex].blockNavitem.classList.add('current')
+
+
+
+        } else {}
+      } else {
+
+      }
+    }
+    scrollPos = st;
+
+
 
   } else {
     return null
@@ -876,11 +950,9 @@ function droplistChooseItem() {
   $('.select__head').removeClass('open');
   $('.select__list').fadeOut(5);
 
-  // this.parentElement.parentElement.querySelector('.select__head input').setAttribute('value', this.textContent)
   this.parentElement.parentElement.querySelector('.select__head input').value = this.textContent
   this.parentElement.parentElement.querySelector('.select__input').value = this.textContent
 }
-// --- Добавление информации --- 
 
 //  диактивация выбора даты окончания работы 
 const finishJobCheckbox = document.querySelector('.js-finishJob-checkbox')
@@ -1452,13 +1524,10 @@ const removeAppointmentTemp = document.querySelector('.js-removeApointmentTemp')
 const cityAppointmentTemp = document.querySelectorAll('.settings-appointment__block')
 if (cityAppointmentTemp.length > 0) {
   cityAppointmentTemp.forEach(function (item) {
-    if (!item.classList.contains('example'))
-    // console.log(item.querySelector('')
-    {
+    if (!item.classList.contains('example')) {
       item.querySelectorAll('.settings-appointment__text').forEach(function (hint) {
         if (hint.textContent == "Город") {
           const newItem = hint.parentElement
-          // console.log(newItem)
           $(newItem.querySelectorAll('.select')).on('focus', '.select__head', onSelectFocus)
           $(newItem.querySelectorAll('.select')).on('click', '.select__item', droplistChooseItem)
           $(newItem.querySelectorAll('.select select__head input')).on('focus', onInputFocus)
@@ -1567,7 +1636,6 @@ const bgBtn7 = document.querySelectorAll('.js-setBg7')
 const bgBtn8 = document.querySelectorAll('.js-setBg8')
 const sectionNav = document.querySelector('.section-nav')
 const sectionTitile = document.querySelector('.section-title')
-console.log(bgBtn1)
 if (view && bgBtn0.length > 0) {
   bgBtn0.forEach(function (btn) {
 
@@ -1905,7 +1973,6 @@ if (codeForm && sendCode && codeFields.length > 0 && codeTrueField) {
   codeForm.addEventListener('submit', function (e) {
     if (sendCode.classList.contains('disabled'))
       e.preventDefault()
-    // alert('no')
   })
 
 }
@@ -2177,21 +2244,11 @@ $('#settingsProfileForm').validate({
     speciality: {
       required: true,
     },
-    universityName1: {
-      // required: true,
-    },
-    universityFinishedYear1: {
-      // required: true,
-    },
-    specialization1: {
-      // required: true,
-    },
-    speciality1: {
-      // required: true,
-    },
-    appointmentPlace: {
-      // required: true,
-    },
+    universityName1: {},
+    universityFinishedYear1: {},
+    specialization1: {},
+    speciality1: {},
+    appointmentPlace: {},
     appointmentCity: {
       required: true,
     },
@@ -2263,16 +2320,7 @@ $('#settingsProfileForm').validate({
     $(element).removeClass('invalid');
 
   },
-  // errorPlacement: function (error, element) {
-  //   $(element).parent('div').addClass('error')
-  //   // console.log(element.parent('div'))
-  //   // if (element.parent('div')) {
-  //   //   //     $(this).prev("div").addClass('checkbox-error');
-  //   // } else {
-  //   //   return true;
-  //   // }
 
-  // },
   errorElement: "div",
   errorClass: "invalid",
 
@@ -2312,7 +2360,6 @@ function activateProfileSubmit(form) {
   }
 
   function onChangeBDField() {
-    // alert('клик по др')
     this.parentElement.parentElement.querySelector('.select__head input').classList.add('success')
     checkForm()
   }
@@ -2321,23 +2368,16 @@ function activateProfileSubmit(form) {
 
     if (form != null) {
       let successFieldsCount = form.querySelectorAll('.success').length
-      // console.log(fieldsCount + '-' + successFieldsCount)
-      // fields.forEach(function (i) {
-      //   if (!i.classList.contains('success'))
-      //     console.log(i)
-      // })
+
       if (successFieldsCount == fieldsCount) {
         form.querySelectorAll('input.form-submit').forEach(function (item) {
           item.classList.remove('disabled')
         })
-        // form.querySelector('input.form-submit').classList.remove('disabled')
 
       } else {
         form.querySelectorAll('input.form-submit').forEach(function (item) {
           item.classList.add('disabled')
-          // console.log(item)
         })
-        // form.querySelector('input.form-submit').classList.add('disabled')
       }
     }
 
@@ -2485,12 +2525,6 @@ if (document.querySelector('#settingsChangePassword'))
 
 if (document.querySelector('#settingsProfileForm')) {
   activateProfileSubmit(document.querySelector('#settingsProfileForm'))
-  // if (innerWidth <= 1024) {
-  //   document.querySelector('.js-settingsFormSubmit').addEventListener('click', function (e) {
-  //     document.querySelector('#settingsProfileForm').submit()
-
-  //   })
-  // }
 }
 
 
