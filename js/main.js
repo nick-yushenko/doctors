@@ -287,10 +287,10 @@ function scrollNavDesktop() {
     var navBlocks = new Array()
     const headerHeight = document.querySelector('.header').clientHeight
     const sectionNavHeight = document.querySelector('.section-nav').clientHeight + 26
-    const totalHeaderHeight = headerHeight 
+    const totalHeaderHeight = headerHeight
     const e = 5 // расстояние от всех шапок до блока, к которому скролят (погрешность)
 
-    
+
 
 
     navItems.forEach(function (item) {
@@ -340,7 +340,7 @@ function scrollNavDesktop() {
     } else { // скролл вверх
 
       if (curIndex - 1 >= 0) {
-        if (getCoords(navBlocks[curIndex - 1].block).top + navBlocks[curIndex - 1].blockHeight  >= (scrollY + totalHeaderHeight + e)) {
+        if (getCoords(navBlocks[curIndex - 1].block).top + navBlocks[curIndex - 1].blockHeight >= (scrollY + totalHeaderHeight + e)) {
           curIndex--
           if (curIndex < navBlocks.length) {
             navBlocks[curIndex + 1].blockNavitem.classList.remove('current')
@@ -2441,9 +2441,11 @@ function activateSubmit(form) {
 
       if (this.classList.contains('field')) {
         if (this.getAttribute('type') == 'email') {
-          if (this.value.length > 0 && this.value.indexOf('@') > -1)
-            this.classList.add('success')
-          else
+          if (this.value.length > 0 && this.value.indexOf('@') > -1) {
+            // После символа @ должно быть как минимум 1 символ 
+            if (this.value.length > this.value.indexOf('@') + 1)
+              this.classList.add('success')
+          } else
             this.classList.remove('success')
         } else if (this.getAttribute('type') == 'phone') {
           if (this.value.length == 15)

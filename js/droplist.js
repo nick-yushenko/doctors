@@ -116,9 +116,10 @@ function droplistChooseItem() {
   const BDday = document.querySelector('.js-BDday')
   const BDmonth = document.querySelector('.js-BDmonth')
   const BDyear = document.querySelector('.js-BDyear')
-  const BDerror = BDinput.parentElement.querySelector('div.invalid')
 
-  if (BDinput) {
+  const BDerror = (BDinput) ? BDinput.parentElement.querySelector('div.invalid') : null
+
+  if (BDinput && BDday && BDmonth && BDyear && BDerror) {
     if (this.classList.contains('js-BDday')) {
       BDinput.setAttribute('data-day', this.textContent)
       BDday.classList.remove('invalid')
@@ -230,7 +231,7 @@ document.querySelectorAll('.select input').forEach(function (input) {
           listWrap.querySelector('.empty').style.display = 'block'
       } else {
         if (listWrap.querySelector('.empty'))
-        listWrap.querySelector('.empty').style.display = 'none'
+          listWrap.querySelector('.empty').style.display = 'none'
 
       }
     })
