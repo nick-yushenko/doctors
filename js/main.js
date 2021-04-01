@@ -2441,10 +2441,16 @@ function activateSubmit(form) {
 
       if (this.classList.contains('field')) {
         if (this.getAttribute('type') == 'email') {
-          if (this.value.length > 0 && this.value.indexOf('@') > -1 && this.value.length > this.value.indexOf('@') + 1)
+          if (this.value.length > 0 && this.value.indexOf('@') > -1 && this.value.length > this.value.indexOf('@') + 1) {
             this.classList.add('success')
-          else
+
+            
+
+          } else
             this.classList.remove('success')
+
+
+
         } else if (this.getAttribute('type') == 'phone') {
           if (this.value.length == 15)
             this.classList.add('success')
