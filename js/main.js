@@ -2441,11 +2441,11 @@ function activateSubmit(form) {
 
       if (this.classList.contains('field')) {
         if (this.getAttribute('type') == 'email') {
+          let str = /[А-Яа-яЁё(),*&%$#№!?=+'"/|\<>`~\\ ]/g
+
+          this.value = this.value.replace(str, '')
           if (this.value.length > 0 && this.value.indexOf('@') > -1 && this.value.length > this.value.indexOf('@') + 1) {
             this.classList.add('success')
-
-            
-
           } else
             this.classList.remove('success')
 
