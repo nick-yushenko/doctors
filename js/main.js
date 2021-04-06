@@ -2235,6 +2235,9 @@ $('#settingsProfileForm').validate({
     birthday: {
       required: true,
     },
+    email: {
+      required: true,
+    },
     universityName: {
       required: true,
     },
@@ -2272,6 +2275,10 @@ $('#settingsProfileForm').validate({
       required: jQuery.validator.format("Поле не заполнено")
     },
     birthday: {
+      required: jQuery.validator.format("Поле не заполнено")
+    },
+    email: {
+      email: jQuery.validator.format("Введен некорректный e-mail "),
       required: jQuery.validator.format("Поле не заполнено")
     },
     MiddleCollegeName: {
@@ -2336,7 +2343,18 @@ function activateProfileSubmit(form) {
     if (form != null) {
 
       if (this.classList.contains('js-field-req')) {
-        if (this.classList.contains('phone') && this.getAttribute('type') == 'text') {
+        if (this.getAttribute('type') == 'email') {
+          let str = /[А-Яа-яЁё(),*&%$#№!?=+'"/|\<>`~\\ ]/g
+
+          this.value = this.value.replace(str, '')
+          if (this.value.length > 0 && this.value.indexOf('@') > -1 && this.value.length > this.value.indexOf('@') + 1) {
+            this.classList.add('success')
+          } else
+            this.classList.remove('success')
+
+
+
+        } else if (this.classList.contains('phone') && this.getAttribute('type') == 'text') {
           if (this.value.length == 15)
             this.classList.add('success')
           else
@@ -2368,6 +2386,7 @@ function activateProfileSubmit(form) {
 
     if (form != null) {
       let successFieldsCount = form.querySelectorAll('.success').length
+  
 
       if (successFieldsCount == fieldsCount) {
         form.querySelectorAll('input.form-submit').forEach(function (item) {
