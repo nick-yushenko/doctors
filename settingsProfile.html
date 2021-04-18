@@ -143,6 +143,7 @@
     </div>
 
   </div>
+
   <!-- Регистрация. этап 1 (+) -->
   <div class="modal modal-code  ">
 
@@ -1063,27 +1064,63 @@
                     </ul>
                   </div>
                 </div>
-                <div class="settings-education__item">
-                  <span class="settings-education__text">Специализация</span>
-                  <div class="select">
-                    <input class="select__input" type="hidden" name="">
-                    <div class="select__head" value="">
-                      <input type="text" readonly placeholder="Лечебное дело">
-                      <div class="invalid" style="display: none;">Поле не заполнено</div>
 
+                
+                <div class="settings-jobs__item speciality">
+                  <span class="settings-education__text">Профильная специальность</span>
+
+                  <div class="settings-jobs__speciality">
+                
+                    <div class="select example">
+                      <div class="settings-jobs-speciality__delete js-removeEducationSpeciality">
+                        <img src="img/icons/delete-icon_disable.svg" alt="">
+                      </div>
+                      <input class="select__input" type="hidden" name="">
+                      <div class="select__head" value="">
+                        <input type="text" readonly placeholder="Медицинский массаж">
+                        <div class="invalid" style="display: none;">Поле не заполнено</div>
+  
+                      </div>
+                      <ul class="select__list" style="display: none;">
+                        <li class="select__item">Медицинский массаж </li>
+                        <li class="select__item">Педиатрия </li>
+                        <li class="select__item">Стоматология </li>
+                        <li class="select__item">Медико-профилактическое дело </li>
+                        <li class="select__item">Фармация </li>
+                        <li class="select__item"> Медицинская биофизика </li>
+                        <li class="select__item">Медицинская биохимия </li>
+                        <li class="select__item">Медицинская кибернетика </li>
+                        <li class="select__item"> Высшее сестринское дело </li>
+                      </ul>
                     </div>
-                    <ul class="select__list" style="display: none;">
-                      <li class="select__item">Лечебное дело </li>
-                      <li class="select__item">Педиатрия </li>
-                      <li class="select__item">Стоматология </li>
-                      <li class="select__item">Медико-профилактическое дело </li>
-                      <li class="select__item">Фармация </li>
-                      <li class="select__item"> Медицинская биофизика </li>
-                      <li class="select__item">Медицинская биохимия </li>
-                      <li class="select__item">Медицинская кибернетика </li>
-                      <li class="select__item"> Высшее сестринское дело </li>
-                    </ul>
+                    <div class="select">
+                      <div class="settings-jobs-speciality__delete js-removeEducationSpeciality" id="removeEducationSpecialityTemp">
+                        <img src="img/icons/delete-icon_disable.svg" alt="">
+                      </div>
+                      <input class="select__input" type="hidden" name="">
+                      <div class="select__head" value="">
+                        <input type="text" readonly placeholder="Медицинский массаж">
+                        <div class="invalid" style="display: none;">Поле не заполнено</div>
+  
+                      </div>
+                      <ul class="select__list" style="display: none;">
+                        <li class="select__item">Медицинский массаж </li>
+                        <li class="select__item">Педиатрия </li>
+                        <li class="select__item">Стоматология </li>
+                        <li class="select__item">Медико-профилактическое дело </li>
+                        <li class="select__item">Фармация </li>
+                        <li class="select__item"> Медицинская биофизика </li>
+                        <li class="select__item">Медицинская биохимия </li>
+                        <li class="select__item">Медицинская кибернетика </li>
+                        <li class="select__item"> Высшее сестринское дело </li>
+                      </ul>
+                    </div>
+
                   </div>
+                  <span class="settings-jobs__add js-addEducationSpeciality" id="addEducationSpeciality">Добавить
+                    специальность</span>
+                
+                  
                 </div>
               </div>
 
